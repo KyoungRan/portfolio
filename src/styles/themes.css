@@ -1,0 +1,116 @@
+/*
+ * 라이트/다크 테마 토큰 정의
+ * 원칙: 토큰만 교체하면 테마가 전환된다. 컴포넌트 클래스는 재사용한다.
+ * 색상 기준: 노션 포트폴리오 페이지 (보라/라벤더 테마)
+ */
+
+/* 라이트 테마 (기본) */
+:root {
+  /* 컬러 - 노션 포트폴리오 기반 보라/라벤더 테마 */
+  --bg: #ffffff;
+  --fg: #37352f;
+
+  --muted: #f7f6f3;
+  --muted-fg: #787774;
+
+  --card: #ffffff;
+  --card-fg: #37352f;
+
+  --border: #e9e9e7;
+
+  --accent: #7c5cca;
+  --accent-fg: #ffffff;
+  --accent-light: #f3f0ff;
+
+  --focus: #7c5cca;
+
+  /* 그라데이션 - 상단 히어로 배너용 */
+  --gradient-start: #6b5ce7;
+  --gradient-mid: #8b6fc0;
+  --gradient-end: #c4a8d8;
+
+  /* 콜아웃/태그 배경 */
+  --callout-bg: #f8f6ff;
+  --tag-bg: #f1eeff;
+  --tag-fg: #6b5ce7;
+
+  /* 간격(spacing) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-section: 5rem;
+
+  /* 라운드(radius) */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  /* 섀도(shadow) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+  /* 타이포(font) */
+  --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-display: 3rem;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* 트랜지션 */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* 레이아웃 */
+  --container-max: 1140px;
+  --container-padding: 1.5rem;
+}
+
+/* 다크 테마 */
+[data-theme='dark'] {
+  --bg: #0f0f0f;
+  --fg: #e5e5e5;
+
+  --muted: #1a1a1a;
+  --muted-fg: #9ca3af;
+
+  --card: #1a1a1a;
+  --card-fg: #e5e5e5;
+
+  --border: #2a2a2a;
+
+  --accent: #a78bfa;
+  --accent-fg: #0f0f0f;
+  --accent-light: #1e1b2e;
+
+  --focus: #a78bfa;
+
+  --gradient-start: #4c3a99;
+  --gradient-mid: #6b5caa;
+  --gradient-end: #8b6fc0;
+
+  --callout-bg: #1e1b2e;
+  --tag-bg: #1e1b2e;
+  --tag-fg: #a78bfa;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
