@@ -6,6 +6,7 @@
       "companyName": "Citrush AI",
       "domain": "AI Agent / Game",
       "roleTitle": "AI Agent Developer",
+      "heroImageSrc": "/assets/experience/telda.png",
       "period": {
         "start": "2025-03",
         "end": "2025-12",
@@ -28,6 +29,7 @@
       "companyName": "(주)텔다",
       "domain": "신재생에너지 소프트웨어 개발",
       "roleTitle": "소프트웨어 개발",
+      "heroImageSrc": "/assets/experience/telda.png",
       "period": {
         "start": "2017-08",
         "end": "2025-06",
@@ -76,7 +78,16 @@
             "로그인/회원관리/Contact 등 서비스 운영 기능 완성"
           ],
           "result": "모니터링부터 정산까지 단일 운영 흐름 구축",
-          "tech": ["React", "Node.js", "Express", "MySQL", "Ethereum", "Solidity", "Web3", "Webpack"]
+          "tech": [
+            "React",
+            "Node.js",
+            "Express",
+            "MySQL",
+            "Ethereum",
+            "Solidity",
+            "Web3",
+            "Webpack"
+          ]
         }
       ]
     },
@@ -84,6 +95,7 @@
       "companyName": "(주)웹젠",
       "domain": "게임 개발",
       "roleTitle": "게임 기획",
+      "heroImageSrc": "/assets/experience/webzen.jpg",
       "period": {
         "start": "2006-03",
         "end": "2010-06",

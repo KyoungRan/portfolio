@@ -17,7 +17,7 @@ export function OthersSection() {
   const content = others as OthersContent
 
   return (
-    <Section id="others" title={content.title} className="w-full">
+    <Section id="others" title={content.title} className="mb-[30px] w-full">
       <div className="w-full overflow-x-auto rounded-[var(--radius-md)] border border-[var(--border)]">
         <table className="w-full border-collapse">
           <thead>

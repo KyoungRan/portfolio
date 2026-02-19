@@ -1,0 +1,30 @@
+{
+  "slug": "image-recognition-kfood-guide",
+  "title": "이미지 인식 한식 가이드",
+  "summary": "한식 메뉴 인식 및 객체 인식 기반 추천으로 사용자 이해를 돕는 가이드를 구현했습니다.",
+  "period": {
+    "start": "2025-08",
+    "end": "2025-09",
+    "display": "2025.08 - 2025.09"
+  },
+  "tags": ["EfficientNet", "ResNet", "Pandas", "Numpy", "Scikit-learn"],
+  "stack": ["Python", "OpenCV", "PyTorch", "Pandas"],
+  "roles": ["이미지 분류 모델링", "데이터 정제", "가이드 UX 설계"],
+  "coverImageSrc": "/assets/projects/image-recognition-kfood-guide/cover.png",
+  "links": [
+    { "label": "Detail", "href": "#/projects/image-recognition-kfood-guide", "external": false }
+  ],
+  "order": 4,
+  "sections": [
+    {
+      "type": "problem",
+      "title": "Problem",
+      "body": ["한식 이미지 데이터의 클래스 편향으로 분류 성능이 불안정했습니다."]
+    },
+    {
+      "type": "result",
+      "title": "Result",
+      "body": ["인식 결과와 가이드 텍스트를 연결해 사용자 이해도를 높였습니다."]
+    }
+  ]
+}

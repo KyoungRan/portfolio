@@ -4,6 +4,7 @@
     {
       "name": "원티드 포텐업 AI 에이전트 부트캠프(2기)",
       "periodText": "2025.07 - 2026.01",
+      "iconSrc": "/assets/education/wanted.jpg",
       "bullets": [
         "RAG/Agent 개발 역량: LangChain·LangSmith 기반 RAG 파이프라인 구성 및 평가",
         "Agent 오케스트레이션: LCEL, Tool 기반 설계, LangGraph로 AI 비서 서비스 구현",
@@ -15,6 +16,7 @@
     {
       "name": "삼성 SDS 멀티캠퍼스(Android Open API 활용 전문가 과정)",
       "periodText": "2015.09 - 2015.11",
+      "iconSrc": "/assets/education/multicampus.png",
       "bullets": [
         "JAVA Programming, Android Programming, Android Network Programming",
         "Open API, Oracle, JSP, 앱 기획 및 UX/UI"
@@ -24,6 +26,7 @@
     {
       "name": "SUN Education(SUN)",
       "periodText": "2001.07 - 2001.08",
+      "iconSrc": "/assets/education/oxford_logo.jpg",
       "bullets": [
         "JAVA Programming",
         "SL-110 Programming for Beginners using Java, SL-275 Java Programming"
@@ -33,6 +36,7 @@
     {
       "name": "단국대학교 전자계산학과(컴퓨터공학)",
       "periodText": "2001.03 - 2004.02",
+      "iconSrc": "/assets/education/dku.jpg",
       "bullets": [
         "이산수학, 컴퓨터구조론, 자료구조, 데이터베이스, 운영체제",
         "객체지향 C++, 분산처리, 소프트웨어공학, 알고리즘, 인공지능"
@@ -42,6 +46,7 @@
     {
       "name": "Golden West College (컴퓨터 공학) - 미국",
       "periodText": "2011.08 ~ 2013.06",
+      "iconSrc": "/assets/education/gwc-logo.png",
       "bullets": [
         "Game Programming, Introduction",
         "IPhone Programming, Data Structure With C++",
@@ -52,6 +57,7 @@
     {
       "name": "자격증",
       "periodText": "2015.02",
+      "iconSrc": "/assets/education/oxford_logo.jpg",
       "bullets": ["Teaching English as a foreign language (미국 OXFORD)"],
       "keywords": ["TEFL"]
     }

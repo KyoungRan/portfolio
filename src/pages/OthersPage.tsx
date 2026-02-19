@@ -1,18 +1,11 @@
-// OthersPage: 기타 활동 페이지 골격
-import { Container } from '@/components/layout/Container'
-import { Section } from '@/components/layout/Section'
+// OthersPage: 기타 활동 페이지
+import { PageContent } from '@/components/layout/PageContent'
+import { OthersSection } from '@/features/others/components/OthersSection'
 
 export function OthersPage() {
   return (
-    <Container as="main">
-      <Section
-        label="Others"
-        title="기타 활동"
-        description="기간/활동 표 렌더를 연결할 예정입니다."
-        className="mb-[30px]"
-      >
-        <p>기타 활동 페이지 골격입니다.</p>
-      </Section>
-    </Container>
+    <PageContent>
+      <OthersSection />
+    </PageContent>
   )
 }

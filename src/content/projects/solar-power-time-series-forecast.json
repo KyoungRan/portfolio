@@ -1,0 +1,30 @@
+{
+  "slug": "solar-power-time-series-forecast",
+  "title": "태양광 발전량 시계열 예측",
+  "summary": "태양광 발전량 예측과 실시간 이상탐지 기반 예측 대시보드를 구성했습니다.",
+  "period": {
+    "start": "2025-09",
+    "end": "2025-09",
+    "display": "2025.09 - 2025.09"
+  },
+  "tags": ["Transformers", "LightGBM", "LSTM", "Pandas", "PyTorch"],
+  "stack": ["Python", "Pandas", "PyTorch", "LightGBM", "React"],
+  "roles": ["데이터 분석", "시계열 모델링", "대시보드 구현"],
+  "coverImageSrc": "/assets/projects/solar-power-time-series-forecast/cover.jpg",
+  "links": [
+    { "label": "Detail", "href": "#/projects/solar-power-time-series-forecast", "external": false }
+  ],
+  "order": 3,
+  "sections": [
+    {
+      "type": "problem",
+      "title": "Problem",
+      "body": ["기상 데이터와 발전량 패턴 변동성이 커 단순 모델의 오차가 컸습니다."]
+    },
+    {
+      "type": "approach",
+      "title": "Approach",
+      "body": ["시계열 특성 엔지니어링과 모델 비교 실험으로 예측 성능을 개선했습니다."]
+    }
+  ]
+}

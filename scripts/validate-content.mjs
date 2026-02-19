@@ -94,6 +94,10 @@ function validateProfileContent() {
   if (!isArrayOfNonEmptyString(data.about?.body)) {
     fail('[profile.json] about.body는 1개 이상 문자열 배열이어야 합니다.')
   }
+
+  if (isNonEmptyString(data.profileImageSrc)) {
+    validateAssetPath(data.profileImageSrc, 'profile.json profileImageSrc')
+  }
 }
 
 function validateSkillsContent() {
@@ -151,7 +155,9 @@ function validateExperienceContent() {
 
     if (company.period) {
       if (!isValidPeriodToken(company.period.start)) {
-        fail('[experience.json] companies.period.start는 YYYY-MM 또는 YYYY-MM-DD 형식이어야 합니다.')
+        fail(
+          '[experience.json] companies.period.start는 YYYY-MM 또는 YYYY-MM-DD 형식이어야 합니다.',
+        )
       }
 
       if (
@@ -189,6 +195,10 @@ function validateEducationContent() {
 
     if (!isNonEmptyString(item.periodText)) {
       fail('[education.json] item.periodText는 필수 문자열입니다.')
+    }
+
+    if (isNonEmptyString(item.iconSrc)) {
+      validateAssetPath(item.iconSrc, 'education.json items.iconSrc')
     }
   }
 }
@@ -271,7 +281,11 @@ function validateProjects() {
         fail(`[${sourcePath}] period.start는 YYYY-MM 또는 YYYY-MM-DD 형식이어야 합니다.`)
       }
 
-      if (data.period.end !== undefined && data.period.end !== null && !isValidPeriodToken(data.period.end)) {
+      if (
+        data.period.end !== undefined &&
+        data.period.end !== null &&
+        !isValidPeriodToken(data.period.end)
+      ) {
         fail(`[${sourcePath}] period.end는 YYYY-MM 또는 YYYY-MM-DD 형식이어야 합니다.`)
       }
     }
@@ -307,7 +321,9 @@ function validateProjects() {
 
         const lines = section?.body ?? section?.bullets ?? []
         if (!isArrayOfNonEmptyString(lines)) {
-          fail(`[${sourcePath}] sections.body 또는 sections.bullets는 1개 이상 문자열 배열이어야 합니다.`)
+          fail(
+            `[${sourcePath}] sections.body 또는 sections.bullets는 1개 이상 문자열 배열이어야 합니다.`,
+          )
         }
       }
     }
