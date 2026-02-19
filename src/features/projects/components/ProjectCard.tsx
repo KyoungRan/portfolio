@@ -1,12 +1,15 @@
 // 프로젝트 카드 컴포넌트
 // 카드 전체를 링크로 감싸 클릭 타겟을 넓혀 탐색 효율을 높인다.
 import type { ProjectItem } from '@/features/projects/model'
+import { formatProjectPeriod } from '@/features/projects/loader'
 
 interface ProjectCardProps {
   project: ProjectItem
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const periodText = formatProjectPeriod(project)
+
   return (
     <a
       href={`#/projects/${project.slug}`}
@@ -21,7 +24,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         />
       )}
       <h3 className="mb-2 text-[var(--text-xl)]">{project.title}</h3>
-      <p className="mb-3 text-[var(--muted-fg)] text-[var(--text-sm)]">{project.periodText}</p>
+      <p className="mb-3 text-[var(--muted-fg)] text-[var(--text-sm)]">{periodText}</p>
       <p className="mb-4 text-[var(--fg)] text-[var(--text-base)]">{project.summary}</p>
       <div className="flex flex-wrap gap-2">
         {project.tags.map((tag) => (

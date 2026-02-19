@@ -1,10 +1,40 @@
 {
+  "name": "강경란",
+  "roleTitle": "AI Agent Developer",
+  "headline": "복잡한 문제를 논리적인 시스템으로 설계하고 안정적으로 구현합니다.",
+  "contacts": {
+    "email": "you@example.com",
+    "phone": "",
+    "links": [
+      { "label": "GitHub", "href": "https://github.com", "external": true }
+    ]
+  },
+  "profileImageSrc": "",
   "about": {
     "title": "AboutMe",
     "description": "추상적인 목표를 동작하는 시스템으로 바꾸는 개발자",
     "body": [
       "복잡한 문제를 논리적인 구조로 설계하고 안정적으로 구현하는 데 강점이 있습니다.",
       "하드웨어 제어 루프, 블록체인 DApp, AI 서비스 구축 경험을 결합해 현실적인 제품으로 완성합니다."
+    ]
+  },
+  "overview": {
+    "totalExperienceText": "다양한 도메인에서 시스템 설계/구현 경험 보유",
+    "companies": [
+      {
+        "company": "Citrush AI",
+        "role": "AI Agent Developer",
+        "period": {
+          "start": "2025-03",
+          "end": "2025-12",
+          "display": "2025.03 - 2025.12"
+        }
+      }
+    ]
+  },
+  "educationSummary": {
+    "items": [
+      { "name": "원티드 포텐업 AI 에이전트 부트캠프(2기)", "periodText": "2025.07 - 2026.01" }
     ]
   }
 }

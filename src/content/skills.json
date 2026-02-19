@@ -1,8 +1,47 @@
 {
   "title": "Skills",
   "rows": [
-    { "category": "Frontend", "skills": ["React", "TypeScript", "Vite"] },
-    { "category": "AI/Backend", "skills": ["Python", "FastAPI", "RAG", "LLM API"] },
-    { "category": "Data/Infra", "skills": ["PostgreSQL", "SQLite", "Docker"] }
+    { "category": "AI Agent", "skills": ["RAG", "Langchain", "Langsmith", "Langgraph"] },
+    {
+      "category": "Data Analysis",
+      "skills": ["Pandas", "Numpy", "Matplotlib", "wordcloud", "seaborn", "selenium", "scikit-learn"]
+    },
+    { "category": "DB", "skills": ["MySQL", "InfluxDB", "postgresql", "Qdrent", "pgvector", "redis"] },
+    {
+      "category": "Web",
+      "skills": [
+        "React.js",
+        "Redux",
+        "HTML5",
+        "CSS3",
+        "Node.js",
+        "Express",
+        "grafana",
+        "FastAPI",
+        "web3",
+        "Solidity",
+        "Kapacitor",
+        "node-red"
+      ]
+    },
+    { "category": "language", "skills": ["javascript", "python"] },
+    {
+      "category": "기타",
+      "skills": [
+        "React Native",
+        "GCP",
+        "AWS",
+        "Webpack",
+        "D3.js",
+        "Styled-Components",
+        "Scss",
+        "chart.js",
+        "MetaMask",
+        "Jira",
+        "Trello",
+        "Notion",
+        "Zeplin"
+      ]
+    }
   ]
 }

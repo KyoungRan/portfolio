@@ -10,13 +10,73 @@ const modules = import.meta.glob<ProjectModule>('/src/content/projects/*.json', 
   eager: true,
 })
 
-function byOrder(a: ProjectItem, b: ProjectItem) {
-  // order가 없으면 뒤로 보내고, 동일 order는 제목 순으로 안정 정렬한다.
-  const aOrder = a.order ?? 9999
-  const bOrder = b.order ?? 9999
+function toTimestamp(value?: string | null): number {
+  if (!value) {
+    return 0
+  }
 
-  if (aOrder !== bOrder) {
-    return aOrder - bOrder
+  const normalized = value.trim()
+
+  if (/^\d{4}-\d{2}$/.test(normalized)) {
+    return Date.parse(`${normalized}-01T00:00:00Z`)
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(normalized)) {
+    return Date.parse(`${normalized}T00:00:00Z`)
+  }
+
+  return 0
+}
+
+function getLatestPeriodTimestamp(project: ProjectItem): number {
+  return Math.max(toTimestamp(project.period.end), toTimestamp(project.period.start))
+}
+
+function formatPeriodToken(value?: string | null): string {
+  if (!value) {
+    return ''
+  }
+
+  const normalized = value.trim()
+
+  if (/^\d{4}-\d{2}$/.test(normalized)) {
+    return normalized.replace('-', '.')
+  }
+
+  return normalized.replace(/-/g, '.')
+}
+
+export function formatProjectPeriod(project: ProjectItem): string {
+  const { period } = project
+
+  if (period.display && period.display.trim().length > 0) {
+    return period.display.trim()
+  }
+
+  const start = formatPeriodToken(period.start)
+  const end = period.end ? formatPeriodToken(period.end) : 'Present'
+  return `${start} - ${end}`
+}
+
+function compareProjects(a: ProjectItem, b: ProjectItem) {
+  // order를 명시한 프로젝트는 우선순위를 강제한다.
+  if (typeof a.order === 'number' && typeof b.order === 'number' && a.order !== b.order) {
+    return a.order - b.order
+  }
+
+  if (typeof a.order === 'number' && typeof b.order !== 'number') {
+    return -1
+  }
+
+  if (typeof b.order === 'number' && typeof a.order !== 'number') {
+    return 1
+  }
+
+  // 기본 정렬은 최신순(종료일/시작일 기준)이다.
+  const dateGap = getLatestPeriodTimestamp(b) - getLatestPeriodTimestamp(a)
+
+  if (dateGap !== 0) {
+    return dateGap
   }
 
   return a.title.localeCompare(b.title)
@@ -25,7 +85,31 @@ function byOrder(a: ProjectItem, b: ProjectItem) {
 export function getAllProjects(): ProjectItem[] {
   return Object.values(modules)
     .map((module) => module.default)
-    .sort(byOrder)
+    .sort(compareProjects)
+}
+
+export function getAllProjectTags(): string[] {
+  const tags = new Set<string>()
+
+  for (const project of getAllProjects()) {
+    for (const tag of project.tags) {
+      tags.add(tag)
+    }
+  }
+
+  return Array.from(tags).sort((a, b) => a.localeCompare(b))
+}
+
+export function getProjectsByTag(tag: string): ProjectItem[] {
+  const normalized = tag.trim().toLowerCase()
+
+  if (normalized.length === 0) {
+    return getAllProjects()
+  }
+
+  return getAllProjects().filter((project) =>
+    project.tags.some((item) => item.toLowerCase() === normalized),
+  )
 }
 
 export function getProjectBySlug(slug: string): ProjectItem | null {

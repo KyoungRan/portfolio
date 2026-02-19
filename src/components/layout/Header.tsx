@@ -24,22 +24,6 @@ interface ProjectIconProps {
 
 const PENDING_SCROLL_KEY = 'pending-home-section-id'
 const PROJECT_ICON_COUNT = 5
-const SECTION_ROUTE_MAP: Record<string, StaticRoutePath> = {
-  'about-me': ROUTE_PATHS.home,
-  projects: ROUTE_PATHS.home,
-  experience: ROUTE_PATHS.experience,
-  skills: ROUTE_PATHS.skills,
-  'education-training': ROUTE_PATHS.education,
-  others: ROUTE_PATHS.others,
-}
-const ROUTE_SECTION_MAP: Record<StaticRoutePath, string> = {
-  [ROUTE_PATHS.home]: 'about-me',
-  [ROUTE_PATHS.projects]: 'projects',
-  [ROUTE_PATHS.experience]: 'experience',
-  [ROUTE_PATHS.skills]: 'skills',
-  [ROUTE_PATHS.education]: 'education-training',
-  [ROUTE_PATHS.others]: 'others',
-}
 
 const styles = {
   header: cn(
@@ -307,11 +291,7 @@ export function Header({ currentPath, isProjectDetail }: HeaderProps) {
   const clickLockTimerRef = useRef<number | null>(null)
   const navItems = useMemo(() => site.nav.items as SiteNavItem[], [])
   const projects = useMemo(() => getAllProjects(), [])
-  const resolvedActiveSectionId = isProjectDetail
-    ? 'projects'
-    : currentPath === ROUTE_PATHS.home
-      ? activeSectionId
-      : ROUTE_SECTION_MAP[currentPath]
+  const resolvedActiveSectionId = isProjectDetail ? 'projects' : activeSectionId
 
   useEffect(() => {
     if (isProjectDetail || currentPath !== ROUTE_PATHS.home) {
@@ -368,14 +348,6 @@ export function Header({ currentPath, isProjectDetail }: HeaderProps) {
 
   const handleSectionClick = (sectionId: string) => {
     closeMenu()
-    const targetRoute = SECTION_ROUTE_MAP[sectionId] ?? ROUTE_PATHS.home
-
-    if (targetRoute !== ROUTE_PATHS.home) {
-      setActiveSectionId(sectionId)
-      window.location.hash = `#${targetRoute}`
-      return
-    }
-
     clickLockSectionIdRef.current = sectionId
     setActiveSectionId(sectionId)
 

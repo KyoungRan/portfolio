@@ -1,4 +1,17 @@
 {
   "title": "Others",
-  "rows": [{ "periodText": "2026", "activity": "AI Agent 포트폴리오 고도화" }]
+  "rows": [
+    { "periodText": "2011.01 ~ 2011.07", "activity": "Los Angeles City College (미국 ESL))", "description": "" },
+    { "periodText": "2010.06 ~ 2010.12", "activity": "KAPLAN WESTWOOD (미국 어학연수)", "description": "" },
+    { "periodText": "2006.08 ~ 2010.06", "activity": "웹젠 사내 밴드 동아리 'Story of Music' (키보드 담당)", "description": "" },
+    { "periodText": "2007.11 ~ 2010.06", "activity": "웹젠 사내 낚시 동아리 'WFC'", "description": "" },
+    { "periodText": "2005.11 ~ 2006.02", "activity": "지산리조트 스키학교 (스키강사)", "description": "" },
+    { "periodText": "2002.09 ~ 2002.12", "activity": "한국학원 (수학강사)", "description": "" },
+    { "periodText": "2002.06 ~ 2002.08", "activity": "고어텍스 스키팀 (프랑스 스키 전지훈련)", "description": "" },
+    { "periodText": "2002.03 ~ 2002.06", "activity": "왕수학학원 (수학강사)", "description": "" },
+    { "periodText": "2001.04 ~ 2003.11", "activity": "단국대학교 리눅스동아리 'DLUG'", "description": "" },
+    { "periodText": "2001.12 ~ 2004.03", "activity": "지산리조트 스키학교 (스키강사)", "description": "" },
+    { "periodText": "2000.06 ~ 2000.08", "activity": "고어텍스 스키팀 (뉴질랜드 스키 전지훈련)", "description": "" },
+    { "periodText": "1998.12 ~ 2000.02", "activity": "알프스 리조트 스키학교 (스키강사)", "description": "" }
+  ]
 }
