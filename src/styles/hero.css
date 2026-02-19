@@ -1,0 +1,41 @@
+/* Home Hero 전용 스타일 */
+.hero-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 16rem;
+  padding: 4rem 1rem;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    var(--hero-gradient-1) 0%,
+    var(--hero-gradient-2) 33%,
+    var(--hero-gradient-3) 66%,
+    var(--hero-gradient-4) 100%
+  );
+}
+
+.hero-title {
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 4.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--hero-fg);
+}
+
+.hero-subtitle {
+  margin-bottom: 0;
+  font-family: 'PinkfongBabyShark', var(--font-sans);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--hero-fg);
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}

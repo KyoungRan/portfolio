@@ -4,22 +4,21 @@ import type { ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 
 interface ContainerProps {
-    children: ReactNode
-    className?: string
-    as?: 'div' | 'main' | 'section' | 'article'
+  children: ReactNode
+  className?: string
+  as?: 'div' | 'main' | 'section' | 'article'
 }
 
 export function Container({ children, className, as: Tag = 'div' }: ContainerProps) {
-    return (
-        <Tag
-            className={cn(
-                'mx-auto w-full',
-                'px-[var(--container-padding)]',
-                'max-w-[var(--container-max)]',
-                className,
-            )}
-        >
-            {children}
-        </Tag>
-    )
+  return (
+    <Tag
+      className={cn(
+        // container + mx-auto 조합으로 중앙 정렬 축을 고정하고, 좌우 패딩을 명시한다.
+        'container mx-auto w-full px-4 sm:px-6 lg:px-8',
+        className,
+      )}
+    >
+      {children}
+    </Tag>
+  )
 }

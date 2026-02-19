@@ -1,0 +1,37 @@
+{
+  "slug": "citrush-ai",
+  "title": "Citrush AI",
+  "summary": "게임 플레이 데이터와 LLM 응답 체인을 결합해 몰입형 AI Agent 경험을 구현했습니다.",
+  "periodText": "2025.03 - 2025.12",
+  "tags": ["AI Agent", "RAG", "Game"],
+  "stack": ["React", "FastAPI", "PostgreSQL", "OpenAI API"],
+  "roles": ["아키텍처 설계", "RAG 파이프라인", "프론트엔드 구현"],
+  "coverImageSrc": "/assets/projects/citrush-ai/cover.jpg",
+  "order": 1,
+  "sections": [
+    {
+      "type": "problem",
+      "title": "Problem",
+      "body": [
+        "게임 컨텍스트를 이해한 대화형 에이전트가 필요했습니다.",
+        "응답 정확도와 지연시간을 동시에 맞춰야 했습니다."
+      ]
+    },
+    {
+      "type": "approach",
+      "title": "Approach",
+      "body": [
+        "RAG 기반 컨텍스트 주입과 프롬프트 계층화를 적용했습니다.",
+        "대화 기록과 게임 상태를 분리해 토큰 낭비를 줄였습니다."
+      ]
+    },
+    {
+      "type": "result",
+      "title": "Result",
+      "body": [
+        "의미 없는 응답 비율을 줄이고 상호작용 만족도를 개선했습니다.",
+        "운영 시나리오 기준 응답 체감 속도를 안정화했습니다."
+      ]
+    }
+  ]
+}

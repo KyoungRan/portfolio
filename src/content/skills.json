@@ -1,0 +1,8 @@
+{
+  "title": "Skills",
+  "rows": [
+    { "category": "Frontend", "skills": ["React", "TypeScript", "Vite"] },
+    { "category": "AI/Backend", "skills": ["Python", "FastAPI", "RAG", "LLM API"] },
+    { "category": "Data/Infra", "skills": ["PostgreSQL", "SQLite", "Docker"] }
+  ]
+}

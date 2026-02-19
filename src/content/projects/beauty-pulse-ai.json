@@ -1,0 +1,28 @@
+{
+  "slug": "beauty-pulse-ai",
+  "title": "Beauty Pulse AI",
+  "summary": "뷰티 트렌드 데이터를 수집/정규화해 인사이트 대시보드와 추천 흐름을 구현했습니다.",
+  "periodText": "2024.08 - 2025.02",
+  "tags": ["Data Pipeline", "AI", "Dashboard"],
+  "stack": ["React", "TypeScript", "Python", "SQLite"],
+  "roles": ["데이터 파이프라인", "시각화 대시보드", "서비스 기획"],
+  "coverImageSrc": "/assets/projects/beauty-pulse-ai/cover.jpg",
+  "order": 2,
+  "sections": [
+    {
+      "type": "problem",
+      "title": "Problem",
+      "body": ["채널별 데이터 형식이 달라 수동 분석 비용이 컸습니다."]
+    },
+    {
+      "type": "architecture",
+      "title": "Architecture",
+      "body": ["수집-정제-집계 단계를 분리한 파이프라인을 구축했습니다."]
+    },
+    {
+      "type": "lessons",
+      "title": "Lessons",
+      "body": ["변동성이 큰 데이터는 스키마 변경 가능성을 먼저 고려해야 한다는 점을 확인했습니다."]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "siteTitle": "AI Agent Portfolio",
+  "siteDescription": "AI Agent Developer Portfolio",
+  "locale": "ko-KR",
+  "nav": {
+    "items": [
+      { "label": "AboutMe", "sectionId": "about-me" },
+      { "label": "Project", "sectionId": "projects" },
+      { "label": "Experience", "sectionId": "experience" },
+      { "label": "Skills", "sectionId": "skills" },
+      { "label": "Edu&Training", "sectionId": "education-training" },
+      { "label": "Others", "sectionId": "others" }
+    ]
+  },
+  "footer": {
+    "links": [
+      { "label": "GitHub", "href": "https://github.com", "external": true },
+      { "label": "Email", "href": "mailto:you@example.com", "external": false }
+    ],
+    "copyright": "2026 KyoungRan Kang. All rights reserved."
+  },
+  "seo": {
+    "defaultTitle": "KyoungRan Kang Portfolio",
+    "defaultDescription": "견고한 개발 경험 위에 AI의 가능성을 쌓아 올립니다."
+  }
+}
