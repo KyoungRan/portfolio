@@ -20,55 +20,54 @@ export function EducationSection() {
   const content = education as EducationContent
 
   return (
-    <Section id="education-training" title={content.title} className="w-full">
-      <div className="w-full space-y-3">
-        {content.items.map((item) => (
-          <article
-            key={`${item.name}-${item.periodText}`}
-            className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--callout-bg)] p-4"
-          >
-            <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-              <div className="flex items-start gap-3">
-                {item.iconSrc && (
-                  <img
-                    alt={`${item.name} 로고`}
-                    className="h-10 w-10 rounded-[var(--radius-sm)] border border-[var(--border)] object-cover"
-                    loading="lazy"
-                    src={item.iconSrc}
-                  />
-                )}
-                <h3 className="mb-0 text-[var(--text-lg)]">{item.name}</h3>
+    <Section id="education-training" className="w-full">
+      <div className="projects-shell w-full space-y-6">
+        <h2 className="text-[28px] leading-none font-semibold text-[#A173BF] md:text-[30px]">{content.title}</h2>
+        <div className="h-px w-full bg-[#e6e3e1]" />
+        <div className="divide-y divide-[#e7e5e3] rounded-[6px] border border-[#dfddda] bg-white">
+          {content.items.map((item) => (
+            <article
+              key={`${item.name}-${item.periodText}`}
+              className="education-card px-5 py-4.5"
+            >
+              <div className="mb-2.5 flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex items-start gap-3">
+                  {item.iconSrc && (
+                    <img
+                      alt={`${item.name} 로고`}
+                      className="h-10 w-10 border border-[#d8d5d2] object-cover"
+                      loading="lazy"
+                      src={item.iconSrc}
+                    />
+                  )}
+                  <h3 className="mb-0 text-[12px] leading-[1.4] font-semibold text-[#37352f]">{item.name}</h3>
+                </div>
+                <p className="mb-0 text-[10.5px] text-[#787774]">{item.periodText}</p>
               </div>
-              <p className="mb-0 text-[var(--muted-fg)] text-[var(--text-sm)]">{item.periodText}</p>
-            </div>
 
-            {item.bullets && item.bullets.length > 0 && (
-              <ul className="list-disc space-y-1 pl-5">
-                {item.bullets.map((bullet) => (
-                  <li
-                    className="text-[var(--fg)] text-[var(--text-sm)]"
-                    key={`${item.name}-${bullet}`}
-                  >
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            )}
+              {item.bullets && item.bullets.length > 0 && (
+                <ul className="list-disc space-y-1.5 pl-5 text-[11px] leading-[1.55] text-[#37352f]">
+                  {item.bullets.map((bullet) => (
+                    <li key={`${item.name}-${bullet}`}>{bullet}</li>
+                  ))}
+                </ul>
+              )}
 
-            {item.keywords && item.keywords.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {item.keywords.map((keyword) => (
-                  <span
-                    className="rounded-full bg-[var(--tag-bg)] px-2.5 py-0.5 text-[var(--tag-fg)] text-[var(--text-xs)]"
-                    key={`${item.name}-${keyword}`}
-                  >
-                    {keyword}
-                  </span>
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
+              {item.keywords && item.keywords.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {item.keywords.map((keyword) => (
+                    <span
+                      className="rounded-[4px] bg-[#f1f1ef] px-1.5 py-0.5 text-[9.5px] leading-none text-[#6f6e69]"
+                      key={`${item.name}-${keyword}`}
+                    >
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
       </div>
     </Section>
   )

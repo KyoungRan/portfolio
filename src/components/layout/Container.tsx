@@ -14,7 +14,7 @@ export function Container({ children, className, as: Tag = 'div' }: ContainerPro
     <Tag
       className={cn(
         // container + mx-auto 조합으로 중앙 정렬 축을 고정하고, 좌우 패딩을 명시한다.
-        'container mx-auto w-full px-4 sm:px-6 lg:px-8',
+        'container mx-auto w-full max-w-screen-lg px-5 md:px-10',
         className,
       )}
     >

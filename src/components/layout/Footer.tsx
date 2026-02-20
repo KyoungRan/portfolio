@@ -15,7 +15,7 @@ export function Footer() {
 
         <div className="mt-7.5 flex w-full items-center justify-end text-[18px]">
           <p className="mb-0 text-[14px] tracking-tight">
-            Copyright &copy; 2026 Kang, Kyoungran. 모든 권리 보유
+            Copyright &copy; 2026. KANG KYOUNGRAN. All rights reserved.
           </p>
         </div>
       </Container>

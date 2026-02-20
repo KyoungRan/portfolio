@@ -10,13 +10,9 @@
   "tags": ["AI에이전트", "LangGraph", "LangChain", "LLM", "FastAPI"],
   "stack": ["React", "TypeScript", "Python", "SQLite"],
   "roles": ["데이터 파이프라인", "시각화 대시보드", "서비스 기획"],
-  "coverImageSrc": "/assets/projects/beauty-pulse-ai/cover.jpg",
-  "links": [
-    { "label": "Detail", "href": "#/projects/beauty-pulse-ai", "external": false }
-  ],
-  "kpis": [
-    { "label": "분석 시간", "value": "수작업 대비 단축", "context": "채널별 포맷 통합" }
-  ],
+  "coverImageSrc": "/assets/projects/beauty-pulse-ai/cover.png",
+  "links": [{ "label": "Detail", "href": "#/projects/beauty-pulse-ai", "external": false }],
+  "kpis": [{ "label": "분석 시간", "value": "수작업 대비 단축", "context": "채널별 포맷 통합" }],
   "order": 2,
   "sections": [
     {

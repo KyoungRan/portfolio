@@ -11,11 +11,92 @@
   "stack": ["React", "FastAPI", "PostgreSQL", "OpenAI API"],
   "roles": ["아키텍처 설계", "RAG 파이프라인", "프론트엔드 구현"],
   "coverImageSrc": "/assets/projects/citrush-ai/cover.jpg",
-  "links": [
-    { "label": "Detail", "href": "#/projects/citrush-ai", "external": false }
+  "links": [{ "label": "Detail", "href": "#/projects/citrush-ai", "external": false }],
+  "visuals": [
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_01.png",
+      "alt": "Citrush AI 화면 01"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_02.png",
+      "alt": "Citrush AI 화면 02"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_03.png",
+      "alt": "Citrush AI 화면 03"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_04.png",
+      "alt": "Citrush AI 화면 04"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_05.png",
+      "alt": "Citrush AI 화면 05"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_06.png",
+      "alt": "Citrush AI 화면 06"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_07.png",
+      "alt": "Citrush AI 화면 07"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_08.png",
+      "alt": "Citrush AI 화면 08"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_09.png",
+      "alt": "Citrush AI 화면 09"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_10.png",
+      "alt": "Citrush AI 화면 10"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_11.png",
+      "alt": "Citrush AI 화면 11"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_12.png",
+      "alt": "Citrush AI 화면 12"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_13.png",
+      "alt": "Citrush AI 화면 13"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_14.png",
+      "alt": "Citrush AI 화면 14"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_15.png",
+      "alt": "Citrush AI 화면 15"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_16.png",
+      "alt": "Citrush AI 화면 16"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_17.png",
+      "alt": "Citrush AI 화면 17"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_18.png",
+      "alt": "Citrush AI 화면 18"
+    },
+    {
+      "src": "/assets/projects/citrush-ai/visuals/citrush_img_19.png",
+      "alt": "Citrush AI 화면 19"
+    },
+    { "src": "/assets/projects/citrush-ai/visuals/citrush_img_20.png", "alt": "Citrush AI 화면 20" }
   ],
   "kpis": [
-    { "label": "응답 안정성", "value": "운영 시나리오 기준 안정화", "context": "대화 흐름 끊김 감소" }
+    {
+      "label": "응답 안정성",
+      "value": "운영 시나리오 기준 안정화",
+      "context": "대화 흐름 끊김 감소"
+    }
   ],
   "order": 1,
   "sections": [

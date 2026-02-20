@@ -17,25 +17,28 @@ export function SkillsSection() {
   const content = skills as SkillsContent
 
   return (
-    <Section id="skills" title={content.title} className="w-full">
-      {/* 테이블을 감싸는 래퍼로 모바일 가로 스크롤을 허용한다. */}
-      <div className="w-full overflow-x-auto rounded-[var(--radius-md)] border border-[var(--border)]">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-[var(--muted)] text-left">
-              <th className="px-4 py-3 text-[var(--text-sm)]">Category</th>
-              <th className="px-4 py-3 text-[var(--text-sm)]">Stack</th>
-            </tr>
-          </thead>
-          <tbody>
-            {content.rows.map((row) => (
-              <tr key={row.category} className="border-t border-[var(--border)]">
-                <td className="px-4 py-3">{row.category}</td>
-                <td className="px-4 py-3">{row.skills.join(', ')}</td>
+    <Section id="skills" className="w-full">
+      <div className="projects-shell w-full space-y-6">
+        <h2 className="text-[28px] leading-none font-semibold text-[#A173BF] md:text-[30px]">{content.title}</h2>
+        <div className="h-px w-full bg-[#e6e3e1]" />
+        <div className="w-full overflow-x-auto border border-[#dcd9d6]">
+          <table className="w-full min-w-[640px] border-collapse text-[11px] text-[#37352f]">
+            <thead>
+              <tr className="bg-[#f8f7f6] text-left">
+                <th className="w-40 border border-[#e3e2e0] px-3.5 py-2 font-medium">Category</th>
+                <th className="border border-[#e3e2e0] px-3.5 py-2 font-medium">Stack</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {content.rows.map((row) => (
+                <tr key={row.category}>
+                  <td className="border border-[#eceae8] px-3.5 py-2 align-top">{row.category}</td>
+                  <td className="border border-[#eceae8] px-3.5 py-2">{row.skills.join(', ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </Section>
   )

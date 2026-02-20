@@ -13,24 +13,24 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <a
       href={`#/projects/${project.slug}`}
-      className="block rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 shadow-[var(--shadow-sm)] transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]"
+      className="project-card block rounded-[6px] border border-[#e3e2e0] bg-white p-4 transition-colors hover:bg-[#fafaf9] hover:no-underline"
     >
       {project.coverImageSrc && (
         <img
           src={project.coverImageSrc}
           alt={`${project.title} 커버 이미지`}
-          className="mb-4 h-40 w-full rounded-[var(--radius-md)] object-cover"
+          className="mb-3 h-32 w-full rounded-[4px] border border-[#ecebe9] object-cover"
           loading="lazy"
         />
       )}
-      <h3 className="mb-2 text-[var(--text-xl)]">{project.title}</h3>
-      <p className="mb-3 text-[var(--muted-fg)] text-[var(--text-sm)]">{periodText}</p>
-      <p className="mb-4 text-[var(--fg)] text-[var(--text-base)]">{project.summary}</p>
+      <h3 className="mb-1.5 text-[12.5px] leading-[1.45] font-semibold text-[#37352f]">{project.title}</h3>
+      <p className="mb-1.5 text-[10.5px] text-[#787774]">{periodText}</p>
+      <p className="mb-3 text-[11px] leading-[1.6] text-[#5f5e5b]">{project.summary}</p>
       <div className="flex flex-wrap gap-2">
         {project.tags.map((tag) => (
           <span
             key={`${project.slug}-${tag}`}
-            className="rounded-full bg-[var(--tag-bg)] px-2.5 py-0.5 text-[var(--tag-fg)] text-[var(--text-xs)]"
+            className="rounded-[4px] bg-[#f1f1ef] px-1.5 py-0.5 text-[9px] leading-none text-[#6f6e69]"
           >
             {tag}
           </span>

@@ -13,8 +13,6 @@ interface ExperienceEntry {
   title: string
   periodText: string
   bullets: string[]
-  result?: string
-  tech?: string[]
 }
 
 interface ExperienceCompany {
@@ -46,77 +44,61 @@ export function ExperienceSection() {
   const content = experience as ExperienceContent
 
   return (
-    <Section id="experience" title={content.title} description={content.summary} className="w-full">
-      <div className="w-full space-y-6">
+    <Section id="experience" className="w-full pt-3 pb-16">
+      <div className="projects-shell w-full space-y-12">
+        <header className="space-y-3">
+          <h2 className="text-[28px] leading-none font-semibold text-[#A173BF] md:text-[30px]">{content.title}</h2>
+          <p className="mb-0 text-[11px] leading-5 text-[#6f6e69]">{content.summary}</p>
+          <div className="h-px w-full bg-[#e6e3e1]" />
+        </header>
+
         {content.companies.map((company) => (
-          <article
-            className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--card)] p-5"
-            key={`${company.companyName}-${company.period.start}`}
-          >
-            <div className="grid gap-6 lg:grid-cols-[180px_minmax(0,1fr)]">
-              <aside className="space-y-2">
+          <article key={`${company.companyName}-${company.period.start}`}>
+            <div className="grid gap-6 md:grid-cols-[120px_minmax(0,1fr)]">
+              <aside className="space-y-1.5 text-[#5f5e5b]">
                 {company.heroImageSrc && (
                   <img
                     alt={`${company.companyName} 로고`}
-                    className="mb-2 h-12 w-12 rounded-[var(--radius-sm)] border border-[var(--border)] object-cover"
+                    className="mb-1 h-16 w-16 border border-[#d8d5d2] object-cover"
                     loading="lazy"
                     src={company.heroImageSrc}
                   />
                 )}
-                <p className="mb-0 text-[var(--muted-fg)] text-[var(--text-sm)]">
-                  {formatPeriod(company.period)}
-                </p>
-                <h3 className="mb-0 text-[var(--hero-gradient-1)] text-[var(--text-lg)]">
-                  {company.companyName}
-                </h3>
-                <p className="mb-0 text-[var(--fg)] text-[var(--text-sm)]">{company.roleTitle}</p>
-                {company.domain && (
-                  <p className="mb-0 text-[var(--muted-fg)] text-[var(--text-sm)]">
-                    {company.domain}
-                  </p>
-                )}
+                <p className="mb-0 text-[10.5px] leading-[1.3]">{formatPeriod(company.period)}</p>
               </aside>
 
-              <div className="space-y-6">
-                {company.entries.map((entry) => (
-                  <section key={`${company.companyName}-${entry.title}`}>
-                    <div className="mb-2 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                      <h4 className="mb-0 text-[var(--fg)] text-[var(--text-base)]">
-                        {entry.title}
-                      </h4>
-                      <p className="mb-0 text-[var(--muted-fg)] text-[var(--text-sm)]">
-                        {entry.periodText}
-                      </p>
-                    </div>
+              <div className="space-y-5">
+                <div className="border-b border-[#eceae8] pb-2">
+                  <h3 className="mb-0 text-[13px] leading-5 font-semibold text-[#3f3e3a]">
+                    {company.companyName} - {company.domain ?? company.roleTitle}
+                  </h3>
+                </div>
 
-                    <ul className="list-disc space-y-1 pl-5">
-                      {entry.bullets.map((bullet) => (
-                        <li className="text-[var(--fg)] text-[var(--text-sm)]" key={bullet}>
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-
-                    {entry.result && (
-                      <p className="mt-3 mb-0 rounded-[var(--radius-sm)] bg-[var(--muted)] px-3 py-2 text-[var(--fg)] text-[var(--text-sm)]">
-                        {entry.result}
-                      </p>
-                    )}
-
-                    {entry.tech && entry.tech.length > 0 && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {entry.tech.map((tech) => (
-                          <span
-                            className="rounded-full bg-[var(--tag-bg)] px-2.5 py-0.5 text-[var(--tag-fg)] text-[var(--text-xs)]"
-                            key={`${entry.title}-${tech}`}
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                <div className="space-y-5">
+                  {company.entries.map((entry, index) => (
+                    <section
+                      key={`${company.companyName}-${entry.title}`}
+                      className={
+                        index === company.entries.length - 1
+                          ? 'space-y-3'
+                          : 'space-y-3 border-b border-[#eceae8] pb-4.5'
+                      }
+                    >
+                      <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                        <h4 className="mb-0 text-[12px] leading-5 font-semibold text-[#37352f]">
+                          {entry.title}
+                        </h4>
+                        <p className="mb-0 text-[10.5px] text-[#787774]">{entry.periodText}</p>
                       </div>
-                    )}
-                  </section>
-                ))}
+
+                      <ul className="list-disc space-y-2.5 pl-5 text-[11px] leading-[1.6] text-[#37352f]">
+                        {entry.bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </section>
+                  ))}
+                </div>
               </div>
             </div>
           </article>
