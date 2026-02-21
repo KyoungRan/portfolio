@@ -19,7 +19,7 @@
 
 .hero-title {
   margin-bottom: 1rem;
-  font-family: var(--font-display);
+  font-family: 'KERISKEDU_Line', var(--font-sans);
   font-size: clamp(3rem, 7vw, 4.75rem);
   line-height: 1.1;
   letter-spacing: -0.02em;

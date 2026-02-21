@@ -3,32 +3,31 @@
   "title": "상권 구조 데이터 분석",
   "summary": "상권 데이터 마이닝으로 상권 구조를 분석해 의사결정 보조 인사이트를 도출했습니다.",
   "period": {
-    "start": "2025-07",
-    "end": "2025-08",
-    "display": "2025.07 - 2025.08"
+    "start": "2025-07-14",
+    "end": "2025-07-25",
+    "display": "2025.07.14 - 2025.07.25"
   },
-  "tags": ["Pandas", "Numpy", "Selenium", "Python", "Wordcloud"],
-  "stack": ["Python", "Pandas", "Numpy", "Selenium"],
-  "roles": ["데이터 수집", "전처리/분석", "시각화 리포트"],
+  "tags": ["Data Mining", "Decision Support", "Analysis"],
+  "stack": ["Python", "Pandas", "Matplotlib", "Folium"],
+  "roles": ["데이터 마이닝", "클러스터링 분석", "시각화"],
   "coverImageSrc": "/assets/projects/commercial-district-structure-analysis/cover.png",
-  "links": [
-    {
-      "label": "Detail",
-      "href": "#/projects/commercial-district-structure-analysis",
-      "external": false
-    }
-  ],
+  "links": [{ "label": "Detail", "href": "#/projects/commercial-district-structure-analysis", "external": false }],
   "order": 5,
   "sections": [
     {
       "type": "problem",
       "title": "Problem",
-      "body": ["지역별 상권 패턴이 달라 공통 지표만으로는 해석이 어려웠습니다."]
+      "body": ["복잡한 상권 데이터를 유의미한 비즈니스 지표로 변환해야 했습니다."]
     },
     {
-      "type": "architecture",
-      "title": "Architecture",
-      "body": ["수집-정제-분석 파이프라인을 분리해 재현 가능한 분석 구조를 만들었습니다."]
+      "type": "approach",
+      "title": "Approach",
+      "body": ["K-means 클러스터링을 활용해 유동인구와 매출 간 상관관계를 분석했습니다."]
+    },
+    {
+      "type": "result",
+      "title": "Result",
+      "body": ["핵심 상권별 특징을 4가지 유형으로 분류하여 보고서를 작성했습니다."]
     }
   ]
 }

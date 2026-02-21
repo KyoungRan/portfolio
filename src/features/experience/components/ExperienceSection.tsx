@@ -44,65 +44,89 @@ export function ExperienceSection() {
   const content = experience as ExperienceContent
 
   return (
-    <Section id="experience" className="w-full pt-3 pb-16">
-      <div className="projects-shell w-full space-y-12">
-        <header className="space-y-3">
-          <h2 className="text-[28px] leading-none font-semibold text-[#A173BF] md:text-[30px]">{content.title}</h2>
-          <p className="mb-0 text-[11px] leading-5 text-[#6f6e69]">{content.summary}</p>
-          <div className="h-px w-full bg-[#e6e3e1]" />
+    <Section id="experience" className="w-full pt-8 pb-20">
+      <div className="projects-shell w-full space-y-14">
+        <header>
+          {/* 타이틀 색상: #A173BF 적용 */}
+          <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">{content.title}</h2>
+          {/* 라인 아래 padding 10px 적용 */}
+          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+            <div className="h-[1px] w-full bg-border" />
+          </div>
+          <p className="mb-0 text-[15px] leading-[1.6] text-foreground opacity-80">{content.summary}</p>
         </header>
 
-        {content.companies.map((company) => (
-          <article key={`${company.companyName}-${company.period.start}`}>
-            <div className="grid gap-6 md:grid-cols-[120px_minmax(0,1fr)]">
-              <aside className="space-y-1.5 text-[#5f5e5b]">
-                {company.heroImageSrc && (
-                  <img
-                    alt={`${company.companyName} 로고`}
-                    className="mb-1 h-16 w-16 border border-[#d8d5d2] object-cover"
-                    loading="lazy"
-                    src={company.heroImageSrc}
-                  />
-                )}
-                <p className="mb-0 text-[10.5px] leading-[1.3]">{formatPeriod(company.period)}</p>
-              </aside>
+        <div className="space-y-20">
+          {content.companies.map((company) => (
+            <article key={`${company.companyName}-${company.period.start}`}>
+              <div className="grid gap-10 md:grid-cols-[160px_1fr]">
+                {/* 좌측: 로고 & 기간 */}
+                <aside className="space-y-4 pt-1">
+                  {company.heroImageSrc && (
+                    <div className="relative h-14 w-14 overflow-hidden rounded-[4px] border border-border bg-background shadow-sm">
+                      <img
+                        alt={`${company.companyName} 로고`}
+                        className="h-full w-full object-contain p-1"
+                        loading="lazy"
+                        src={company.heroImageSrc}
+                      />
+                    </div>
+                  )}
+                  <div className="space-y-1.5">
+                    <p className="mb-0 text-[11.5px] font-bold uppercase tracking-wider text-muted-foreground">
+                      {formatPeriod(company.period)}
+                    </p>
+                    {company.domain && (
+                      <p className="mb-0 text-[11px] font-medium text-muted-foreground">
+                        {company.domain}
+                      </p>
+                    )}
+                  </div>
+                </aside>
 
-              <div className="space-y-5">
-                <div className="border-b border-[#eceae8] pb-2">
-                  <h3 className="mb-0 text-[13px] leading-5 font-semibold text-[#3f3e3a]">
-                    {company.companyName} - {company.domain ?? company.roleTitle}
-                  </h3>
-                </div>
+                {/* 우측: 상세 정보 */}
+                <div className="space-y-10">
+                  <header className="border-b border-muted pb-3.5">
+                    <h3 className="mb-1 text-[18px] font-bold text-foreground leading-[1.3]">
+                      {company.companyName}
+                    </h3>
+                    <p className="mb-0 text-[14px] font-semibold text-accent leading-none">
+                      {company.roleTitle}
+                    </p>
+                  </header>
 
-                <div className="space-y-5">
-                  {company.entries.map((entry, index) => (
-                    <section
-                      key={`${company.companyName}-${entry.title}`}
-                      className={
-                        index === company.entries.length - 1
-                          ? 'space-y-3'
-                          : 'space-y-3 border-b border-[#eceae8] pb-4.5'
-                      }
-                    >
-                      <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                        <h4 className="mb-0 text-[12px] leading-5 font-semibold text-[#37352f]">
-                          {entry.title}
-                        </h4>
-                        <p className="mb-0 text-[10.5px] text-[#787774]">{entry.periodText}</p>
-                      </div>
+                  <div className="space-y-12">
+                    {company.entries.map((entry) => (
+                      <section
+                        key={`${company.companyName}-${entry.title}`}
+                        className="space-y-5"
+                      >
+                        <header className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between">
+                          <h4 className="mb-0 text-[15px] font-bold text-foreground flex items-center gap-2.5">
+                            <span className="w-1 h-4 bg-accent/60 rounded-full" />
+                            {entry.title}
+                          </h4>
+                          <span className="text-[11px] font-bold text-muted-foreground bg-muted px-2 py-0.5 rounded-[3px] uppercase tracking-tight">
+                            {entry.periodText}
+                          </span>
+                        </header>
 
-                      <ul className="list-disc space-y-2.5 pl-5 text-[11px] leading-[1.6] text-[#37352f]">
-                        {entry.bullets.map((bullet) => (
-                          <li key={bullet}>{bullet}</li>
-                        ))}
-                      </ul>
-                    </section>
-                  ))}
+                        <ul className="list-none space-y-2.5 p-0">
+                          {entry.bullets.map((bullet) => (
+                            <li key={bullet} className="flex items-start gap-2.5 text-[14px] leading-[1.65] text-foreground pl-1">
+                              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-border flex-shrink-0" />
+                              <span className="flex-1">{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </section>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </Section>
   )

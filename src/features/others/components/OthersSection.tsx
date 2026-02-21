@@ -17,25 +17,37 @@ export function OthersSection() {
   const content = others as OthersContent
 
   return (
-    <Section id="others" className="mb-[30px] w-full">
-      <div className="projects-shell w-full space-y-6">
-        <h2 className="text-[28px] leading-none font-semibold text-[#A173BF] md:text-[30px]">{content.title}</h2>
-        <div className="h-px w-full bg-[#e6e3e1]" />
-        <div className="w-full overflow-x-auto border border-[#dcd9d6]">
-          <table className="w-full min-w-[640px] border-collapse text-[11px] text-[#37352f]">
-            <thead>
-              <tr className="bg-[#f8f7f6] text-left">
-                <th className="w-44 border border-[#e3e2e0] px-3.5 py-2 font-medium">Period</th>
-                <th className="border border-[#e3e2e0] px-3.5 py-2 font-medium">Activity</th>
+    <Section id="others" className="mb-20 w-full pt-8 pb-16">
+      <div className="projects-shell w-full space-y-8">
+        <header>
+          {/* 타이틀 색상: #A173BF 적용 */}
+          <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">{content.title}</h2>
+          {/* 라인 아래 padding 10px 적용 */}
+          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+            <div className="h-[1px] w-full bg-border" />
+          </div>
+        </header>
+
+        <div className="w-full overflow-x-auto overflow-y-hidden rounded-[3px] border border-border">
+          <table className="w-full min-w-[600px] border-collapse text-left text-[13.5px] leading-relaxed text-[#37352f]">
+            <thead className="bg-[#f7f6f3]/80 text-[11px] font-bold uppercase tracking-tight text-[#787774] border-b border-[rgba(55,53,47,0.09)]">
+              <tr>
+                <th className="w-48 px-3 py-1.5 border-r border-[rgba(55,53,47,0.09)] font-bold text-center">Period</th>
+                <th className="px-3 py-1.5 font-bold">Activity & Achievements</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-[rgba(55,53,47,0.09)]">
               {content.rows.map((row) => (
-                <tr key={`${row.periodText}-${row.activity}`}>
-                  <td className="border border-[#eceae8] px-3.5 py-2 align-top text-[#5f5e5b]">
+                <tr key={`${row.periodText}-${row.activity}`} className="group hover:bg-[rgba(55,53,47,0.02)] transition-colors">
+                  <td className="border-r border-[rgba(55,53,47,0.09)] bg-[#f7f6f3]/30 px-4 py-2 align-top font-bold text-[#787774]">
                     {row.periodText}
                   </td>
-                  <td className="border border-[#eceae8] px-3.5 py-2">{row.activity}</td>
+                  <td className="px-3 py-2 font-bold text-[#37352f]/90 tracking-tight">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent-purple/60 group-hover:bg-accent-purple transition-colors" />
+                      {row.activity}
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

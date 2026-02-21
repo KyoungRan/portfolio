@@ -3,126 +3,31 @@
   "title": "AI Teeth 전략 에이전트",
   "summary": "Light Ontology 기반 전략 에이전트 워크플로를 구현해 치과 진료/경영 의사결정 흐름을 지원했습니다.",
   "period": {
-    "start": "2025-03",
-    "end": "2025-12",
-    "display": "2025.03 - 2025.12"
+    "start": "2025-11-04",
+    "end": "2025-12-15",
+    "display": "2025.11.04 - 2025.12.15"
   },
-  "tags": ["RAG", "LangGraph", "LangChain", "LLM"],
+  "tags": ["AI Agent", "Decision Support", "Workflow"],
   "stack": ["React", "FastAPI", "PostgreSQL", "OpenAI API"],
   "roles": ["아키텍처 설계", "RAG 파이프라인", "프론트엔드 구현"],
   "coverImageSrc": "/assets/projects/citrush-ai/cover.jpg",
   "links": [{ "label": "Detail", "href": "#/projects/citrush-ai", "external": false }],
-  "visuals": [
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_01.png",
-      "alt": "Citrush AI 화면 01"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_02.png",
-      "alt": "Citrush AI 화면 02"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_03.png",
-      "alt": "Citrush AI 화면 03"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_04.png",
-      "alt": "Citrush AI 화면 04"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_05.png",
-      "alt": "Citrush AI 화면 05"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_06.png",
-      "alt": "Citrush AI 화면 06"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_07.png",
-      "alt": "Citrush AI 화면 07"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_08.png",
-      "alt": "Citrush AI 화면 08"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_09.png",
-      "alt": "Citrush AI 화면 09"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_10.png",
-      "alt": "Citrush AI 화면 10"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_11.png",
-      "alt": "Citrush AI 화면 11"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_12.png",
-      "alt": "Citrush AI 화면 12"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_13.png",
-      "alt": "Citrush AI 화면 13"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_14.png",
-      "alt": "Citrush AI 화면 14"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_15.png",
-      "alt": "Citrush AI 화면 15"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_16.png",
-      "alt": "Citrush AI 화면 16"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_17.png",
-      "alt": "Citrush AI 화면 17"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_18.png",
-      "alt": "Citrush AI 화면 18"
-    },
-    {
-      "src": "/assets/projects/citrush-ai/visuals/citrush_img_19.png",
-      "alt": "Citrush AI 화면 19"
-    },
-    { "src": "/assets/projects/citrush-ai/visuals/citrush_img_20.png", "alt": "Citrush AI 화면 20" }
-  ],
-  "kpis": [
-    {
-      "label": "응답 안정성",
-      "value": "운영 시나리오 기준 안정화",
-      "context": "대화 흐름 끊김 감소"
-    }
-  ],
   "order": 1,
   "sections": [
     {
       "type": "problem",
       "title": "Problem",
-      "body": [
-        "게임 컨텍스트를 이해한 대화형 에이전트가 필요했습니다.",
-        "응답 정확도와 지연시간을 동시에 맞춰야 했습니다."
-      ]
+      "body": ["치과 진료 및 경영 데이터의 파편화로 인해 체계적인 의사결정이 어려웠습니다."]
     },
     {
       "type": "approach",
       "title": "Approach",
-      "body": [
-        "RAG 기반 컨텍스트 주입과 프롬프트 계층화를 적용했습니다.",
-        "대화 기록과 게임 상태를 분리해 토큰 낭비를 줄였습니다."
-      ]
+      "body": ["경량 온톨로지 구조를 설계하여 지식 간 관계를 정의하고 RAG 기술을 결합했습니다."]
     },
     {
       "type": "result",
       "title": "Result",
-      "body": [
-        "의미 없는 응답 비율을 줄이고 상호작용 만족도를 개선했습니다.",
-        "운영 시나리오 기준 응답 체감 속도를 안정화했습니다."
-      ]
+      "body": ["진료 전략 수립 보조를 통해 의사결정의 일관성과 효율성을 높였습니다."]
     }
   ]
 }

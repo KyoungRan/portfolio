@@ -77,6 +77,16 @@
   src: url('@/assets/fonts/PinkfongBabyShark-Regular.otf') format('opentype');
 }
 
+/* KERISKEDU_Line - 배너 제목용 */
+@font-face {
+  font-family: 'KERISKEDU_Line';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url('@/assets/fonts/KERISKEDU_Line.otf') format('opentype'),
+       url('@/assets/fonts/KERISKEDU_Line.ttf') format('truetype');
+}
+
 /* 전역 리셋/기본 */
 *,
 *::before,
@@ -94,106 +104,35 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--fg);
   background-color: var(--bg);
-  transition:
-    color var(--transition-base),
-    background-color var(--transition-base);
 }
 
-/* 홈 본문 섹션 간격 통일: AboutMe/Project/Experience/Skills/Education/Others */
-main section[id] {
-  margin-top: 96px;
+/* 홈 본문 섹션 간격 통일: 첫 번째 섹션(About Me)은 배너와의 간격을 위해 제외 */
+main section[id]:not(:first-of-type) {
+  margin-top: 80px;
 }
 
-/* AboutMe 영역은 노션 기준 중앙 폭/여백을 강제로 고정한다. */
-.aboutme-shell {
-  width: 100%;
-  max-width: 720px;
-  margin-inline: auto;
-  padding-inline: 40px !important;
-  font-family:
-    'Noto Sans KR',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
-}
-
+/* 셸 레이아웃 정리: 좌우 여백을 줄이고 폭을 대폭 확장 */
+.aboutme-shell,
 .projects-shell {
   width: 100%;
-  max-width: 720px;
+  max-width: 1160px;
   margin-inline: auto;
-  padding-inline: 40px !important;
-  font-family:
-    'Noto Sans KR',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+  padding-inline: 20px;
 }
 
 @media (min-width: 768px) {
   .aboutme-shell,
   .projects-shell {
-    padding-inline: 48px !important;
+    padding-inline: 32px;
   }
 }
 
-#projects .project-card {
-  padding: 24px;
-}
-
-#projects .project-card img {
-  margin-bottom: 16px;
-}
-
-#projects table th,
-#projects table td,
-#skills table th,
-#skills table td,
-#others table th,
-#others table td {
-  padding: 14px 24px;
-}
-
-#experience .experience-card {
-  padding: 28px;
-}
-
-#education-training .education-card {
-  padding: 24px 26px;
-}
-
-@media (max-width: 640px) {
-  html {
-    font-size: 17px;
-  }
-
-  #about-me h2,
-  #projects h2,
-  #experience h2,
-  #skills h2,
-  #education-training h2,
-  #others h2 {
-    font-size: 31px !important;
-  }
-
-  #projects .project-card h3 {
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  #projects .project-card p {
-    font-size: 12px;
-    line-height: 1.65;
-  }
-}
-
-/* 컨테이너 fallback: 유틸 생성 여부와 무관하게 중앙 정렬 축을 고정한다. */
+/* 컨테이너 fallback */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -208,43 +147,26 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: var(--leading-tight);
+  line-height: 1.2;
   font-weight: 700;
-  /* color: var(--fg); */
-}
-
-h1 {
-  font-size: var(--text-4xl);
-}
-
-h2 {
-  font-size: var(--text-3xl);
-}
-
-h3 {
-  font-size: var(--text-2xl);
-}
-
-h4 {
-  font-size: var(--text-xl);
+  color: var(--fg);
 }
 
 p {
-  margin-bottom: var(--space-md);
+  margin-bottom: 1rem;
 }
 
 /* 링크 기본 스타일 */
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: color var(--transition-fast);
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-/* 포커스 링 (접근성 필수) */
+/* 포커스 링 */
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
@@ -260,13 +182,13 @@ img {
 /* 리스트 기본 */
 ul,
 ol {
-  padding-left: var(--space-lg);
+  padding-left: 1.5rem;
 }
 
 /* 선택 영역 */
 ::selection {
-  background-color: var(--accent);
-  color: var(--accent-fg);
+  background-color: rgba(35, 131, 226, 0.2);
+  color: var(--fg);
 }
 
 @layer utilities {

@@ -20,44 +20,61 @@ export function EducationSection() {
   const content = education as EducationContent
 
   return (
-    <Section id="education-training" className="w-full">
-      <div className="projects-shell w-full space-y-6">
-        <h2 className="text-[28px] leading-none font-semibold text-[#A173BF] md:text-[30px]">{content.title}</h2>
-        <div className="h-px w-full bg-[#e6e3e1]" />
-        <div className="divide-y divide-[#e7e5e3] rounded-[6px] border border-[#dfddda] bg-white">
+    <Section id="education-training" className="w-full pt-8 pb-12">
+      <div className="projects-shell w-full space-y-10">
+        <header className="space-y-4">
+          <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">{content.title}</h2>
+          {/* 라인 아래 padding 10px 적용 */}
+          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+            <div className="h-[1px] w-full bg-border" />
+          </div>
+        </header>
+
+        <div className="grid gap-6">
           {content.items.map((item) => (
             <article
               key={`${item.name}-${item.periodText}`}
-              className="education-card px-5 py-4.5"
+              className="group relative rounded-[4px] border border-[rgba(55,53,47,0.16)] bg-transparent px-6 py-5 transition-all hover:bg-[rgba(55,53,47,0.02)]"
             >
-              <div className="mb-2.5 flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between">
-                <div className="flex items-start gap-3">
+              <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex items-start gap-4">
                   {item.iconSrc && (
-                    <img
-                      alt={`${item.name} 로고`}
-                      className="h-10 w-10 border border-[#d8d5d2] object-cover"
-                      loading="lazy"
-                      src={item.iconSrc}
-                    />
+                    <div className="relative h-12 w-14 flex-shrink-0 overflow-hidden rounded-[3px] border border-[rgba(55,53,47,0.09)] bg-background p-1.5 shadow-sm">
+                      <img
+                        alt={`${item.name} 로고`}
+                        className="h-full w-full object-contain"
+                        loading="lazy"
+                        src={item.iconSrc}
+                      />
+                    </div>
                   )}
-                  <h3 className="mb-0 text-[12px] leading-[1.4] font-semibold text-[#37352f]">{item.name}</h3>
+                  <div className="space-y-1">
+                    <h3 className="mb-0 text-[17px] font-bold leading-tight text-[#37352f] group-hover:text-[#2383e2] transition-colors tracking-tight">
+                      {item.name}
+                    </h3>
+                    <p className="mb-0 text-[12px] font-bold uppercase tracking-wider text-[#787774] opacity-80">
+                      {item.periodText}
+                    </p>
+                  </div>
                 </div>
-                <p className="mb-0 text-[10.5px] text-[#787774]">{item.periodText}</p>
               </div>
 
               {item.bullets && item.bullets.length > 0 && (
-                <ul className="list-disc space-y-1.5 pl-5 text-[11px] leading-[1.55] text-[#37352f]">
+                <ul className="mb-5 list-none space-y-2.5 p-0">
                   {item.bullets.map((bullet) => (
-                    <li key={`${item.name}-${bullet}`}>{bullet}</li>
+                    <li key={`${item.name}-${bullet}`} className="flex items-start gap-3 text-[14.5px] leading-relaxed text-[#37352f] pl-1 tracking-tight">
+                      <span className="mt-2.5 w-1 h-1 rounded-full bg-[rgba(55,53,47,0.2)] flex-shrink-0" />
+                      <span className="flex-1 opacity-90">{bullet}</span>
+                    </li>
                   ))}
                 </ul>
               )}
 
               {item.keywords && item.keywords.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pt-1">
                   {item.keywords.map((keyword) => (
                     <span
-                      className="rounded-[4px] bg-[#f1f1ef] px-1.5 py-0.5 text-[9.5px] leading-none text-[#6f6e69]"
+                      className="rounded-[3px] bg-[#f1f1ef] px-2.5 py-0.5 text-[11px] font-bold text-[#787774] border border-transparent group-hover:border-[rgba(55,53,47,0.1)] transition-all"
                       key={`${item.name}-${keyword}`}
                     >
                       {keyword}

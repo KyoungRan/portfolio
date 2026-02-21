@@ -9,60 +9,78 @@ export function ProjectsSection() {
   const projects = getAllProjects()
 
   return (
-    <Section id="projects" className="w-full">
-      <div className="projects-shell w-full space-y-12">
-        <header className="space-y-5">
-          <h2 className="text-[28px] leading-none font-semibold text-[#A173BF] md:text-[30px]">Projects</h2>
-          <p className="mb-0 text-[11px] leading-6 text-[#6f6e69]">
+    <Section id="projects" className="w-full pt-12 pb-16">
+      <div className="projects-shell w-full space-y-8">
+        <header>
+          {/* Project 타이틀 색상: #A173BF */}
+          <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">Projects</h2>
+          
+          {/* 라인(선) 아래 padding 10px 적용 */}
+          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+            <div className="h-[1px] w-full bg-border" />
+          </div>
+          
+          <p className="mb-0 text-[14.5px] leading-relaxed text-foreground/80">
             AI 관련 프로젝트를 최신 순으로 구성했습니다. 주요 내용, 기간, 개발스택 등을 확인할 수
             있습니다.
           </p>
-          <div className="h-px w-full bg-[#e6e3e1]" />
         </header>
 
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[620px] border border-[#dcd9d6] text-left text-[11px] leading-[1.55] text-[#37352f]">
-            <thead className="bg-[#f8f7f6]">
-              <tr>
-                <th className="w-10 border border-[#e3e2e0] px-3 py-2 font-medium">#</th>
-                <th className="border border-[#e3e2e0] px-3 py-2 font-medium">제목</th>
-                <th className="border border-[#e3e2e0] px-3 py-2 font-medium">설명</th>
-                <th className="w-40 border border-[#e3e2e0] px-3 py-2 font-medium">기간</th>
-              </tr>
-            </thead>
-            <tbody>
-              {projects.map((project, index) => (
-                <tr className="align-top" key={`summary-${project.slug}`}>
-                  <td className="border border-[#e9e8e6] px-3 py-2.5">{index + 1}</td>
-                  <td className="border border-[#e9e8e6] px-3 py-2.5 leading-5">{project.title}</td>
-                  <td className="border border-[#e9e8e6] px-3 py-2.5 leading-5">{project.summary}</td>
-                  <td className="border border-[#e9e8e6] px-3 py-2.5 text-[11px] leading-5">
-                    {project.period.display}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="flex items-center justify-between rounded-[6px] border border-[#e3e2e0] px-4 py-2">
-          <div className="inline-flex items-center gap-2 text-[12px] font-medium text-[#37352f]">
-            <span aria-hidden="true">▦</span>
-            <span>Projects</span>
+        {/* Project Summary 영역: 하단 padding 5px 적용 */}
+        <div className="space-y-3">
+          <div style={{ paddingBottom: '5px' }} className="flex items-center justify-between border-b border-border">
+            <div className="inline-flex items-center gap-2 text-[14.5px] font-bold text-foreground">
+              <span aria-hidden="true" className="text-[16px]">▦</span>
+              <span>Project Summary</span>
+            </div>
           </div>
-          <button
-            aria-label="새 프로젝트"
-            className="rounded bg-[#2f76c5] px-2.5 py-1 text-[11px] text-white"
-            type="button"
-          >
-            New
-          </button>
+
+          <div className="overflow-x-auto overflow-y-hidden rounded-[3px] border border-border">
+            <table className="w-full min-w-[600px] border-collapse text-left text-[13px] leading-tight text-foreground">
+              <thead className="bg-muted/50 text-muted-foreground font-semibold text-[11px] uppercase tracking-tight">
+                <tr>
+                  <th style={{ width: '32px', padding: '6px 8px' }} className="border-r border-border text-center font-bold">#</th>
+                  <th style={{ padding: '6px 10px' }} className="border-r border-border">Project Name</th>
+                  <th style={{ padding: '6px 10px' }} className="border-r border-border">Summary</th>
+                  <th style={{ width: '130px', padding: '6px 10px' }} className="font-bold">Timeline</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {projects.map((project, index) => (
+                  <tr className="group hover:bg-muted/30 transition-colors" key={`summary-${project.slug}`}>
+                    <td style={{ padding: '6px 8px' }} className="border-r border-border text-muted-foreground text-center font-medium text-[11px]">
+                      {String(index + 1).padStart(2, '0')}
+                    </td>
+                    <td style={{ padding: '6px 10px' }} className="border-r border-border font-bold text-foreground group-hover:text-accent group-hover:underline text-[13.5px]">
+                      {project.title}
+                    </td>
+                    <td style={{ padding: '6px 10px' }} className="border-r border-border font-medium text-foreground/90 leading-relaxed text-[13px]">
+                      {project.summary}
+                    </td>
+                    <td style={{ padding: '6px 10px' }} className="text-[11.5px] font-bold text-muted-foreground whitespace-nowrap">
+                      {project.period.display}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
+        {/* Project Summary View: 위 padding 15px, 아래 padding 5px 적용 */}
+        <div className="space-y-6 pt-4">
+          <div style={{ paddingTop: '15px', paddingBottom: '5px' }} className="flex items-center justify-between">
+            <div className="inline-flex items-center gap-2 text-[14.5px] font-bold text-foreground">
+              <span aria-hidden="true" className="text-[16px]">田</span>
+              <span>Project Summary View</span>
+            </div>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
         </div>
       </div>
     </Section>
