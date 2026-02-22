@@ -9,7 +9,7 @@ interface SectionProps {
   id?: string
   label?: string
   title?: string
-  description?: string
+  description?: ReactNode
 }
 
 export function Section({ children, className, id, label, title, description }: SectionProps) {

@@ -2,6 +2,7 @@
 // 노션 상단 구조(프로필/연락처 + 소개/요약)를 단일 섹션으로 구성한다.
 import profile from '@/content/profile.json'
 import { Section } from '@/components/layout/Section'
+import { parseRichText } from '@/lib/parseRichText'
 
 interface Period {
   start: string
@@ -52,23 +53,6 @@ function formatPeriod(period: Period): string {
   const start = period.start.replace('-', '.')
   const end = period.end ? period.end.replace('-', '.') : 'Present'
   return `${start} - ${end}`
-}
-
-/**
- * JSON의 텍스트에서 **Bold** 및 <purple>Color</purple> 마크업을 해석하여 React 노드로 반환합니다.
- */
-function parseRichText(text: string) {
-  const parts = text.split(/(\*\*.*?\*\*|<purple>.*?<\/purple>)/g);
-  
-  return parts.map((part, i) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={i} style={{ fontWeight: 800 }}>{part.slice(2, -2)}</strong>;
-    }
-    if (part.startsWith('<purple>') && part.endsWith('</purple>')) {
-      return <span key={i} style={{ color: '#A173BF', fontWeight: 700 }}>{part.slice(8, -9)}</span>;
-    }
-    return part;
-  });
 }
 
 export function AboutMeSection() {

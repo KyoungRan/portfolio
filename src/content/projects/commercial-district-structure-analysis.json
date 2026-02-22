@@ -1,33 +1,238 @@
 {
   "slug": "commercial-district-structure-analysis",
   "title": "상권 구조 데이터 분석",
-  "summary": "상권 데이터 마이닝으로 상권 구조를 분석해 의사결정 보조 인사이트를 도출했습니다.",
+  "subtitle": "가로수길은 왜 꺾이고 성수는 왜 성장했나: 텍스트·임대 데이터로 본 상권 ‘구조’ 분석",
+  "summary": "자영업자 커뮤니티 텍스트와 임대 데이터를 결합해, 두 상권의 흥망을 만든 **‘구조적 요인(임대·계약 유연성/실험 가능성)’**을 도출한 데이터 분석 프로젝트",
+  "type": "데이터분석",
   "period": {
-    "start": "2025-07-14",
-    "end": "2025-07-25",
-    "display": "2025.07.14 - 2025.07.25"
+    "start": "2025-07-21",
+    "end": "2025-08-01",
+    "display": "2025/07/21 → 2025/08/01"
   },
-  "tags": ["Data Mining", "Decision Support", "Analysis"],
-  "stack": ["Python", "Pandas", "Matplotlib", "Folium"],
-  "roles": ["데이터 마이닝", "클러스터링 분석", "시각화"],
+  "tags": ["데이터분석", "비정형 데이터", "상권분석", "구조분석"],
+  "stack": ["Pandas", "Selenium", "Wordcloud", "Matplotlib", "Numpy", "Seaborn", "Python"],
+  "roles": [
+    "프로젝트 기획 및 분석 방향 설계",
+    "비정형(카페 텍스트) + 정형(네이버 부동산) 데이터 수집/전처리",
+    "키워드 분석, 시각화, 결론 정리"
+  ],
   "coverImageSrc": "/assets/projects/commercial-district-structure-analysis/cover.png",
-  "links": [{ "label": "Detail", "href": "#/projects/commercial-district-structure-analysis", "external": false }],
   "order": 5,
   "sections": [
     {
-      "type": "problem",
-      "title": "Problem",
-      "body": ["복잡한 상권 데이터를 유의미한 비즈니스 지표로 변환해야 했습니다."]
+      "type": "quote",
+      "body": ["정형 지표로는 설명이 어려운 **‘왜’**를, 커뮤니티 텍스트로 가설을 만들고 임대 데이터로 검증\n결론: 상권 지속가능성은 ‘콘텐츠’보다 **‘구조(임대·계약 유연성/실험 가능성)’**가 갈랐다."]
+    },
+    {
+      "type": "separator"
     },
     {
       "type": "approach",
-      "title": "Approach",
-      "body": ["K-means 클러스터링을 활용해 유동인구와 매출 간 상관관계를 분석했습니다."]
+      "title": "1. 프로젝트 소개",
+      "table": {
+        "rows": [
+          ["**프로젝트명**", "가로수길은 왜 꺾이고 성수는 왜 성장했나: 텍스트·임대 데이터로 본 상권 ‘구조’ 분석"],
+          ["**한줄 설명**", "자영업자 커뮤니티 텍스트와 임대 데이터를 결합해, 두 상권의 흥망을 만든 ‘구조적 요인’을 도출"],
+          ["**배경 또는 기획의도**", "서울의 6대 상권인 가로수길의 공실률이 41.6%에 이르렀다는 기사에서 출발하여, 비슷한 특징의 성수동과 무엇이 달랐는지를 분석하고자 함"],
+          ["**본인 역할**", "• 프로젝트 기획 및 분석 방향 설계\n• 비정형(카페 텍스트- 아프니깐 사장이다) + 정형화된 네이버 부동산 데이터 수집/전처리\n• 키워드 분석, 시각화, 결론 정리"],
+          ["**기술 스택**", "Pandas, Numpy, Selenium, WordCloud, Matplotlib, Seaborn, Python"],
+          ["**진행 기간**", "25.07.21 - 25.08.01"],
+          ["**팀/인원**", "3명"]
+        ]
+      }
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "problem",
+      "title": "2. 문제 정의: “숫자는 있는데, 이유가 없다”",
+      "layout": "split",
+      "body": ["출처: 공실률 41.6%…‘유령 상권’ 된 가로수길 / 매일경제 / 조동현기자 / 25.07.14"],
+      "visuals": [
+        {
+          "src": "/assets/projects/commercial-district-structure-analysis/visuals/analysis_img_01.png",
+          "alt": "가로수길 공실률 관련 뉴스 기사"
+        }
+      ],
+      "bullets": [
+        "**출발점**: 서울의 핵심 상권이던 가로수길의 공실률이 41.6%에 달했다. 비슷한 특징의 성수동은 왜 달랐을까?",
+        "**문제 재정의**: 유동인구, 점포 수 같은 정형 데이터는 하락/상승 “현상”을 보여줄 뿐, “왜”라는 근본 원인을 설명하지 못했다."
+      ]
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "approach",
+      "title": "3. 분석 질문 & 가설: 무엇이 “지속가능성”을 갈랐나",
+      "visuals": [
+        {
+          "src": "/assets/projects/commercial-district-structure-analysis/visuals/analysis_img_02.png",
+          "alt": "분석 질문 및 가설 설정"
+        }
+      ],
+      "bullets": [
+        "비정형 텍스트는 **“가설”**을 만들고, 임대데이터는 그 가설이 **“구조적으로 타당한지”**를 검증"
+      ]
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "approach",
+      "title": "4. 데이터 전략: 왜 이 데이터가 필요했나",
+      "body": ["“이유”를 찾기 위한 데이터 삼각측량(triangulation) - 텍스트(맥락) ↔ 임대(구조) ↔ 공공(배경)"],
+      "visuals": [
+        {
+          "src": "/assets/projects/commercial-district-structure-analysis/visuals/analysis_img_03.png",
+          "alt": "데이터 삼각측량 전략"
+        }
+      ],
+      "bullets": [
+        "정형 데이터의 한계를 보완하기 위해, 현장의 목소리(비정형)로 가설을 발견하고 임대 데이터(정형)로 구조를 검증하는 전략을 사용",
+        "하나의 데이터로 결론을 내리지 않고, 서로 다른 성격의 데이터로 교차검증(삼각측량)해 신뢰도를 확보"
+      ],
+      "table": {
+        "headers": ["데이터명", "유형", "출처", "기간", "핵심 사용 목적"],
+        "rows": [
+          ["서울 상권 유동인구 추이", "정형", "서울 열린데이터 광장", "16.01–25.07", "두 상권의 장기 “현상” 비교(배경지표)"],
+          ["서울 점포 수 추이", "정형", "서울시 ‘상권 분석’ 서비스", "16.01–25.07", "업종/점포 변화 추이로 구조 변화 보조"],
+          ["키워드 언급량/관심도", "정형", "네이버 데이터랩", "16.01–25.07", "관심도 변화(검색지수)로 변곡점 보조"],
+          ["자영업 커뮤니티", "비정형", "네이버 카페 ‘아프니까 사장이다’", "16.01–25.07", "현장 체감(WHY 신호) 키워드 추출"],
+          ["임대 매물 데이터", "정형", "네이버 부동산", "25.07.28-29", "㎡당 월세 정규화 후 “구조(비용)” 검증"]
+        ]
+      }
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "approach",
+      "title": "5. 데이터 수집·정제: “데이터를 ‘분석 가능’하게 만든 과정”",
+      "visuals": [
+        {
+          "src": "/assets/projects/commercial-district-structure-analysis/visuals/analysis_img_04.png",
+          "alt": "데이터 수집 및 정제 과정"
+        }
+      ],
+      "bullets": [
+        "selenium 기반 크롤링, 텍스트 정제(중복/불용어/토큰화), 임대료 단위 정규화(㎡당 월세 등)",
+        "비정형은 노이즈가 많아 “정제 규칙”이 결과를 좌우",
+        "임대는 단위(예: ㎡당)로 정규화 해야 지역 비교가 가능"
+      ],
+      "table": {
+        "headers": ["데이터명", "수집(방법/도구)", "전처리·가공", "분석에 쓴 지표"],
+        "rows": [
+          ["자영업 커뮤니티", "Selenium", "중복 제거 → 불용어 처리 → 토큰화", "키워드 TopN 비교"],
+          ["네이버 부동산", "Selenium", "단위 정리 → ㎡당 월세로 정규화", "정규화 월세 분포/변동성"],
+          ["공공/정형 CSV", "Download", "결측/형식 통일 → 기간/지역 필터", "추이/증감 비교"]
+        ]
+      }
+    },
+    {
+      "type": "separator"
     },
     {
       "type": "result",
-      "title": "Result",
-      "body": ["핵심 상권별 특징을 4가지 유형으로 분류하여 보고서를 작성했습니다."]
+      "title": "6. 분석 ① 비정형(커뮤니티 텍스트): 현장 체감의 신호 추출(WHY 신호)",
+      "body": ["출처: 네이버 카페(아프니깐 사장이다)"],
+      "visuals": [
+        {
+          "src": "/assets/projects/commercial-district-structure-analysis/visuals/analysis_img_05.png",
+          "alt": "텍스트 데이터 키워드 분석 결과"
+        }
+      ],
+      "bullets": [
+        "**가로수길**: “임대료/매출/매도/점포…” 등 부정 흐름으로 언급",
+        "**성수동**: “오픈/매장/매출/권리금..” 등 자생적 흐름으로 언급",
+        "동일 키워드 빈도를 비교해 분위기 차이를 수치로 표현했다(예: 오픈 18 vs 143)."
+      ]
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "result",
+      "title": "7. 분석 ② 정형(임대): 비용·계약 구조가 만든 차이 검증(구조 검증)",
+      "body": [
+        "출처: 네이버 부동산(가로수길과 성수 연무장길 임대료 비교)",
+        "산출방식: ㎡당 월세 환산액"
+      ],
+      "visuals": [
+        {
+          "src": "/assets/projects/commercial-district-structure-analysis/visuals/analysis_img_06.png",
+          "alt": "임대 데이터 구조 분석 결과"
+        }
+      ],
+      "bullets": [
+        "**가로수길**: 높은 비용 + 장기 계약 중심(경직된 구조) → 실패 비용이 높은 시장",
+        "**성수동**: 낮은 비용 + 계약 유연성(다양한 선택지 + 유연한 구조) → 실패해도 괜찮은 실험의 장"
+      ]
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "result",
+      "title": "8. 종합 인사이트: 상권의 미래는 콘텐츠가 아니라 “구조”다",
+      "visuals": [
+        {
+          "src": "/assets/projects/commercial-district-structure-analysis/visuals/analysis_img_07.png",
+          "alt": "종합 인사이트 및 상권 순환 구조"
+        }
+      ],
+      "bullets": [
+        "결론: **지속가능 상권 = 실험 → 성장 → 유지가 순환되는 구조**",
+        "성수는 구조가 실험을 살렸고, 가로수길은 구조가 실험을 막았다."
+      ]
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "lessons",
+      "title": "9. 데이터 사용의 타당성: 적절했나? 편향·윤리·한계와 완화",
+      "body": ["데이터의 한계를 인지하고 보완하다"],
+      "table": {
+        "headers": ["Risk (편향과 한계)", "Mitigation Strategy (완화 전략)"],
+        "rows": [
+          ["**표본 편향**: 커뮤니티 의견의 과대대표 가능성", "데이터 삼각측량: 임대 및 공공 데이터로 교차 검증"],
+          ["**시점 편향**: 특정 시기 이슈가 키워드를 왜곡", "장기 데이터 확보: 넓은 기간 수집으로 노이즈 최소화"],
+          ["**윤리 문제**: 개인 식별 정보 노출 위험", "데이터 비식별화: 통계 정보만 분석에 사용"]
+        ]
+      },
+      "bullets": [
+        "데이터의 한계를 명확히 인지하고 보완하여 결론의 신뢰도를 높이는 과정이 분석의 핵심",
+        "결론의 신뢰도는 “분석 기법”보다 “데이터 한계를 인지하고 보완 했는가”에서 갈린다"
+      ]
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "lessons",
+      "title": "10. 배운 점 & 다음 단계(데이터 관점) - “구조”를 보는 상권 프레임 분석",
+      "visuals": [
+        {
+          "src": "/assets/projects/commercial-district-structure-analysis/visuals/analysis_img_08.png",
+          "alt": "배운 점 및 향후 발전 방향"
+        }
+      ],
+      "bullets": [
+        "정형 데이터가 답을 못 줄 때, 비정형을 설계해 원인에 접근하고 정형으로 검증",
+        "추가 데이터(카드매출/사업자 변동/공실률 시계열)가 붙으면 프레임의 일반화가 더 강해진다."
+      ]
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "responsibilities",
+      "title": "11. 프로젝트 문서",
+      "bullets": [
+        "프로젝트 발표 PPT: [바로가기](https://docs.google.com/presentation/d/1...)"
+      ]
     }
   ]
 }

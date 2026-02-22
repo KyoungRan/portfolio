@@ -26,6 +26,11 @@ export interface ProjectVisual {
   kind?: 'diagram' | 'screenshot' | 'chart' | 'other'
 }
 
+export interface ProjectSectionTable {
+  headers?: string[]
+  rows: string[][]
+}
+
 export interface ProjectSection {
   type:
     | 'problem'
@@ -35,15 +40,21 @@ export interface ProjectSection {
     | 'lessons'
     | 'timeline'
     | 'responsibilities'
+    | 'quote'
+    | 'separator'
+    | 'callout'
   title?: string
   body?: string[]
   bullets?: string[]
   visuals?: ProjectVisual[]
+  table?: ProjectSectionTable
+  layout?: 'default' | 'split'
 }
 
 export interface ProjectItem {
   slug: string
   title: string
+  type?: string
   subtitle?: string
   summary: string
   period: ProjectPeriod

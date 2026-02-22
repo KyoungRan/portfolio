@@ -320,9 +320,14 @@ function validateProjects() {
         }
 
         const lines = section?.body ?? section?.bullets ?? []
-        if (!isArrayOfNonEmptyString(lines)) {
+        const hasTable =
+          section?.table && Array.isArray(section.table.rows) && section.table.rows.length > 0
+        const hasVisuals = Array.isArray(section?.visuals) && section.visuals.length > 0
+        const isSeparator = section?.type === 'separator'
+
+        if (!isArrayOfNonEmptyString(lines) && !hasTable && !hasVisuals && !isSeparator) {
           fail(
-            `[${sourcePath}] sections.body 또는 sections.bullets는 1개 이상 문자열 배열이어야 합니다.`,
+            `[${sourcePath}] sections는 body, bullets, table, visuals 중 하나 이상의 유효한 콘텐츠를 포함해야 합니다 (separator 제외).`,
           )
         }
       }
