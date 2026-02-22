@@ -1,14 +1,22 @@
 {
   "slug": "image-recognition-kfood-guide",
   "title": "이미지 인식 한식 가이드",
-  "summary": "한식 메뉴 인식 및 객체 인식 기반 추천으로 사용자 이해를 돕는 가이드를 구현했습니다.",
+  "subtitle": ": K-Food Demon Hunters",
+  "type": "이미지분류",
+  "summary": "외국인 대상: 음식 인지(사진) → 레시피 제공 → 남은 재료 기반 추천",
   "period": {
-    "start": "2025-08-04",
-    "end": "2025-08-22",
-    "display": "2025.08.04 - 2025.08.22"
+    "start": "2025-08-13",
+    "end": "2025-09-01",
+    "display": "25.08.13 - 25.09.01"
   },
-  "tags": ["Computer Vision", "Recommendation", "K-Food"],
-  "stack": ["Python", "TensorFlow", "OpenCV", "Flask"],
+  "tags": [
+    "EfficientNet",
+    "ResNet",
+    "Scikit-learn",
+    "Matplotlib",
+    "PyTorch"
+  ],
+  "stack": ["EfficientNet", "ResNet", "Scikit-learn", "Matplotlib", "PyTorch"],
   "roles": ["이미지 분류 모델 학습", "추천 알고리즘 설계"],
   "coverImageSrc": "/assets/projects/image-recognition-kfood-guide/cover.png",
   "links": [{ "label": "Detail", "href": "#/projects/image-recognition-kfood-guide", "external": false }],

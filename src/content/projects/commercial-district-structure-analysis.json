@@ -1,16 +1,17 @@
 {
   "slug": "commercial-district-structure-analysis",
   "title": "상권 구조 데이터 분석",
-  "subtitle": "가로수길은 왜 꺾이고 성수는 왜 성장했나: 텍스트·임대 데이터로 본 상권 ‘구조’ 분석",
-  "summary": "자영업자 커뮤니티 텍스트와 임대 데이터를 결합해, 두 상권의 흥망을 만든 **‘구조적 요인(임대·계약 유연성/실험 가능성)’**을 도출한 데이터 분석 프로젝트",
+  "subtitle": ": 가로수길은 왜 꺾이고 성수는 왜 성장했나",
+  "type": "데이터분석",
+  "summary": "텍스트·임대 데이터로 본 상권 ‘구조’ 분석",
   "type": "데이터분석",
   "period": {
     "start": "2025-07-21",
     "end": "2025-08-01",
-    "display": "2025/07/21 → 2025/08/01"
+    "display": "25.07.21 - 25.08.01"
   },
-  "tags": ["데이터분석", "비정형 데이터", "상권분석", "구조분석"],
-  "stack": ["Pandas", "Selenium", "Wordcloud", "Matplotlib", "Numpy", "Seaborn", "Python"],
+  "tags": ["Pandas", "Selenium", "Wordcloud", "Matplotlib", "Numpy"],
+  "stack": ["Pandas", "Selenium", "Wordcloud", "Matplotlib", "Numpy"],
   "roles": [
     "프로젝트 기획 및 분석 방향 설계",
     "비정형(카페 텍스트) + 정형(네이버 부동산) 데이터 수집/전처리",

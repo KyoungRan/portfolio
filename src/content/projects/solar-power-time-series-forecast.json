@@ -1,14 +1,16 @@
 {
   "slug": "solar-power-time-series-forecast",
   "title": "태양광 발전량 시계열 예측",
-  "summary": "태양광 발전량 예측과 실시간 이상탐지 기반 예측 대시보드를 구성했습니다.",
+  "subtitle": ": 태양광 예방 정비 웹 플랫폼",
+  "type": "시계열예측분석",
+  "summary": "다중 시계열 융합 예측 + 패널 결함 탐지 → 대시보드 “미리알림 미리점검”",
   "period": {
-    "start": "2025-08-26",
-    "end": "2025-09-12",
-    "display": "2025.08.26 - 2025.09.12"
+    "start": "2025-09-08",
+    "end": "2025-09-24",
+    "display": "25.09.08 ~ 25.09.24"
   },
-  "tags": ["Time-series", "Forecasting", "Dashboard"],
-  "stack": ["Python", "PyTorch", "Pandas", "Scikit-learn", "Streamlit"],
+  "tags": ["Transformer", "LightGBM", "LSTM", "Pandas", "PyTorch", "Scikit-learn"],
+  "stack": ["Transformer", "LightGBM", "LSTM", "Pandas", "PyTorch", "Scikit-learn"],
   "roles": ["모델 아키텍처 설계", "데이터 전처리", "대시보드 구현"],
   "coverImageSrc": "/assets/projects/solar-power-time-series-forecast/cover.png",
   "links": [{ "label": "Detail", "href": "#/projects/solar-power-time-series-forecast", "external": false }],

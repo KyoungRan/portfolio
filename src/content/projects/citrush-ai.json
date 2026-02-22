@@ -1,14 +1,16 @@
 {
   "slug": "citrush-ai",
   "title": "AI Teeth 전략 에이전트",
-  "summary": "Light Ontology 기반 전략 에이전트 워크플로를 구현해 치과 진료/경영 의사결정 흐름을 지원했습니다.",
+  "subtitle": ": CITRUSH",
+  "type": "AI에이전트",
+  "summary": "Light Ontology, RAG와 Agent workflow 기반의 AI Teeth 전용 두뇌 구현",
   "period": {
-    "start": "2025-11-04",
-    "end": "2025-12-15",
-    "display": "2025.11.04 - 2025.12.15"
+    "start": "2025-11-12",
+    "end": "2026-01-08",
+    "display": "25.11.12 - 26.01.08"
   },
-  "tags": ["AI Agent", "Decision Support", "Workflow"],
-  "stack": ["React", "FastAPI", "PostgreSQL", "OpenAI API"],
+  "tags": ["RAG", "Otology", "LangGraph", "LangChain", "LLM"],
+  "stack": ["RAG", "Otology", "LangGraph", "LangChain", "LLM"],
   "roles": ["아키텍처 설계", "RAG 파이프라인", "프론트엔드 구현"],
   "coverImageSrc": "/assets/projects/citrush-ai/cover.jpg",
   "links": [{ "label": "Detail", "href": "#/projects/citrush-ai", "external": false }],
