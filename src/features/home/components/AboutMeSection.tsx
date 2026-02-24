@@ -67,9 +67,9 @@ export function AboutMeSection() {
   return (
     <Section id="about-me" className="w-full">
       {/* 배너와 박스 사이 간격 20px (배너의 margin-bottom 20px 활용) */}
-      <div className="aboutme-shell w-full" style={{ paddingTop: '0px', paddingBottom: '80px' }}>
+      <div className="aboutme-shell w-full">
         
-        <header style={{ marginBottom: '0px', marginTop: '0px', paddingTop: '0px' }}>
+        <header>
           {/* 헤드라인 콜아웃: 아래 공백 30px 적용, 라인 없음 */}
           <div 
             style={{ 
@@ -110,12 +110,9 @@ export function AboutMeSection() {
         </header>
 
         {/* 본문 영역: 박스 아래 라인 삭제, 30px 공백 유지 */}
-        <div 
-          style={{ paddingTop: '0px' }}
-          className="grid items-start gap-x-12 md:grid-cols-[260px_1fr]"
-        >
+        <div className="grid items-start md:grid-cols-[260px_1fr]">
           
-          <aside style={{ gap: '32px' }} className="flex flex-col self-start">
+          <aside className="flex flex-col self-start gap-5">
             <div 
               style={{ border: '1px solid rgba(55, 53, 47, 0.09)' }}
               className="w-full overflow-hidden rounded-[1px]"
@@ -128,23 +125,23 @@ export function AboutMeSection() {
               />
             </div>
 
-            <div style={{ gap: '24px' }} className="flex flex-col">
+            <div className="flex flex-col gap-5">
               <h3 
-                style={{ color: '#A173BF', fontSize: '28px', fontWeight: 800, letterSpacing: '-0.02em', paddingLeft: '4px' }}
+                style={{ color: '#A173BF', fontSize: '28px', fontWeight: 800, letterSpacing: '3px', paddingLeft: '20px' }}
               >
                 {displayName}
               </h3>
 
               <div 
                 style={{ borderLeft: '5px solid #37352f', paddingLeft: '14px' }}
-                className="flex flex-col gap-3 py-1"
+                className="flex flex-col py-1"
               >
                 <p className="text-[16px] font-bold text-[#787774] uppercase tracking-[0.2em] mb-4">
                   AI Agent Developer
                 </p>
 
-                <div style={{ gap: '28px' }} className="flex flex-col text-[#37352f]">
-                  <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col text-[#37352f] gap-2">
+                  <div className="flex flex-col">
                     <span className="text-[11px] font-extrabold text-[#9b9a97] uppercase tracking-widest">PHONE</span>
                     <div className="font-bold text-[16px] tracking-tight" style={{ paddingBottom: '8px' }}>
                       {content.contacts.phone}
@@ -184,7 +181,7 @@ export function AboutMeSection() {
             </div>
           </aside>
 
-          <div style={{ gap: '60px', marginLeft: '40px' }} className="flex flex-col">
+          <div style={{ marginLeft: '80px' }} className="flex flex-col ga">
             <article className="flex flex-col">
               <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
                 {aboutTitle}
@@ -192,11 +189,11 @@ export function AboutMeSection() {
               <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
                 <div className="h-[1px] w-full bg-[#e1dfdd]" />
               </div>
-              <div className="flex flex-col gap-8 pt-4">
+              <div className="flex flex-col pt-4">
                 <p className="text-[20px] font-bold leading-[1.5] text-[#37352f] tracking-tight">
                   {parseRichText(content.about.description)}
                 </p>
-                <div className="flex flex-col gap-5 text-[16.5px] leading-[1.7] text-[#37352f] tracking-[-0.01em]">
+                <div className="flex flex-col text-[16.5px] leading-[1.7] text-[#37352f] tracking-[-0.01em]">
                   {content.about.body.map((paragraph, idx) => (
                     <p className="mb-0" key={idx}>
                       {parseRichText(paragraph)}
@@ -207,26 +204,26 @@ export function AboutMeSection() {
             </article>
 
             <article className="flex flex-col">
-              <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800 }}>
+              <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, marginTop: 20 }}>
                 Experience Overview
               </h3>
-              <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+              <div style={{ paddingTop: '10px', paddingBottom: '15px' }}>
                 <div className="h-[1px] w-full bg-[#e1dfdd]" />
               </div>
-              <div className="flex flex-col gap-8 pt-4">
+              <div className="flex flex-col pt-4">
                 {content.overview.totalExperienceText && (
                   <p className="text-[18px] font-bold text-[#37352f] tracking-tight mb-2">
                     {parseRichText(content.overview.totalExperienceText)}
                   </p>
                 )}
-                <ul className="list-disc flex flex-col gap-6 pl-6 text-[#37352f]">
+                <ul className="list-disc flex flex-col gap-4 pl-6 text-[#37352f]">
                   {content.overview.companies.map((company) => (
                     <li key={`${company.company}-${company.period.start}`} className="text-[18px] leading-none tracking-tight">
                       <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-3">
                         <span className="font-bold">{company.company}</span>
                         <span className="text-[#9b9a97] font-normal">/</span>
                         <span className="font-semibold opacity-80">{company.role}</span>
-                        <span className="ml-4 text-[13.5px] font-bold text-[#787774] bg-[#f1f1ef] px-2.5 py-1 rounded-[3px] uppercase tracking-tight">
+                        <span className="ml-4 text-[13.5px] font-bold text-[#7d7a75] px-2.5 py-1 rounded-[3px] uppercase tracking-tight">
                           {formatPeriod(company.period)}
                         </span>
                       </div>
@@ -237,18 +234,18 @@ export function AboutMeSection() {
             </article>
 
             <article className="flex flex-col">
-              <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800 }}>
+              <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, marginTop: 30 }}>
                 Education
               </h3>
-              <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+              <div style={{ paddingTop: '5px', paddingBottom: '20px' }}>
                 <div className="h-[1px] w-full bg-[#e1dfdd]" />
               </div>
-              <ul className="list-disc flex flex-col gap-6 pl-6 pt-6 text-[#37352f]">
+              <ul className="list-disc flex flex-col gap-4 pl-6 pt-6 text-[#37352f]">
                 {content.educationSummary.items.map((item) => (
                   <li key={`${item.name}-${item.periodText}`} className="text-[18px] leading-none tracking-tight">
                     <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-4">
                       <span className="font-bold">{item.name}</span>
-                      <span className="ml-4 text-[13.5px] font-bold text-[#787774] bg-[#f1f1ef] px-2.5 py-1 rounded-[3px] uppercase tracking-tight">
+                      <span className="ml-4 text-[13.5px] font-bold text-[#7d7a75] px-2.5 py-1 rounded-[3px] uppercase tracking-tight">
                         {item.periodText}
                       </span>
                     </div>

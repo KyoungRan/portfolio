@@ -27,6 +27,7 @@ export function ProjectsSection() {
         </header>
 
         {/* Project Summary 영역: 하단 padding 5px 적용 */}
+        {/*
         <div className="space-y-3">
           <div style={{ paddingBottom: '5px' }} className="flex items-center justify-between border-b border-border">
             <div className="inline-flex items-center gap-2 text-[14.5px] font-bold text-foreground">
@@ -66,7 +67,7 @@ export function ProjectsSection() {
             </table>
           </div>
         </div>
-
+        */}
         {/* Project Summary View: 위 padding 15px, 아래 padding 5px 적용 */}
         <div className="space-y-6 pt-4">
           <div style={{ paddingTop: '15px', paddingBottom: '5px' }} className="flex items-center justify-between">
