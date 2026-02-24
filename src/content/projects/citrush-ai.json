@@ -13,6 +13,7 @@
   "stack": ["RAG", "Otology", "LangGraph", "LangChain", "LLM"],
   "roles": ["아키텍처 설계", "RAG 파이프라인", "프론트엔드 구현"],
   "coverImageSrc": "/assets/projects/citrush-ai/cover.jpg",
+  "coverImageWidthPercent": 100,
   "links": [{ "label": "Detail", "href": "#/projects/citrush-ai", "external": false }],
   "order": 1,
   "sections": [

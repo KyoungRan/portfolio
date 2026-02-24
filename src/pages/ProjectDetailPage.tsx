@@ -25,130 +25,181 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
   }
 
   const periodText = formatProjectPeriod(project)
+  const splitQuoteSentences = (lines: string[]) =>
+    lines
+      .flatMap((line) => line.split(/\r?\n/))
+      .flatMap((segment) =>
+        segment
+          .split(/(?<=[.!?]|[。！？])\s+/u)
+          .map((sentence) => sentence.trim())
+          .filter(Boolean)
+      )
 
   return (
     <PageContent>
-      {/* 1. Cover Image: 가장 최상단 배치 */}
-      {project.coverImageSrc && (
-        <div className="w-full">
-          <img
-            src={project.coverImageSrc}
-            alt={`${project.title} 커버`}
-            className="h-[30vh] w-full object-cover md:h-[35vh]"
-            loading="lazy"
-          />
-        </div>
-      )}
-
-      <div className="mx-auto max-w-[900px] px-4 py-12 text-[#37352f] md:px-12 lg:px-24">
-        {/* 2. Title & Subtitle */}
-        <header className="mb-8">
-          <h1 className="mb-2 text-[40px] font-bold leading-tight tracking-tight">
-            {project.title}
-          </h1>
-          {project.subtitle && (
-            <p className="text-[20px] font-medium text-[#787774] leading-snug">
-              {parseRichText(project.subtitle)}
-            </p>
+      <div className="flex w-full justify-center px-6 py-16 text-[#37352f] md:px-16 lg:px-28">
+        <div className="w-full max-w-[710px]">
+          {/* 1. Cover Image: 본문 폭에 맞춰 배치 */}
+          {project.coverImageSrc && (
+            <div className="w-full" style={{ marginTop: '20px', marginBottom: '20px' }}>
+              <div
+                className="mx-auto"
+                style={{
+                  width: `${project.coverImageWidthPercent ?? 80}%`,
+                }}
+              >
+                <img
+                  src={project.coverImageSrc}
+                  alt={`${project.title} 커버`}
+                  className="block h-[30vh] w-full rounded-[1px] object-cover md:h-[35vh]"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           )}
-        </header>
 
-        {/* 3. Properties Table */}
-        <div className="mb-10 overflow-hidden">
-          <table className="w-full text-[14px]">
-            <tbody>
-              {project.type && (
-                <tr className="group">
-                  <td className="w-[120px] py-1 text-[#9b9a97] font-normal">유형</td>
-                  <td className="py-1 font-normal">{project.type}</td>
-                </tr>
-              )}
-              <tr className="group">
-                <td className="w-[120px] py-1 text-[#9b9a97] font-normal">한 줄 요약</td>
-                <td className="py-1 leading-relaxed">{parseRichText(project.summary)}</td>
-              </tr>
-              <tr className="group">
-                <td className="w-[120px] py-1 text-[#9b9a97] font-normal">대표기술스택</td>
-                <td className="py-1">
-                  <div className="flex flex-wrap gap-2">
-                    {project.stack.map(s => (
-                      <span key={s} className="rounded-[3px] bg-[#f1f1ef] px-1.5 py-0.5 text-[#37352f] text-[12px]">
-                        {s}
-                      </span>
-                    ))}
+          {/* 2. Sections Loop */}
+          <div className="space-y-1">
+            {project.sections?.map((section, sectionIdx) => (
+              <article key={`${project.slug}-${section.type}-${sectionIdx}`} className="py-1">
+                {section.type === 'separator' ? (
+                  <div style={{ paddingTop: '15px', paddingBottom: '15px' }}>
+                    <div className="h-[1px] w-full bg-[#D3D1CB]" />
                   </div>
-                </td>
-              </tr>
-              <tr className="group">
-                <td className="w-[120px] py-1 text-[#9b9a97] font-normal">작업기간</td>
-                <td className="py-1 font-normal">{periodText}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        {/* 4. Sections Loop */}
-        <div className="space-y-1">
-          {project.sections?.map((section, sectionIdx) => (
-            <article key={`${project.slug}-${section.type}-${sectionIdx}`} className="py-1">
-              {section.type === 'separator' ? (
-                <div className="my-6 h-[1px] w-full bg-[rgba(55,53,47,0.09)]" />
-              ) : section.type === 'quote' ? (
-                <blockquote className="my-4 border-l-[3px] border-[#37352f] py-1 pl-4 text-[18px] font-medium leading-relaxed text-[#37352f]">
-                  {(section.body ?? section.bullets ?? []).map((line, idx) => (
-                    <p key={idx} className="whitespace-pre-wrap">{parseRichText(line)}</p>
-                  ))}
-                </blockquote>
-              ) : section.type === 'callout' ? (
-                <div className="my-4 flex w-full items-start gap-3 rounded-[4px] bg-[#f1f1ef] px-4 py-4">
-                  <span className="mt-0.5 text-[18px]">💡</span>
-                  <div className="flex flex-col gap-1.5 text-[16px] leading-[1.6] text-[#37352f]">
-                    {(section.body ?? section.bullets ?? []).map((line, idx) => (
-                      <p key={idx}>{parseRichText(line)}</p>
-                    ))}
+                ) : section.type === 'quote' ? (
+                  <blockquote
+                    style={{
+                      marginTop: '16px',
+                      marginBottom: '16px',
+                      paddingTop: '4px',
+                      paddingBottom: '4px',
+                      paddingLeft: '16px',
+                      paddingRight: '15px',
+                      borderLeft: '3px solid #37352f',
+                      boxSizing: 'border-box',
+                    }}
+                    className="w-full text-[18px] font-medium leading-relaxed text-[#37352f]"
+                  >
+                    <ul className="list-disc space-y-1 pl-4 pr-[15px]">
+                      {splitQuoteSentences(section.body ?? section.bullets ?? []).map((sentence, idx) => (
+                        <li key={idx} className="m-0 whitespace-pre-wrap">{parseRichText(sentence)}</li>
+                      ))}
+                    </ul>
+                  </blockquote>
+                ) : section.type === 'callout' ? (
+                  <div className="my-4 flex w-full items-start gap-[10px] rounded-[4px] bg-[#f1f1ef] px-4 py-4">
+                    <span className="mt-0.5 text-[18px]">💡</span>
+                    <div className="flex flex-col gap-[10px] text-[16px] leading-[1.6] text-[#37352f]">
+                      {(section.body ?? section.bullets ?? []).map((line, idx) => (
+                        <p key={idx}>{parseRichText(line)}</p>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-4 py-2">
-                  {section.title && (
-                    <h3 className="mt-6 mb-2 text-[24px] font-bold tracking-tight text-[#37352f]">
-                      {section.title}
-                    </h3>
-                  )}
-
-                  {section.layout === 'split' ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start my-2">
-                      {/* Left Column: Visuals */}
-                      <div className="space-y-4">
-                        {section.visuals?.map((visual, visualIdx) => (
-                          <figure
-                            key={`${project.slug}-v-${sectionIdx}-${visualIdx}`}
-                            className="flex flex-col"
+                ) : (
+                  <div className="flex flex-col gap-[10px] py-2">
+                    {section.title && (
+                      <div className={`mt-6 ${section.source ? 'mb-1' : 'mb-2'}`}>
+                        <h3 className="text-[24px] font-bold tracking-tight text-[#37352f]">
+                          {section.title}
+                        </h3>
+                        {section.source && (
+                          <p
+                            className="mt-1 text-[14px] leading-[1.5] text-[#7d7a75]"
+                            style={{ marginBottom: 0 }}
                           >
-                            <img
-                              src={visual.src}
-                              alt={visual.alt}
-                              className="w-full rounded-[1px]"
-                              loading="lazy"
-                            />
-                            {visual.caption && (
-                              <figcaption className="mt-2 text-[14px] text-[#787774] leading-relaxed">
-                                {parseRichText(visual.caption)}
-                              </figcaption>
-                            )}
-                          </figure>
-                        ))}
+                            {section.source}
+                          </p>
+                        )}
                       </div>
+                    )}
 
-                      {/* Right Column: Body + Bullets */}
-                      <div className="space-y-4">
+                    {section.layout === 'split' ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px] items-start my-2">
+                        {/* Left Column: Visuals */}
+                        <div className="flex flex-col items-center gap-[10px]">
+                          {section.visuals?.map((visual, visualIdx) => {
+                            const widthPercent = visual.widthPercent ?? 80
+                            return (
+                              <figure
+                                key={`${project.slug}-v-${sectionIdx}-${visualIdx}`}
+                                className="flex flex-col"
+                                style={{ width: `${widthPercent}%` }}
+                              >
+                                <img
+                                  src={visual.src}
+                                  alt={visual.alt}
+                                  className="w-full rounded-[1px]"
+                                  loading="lazy"
+                                />
+                                {visual.caption && (
+                                  <figcaption className="mt-2 text-[14px] text-[#787774] leading-relaxed">
+                                    {parseRichText(visual.caption)}
+                                  </figcaption>
+                                )}
+                              </figure>
+                            )
+                          })}
+                        </div>
+
+                        {/* Right Column: Body + Bullets */}
+                        <div
+                          className={`flex h-full flex-col gap-[10px] ${
+                            section.rightColumnAlign === 'center' ? 'justify-center' : ''
+                          }`}
+                        >
+                          {section.body && section.body.length > 0 && (
+                            <div className="flex flex-col gap-[10px] text-[16px] leading-[1.6]" style={{ marginTop: section.source ? 0 : undefined }}>
+                              {section.body.map((line, idx) => (
+                                <p key={idx} className="m-0">{parseRichText(line)}</p>
+                              ))}
+                            </div>
+                          )}
+                          {section.bullets && section.bullets.length > 0 && (
+                            <ul className="list-disc space-y-2 pl-6 text-[16px] leading-[1.6]">
+                              {section.bullets.map((line, lineIdx) => (
+                                <li key={lineIdx} className="m-0">{parseRichText(line)}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <>
                         {section.body && section.body.length > 0 && (
-                          <div className="flex flex-col gap-2 text-[16px] leading-[1.6]">
+                          <div className="flex flex-col gap-[10px] text-[16px] leading-[1.6]">
                             {section.body.map((line, idx) => (
-                              <p key={idx}>{parseRichText(line)}</p>
+                              <p key={idx} className="m-0">{parseRichText(line)}</p>
                             ))}
                           </div>
                         )}
+
+                        {section.visuals && section.visuals.length > 0 && (
+                          <div className="my-4 flex flex-col items-center gap-[10px]">
+                            {section.visuals.map((visual, visualIdx) => {
+                              const widthPercent = visual.widthPercent ?? 80
+                              return (
+                                <figure
+                                  key={`${project.slug}-v-${sectionIdx}-${visualIdx}`}
+                                  className="flex flex-col"
+                                  style={{ width: `${widthPercent}%` }}
+                                >
+                                  <img
+                                    src={visual.src}
+                                    alt={visual.alt}
+                                    className="w-full rounded-[1px]"
+                                    loading="lazy"
+                                  />
+                                  {visual.caption && (
+                                    <figcaption className="mt-2 text-[14px] text-[#787774] leading-relaxed">
+                                      {parseRichText(visual.caption)}
+                                    </figcaption>
+                                  )}
+                                </figure>
+                              )
+                            })}
+                          </div>
+                        )}
+
                         {section.bullets && section.bullets.length > 0 && (
                           <ul className="list-disc space-y-2 pl-6 text-[16px] leading-[1.6]">
                             {section.bullets.map((line, lineIdx) => (
@@ -156,89 +207,77 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                             ))}
                           </ul>
                         )}
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      {section.body && section.body.length > 0 && (
-                        <div className="flex flex-col gap-2 text-[16px] leading-[1.6]">
-                          {section.body.map((line, idx) => (
-                            <p key={idx}>{parseRichText(line)}</p>
-                          ))}
-                        </div>
-                      )}
 
-                      {section.visuals && section.visuals.length > 0 && (
-                        <div className="my-4 space-y-6">
-                          {section.visuals.map((visual, visualIdx) => (
-                            <figure
-                              key={`${project.slug}-v-${sectionIdx}-${visualIdx}`}
-                              className="flex flex-col"
-                            >
-                              <img
-                                src={visual.src}
-                                alt={visual.alt}
-                                className="w-full rounded-[1px]"
-                                loading="lazy"
-                              />
-                              {visual.caption && (
-                                <figcaption className="mt-2 text-[14px] text-[#787774] leading-relaxed">
-                                  {parseRichText(visual.caption)}
-                                </figcaption>
+                        {section.table && (
+                          <div
+                            className="overflow-x-auto"
+                            style={{
+                              marginTop: section.tableTopSpacing ?? 0,
+                              marginBottom: section.tableBottomSpacing ?? 0,
+                            }}
+                          >
+                            <table className="w-full border-collapse text-[14px] border border-[#D3D1CB]">
+                              {section.table.headers && (
+                                <thead>
+                                  <tr className="border-b border-[#D3D1CB] bg-[#f7f6f3]">
+                                    {section.table.headers.map((h, hIdx) => (
+                                      <th
+                                        key={hIdx}
+                                        style={{
+                                          paddingTop: '7px',
+                                          paddingBottom: '7px',
+                                          paddingLeft: '9px',
+                                          paddingRight: '9px',
+                                          width: section.table.columnWidths?.[hIdx]
+                                            ? `${section.table.columnWidths[hIdx]}%`
+                                            : undefined,
+                                        }}
+                                        className="border-r border-[#D3D1CB] text-left font-semibold text-[#787774] last:border-r-0"
+                                      >
+                                        {parseRichText(h)}
+                                      </th>
+                                    ))}
+                                  </tr>
+                                </thead>
                               )}
-                            </figure>
-                          ))}
-                        </div>
-                      )}
-
-                      {section.table && (
-                        <div className="my-2 overflow-x-auto">
-                          <table className="w-full border-collapse text-[14px]">
-                            {section.table.headers && (
-                              <thead>
-                                <tr className="border-b border-[rgba(55,53,47,0.09)]">
-                                  {section.table.headers.map((h, hIdx) => (
-                                    <th
-                                      key={hIdx}
-                                      className="py-2 px-1 text-left font-semibold text-[#787774]"
-                                    >
-                                      {parseRichText(h)}
-                                    </th>
-                                  ))}
-                                </tr>
-                              </thead>
-                            )}
-                            <tbody>
-                              {section.table.rows.map((row, rIdx) => (
-                                <tr key={rIdx} className="border-b border-[rgba(55,53,47,0.09)] last:border-0">
-                                  {row.map((cell, cIdx) => (
-                                    <td
-                                      key={cIdx}
-                                      className="py-2 px-1 leading-relaxed"
-                                    >
-                                      {parseRichText(cell)}
-                                    </td>
-                                  ))}
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      )}
-
-                      {section.bullets && section.bullets.length > 0 && (
-                        <ul className="list-disc space-y-2 pl-6 text-[16px] leading-[1.6]">
-                          {section.bullets.map((line, lineIdx) => (
-                            <li key={lineIdx}>{parseRichText(line)}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </>
-                  )}
-                </div>
-              )}
-            </article>
-          ))}
+                              <tbody>
+                                {section.table.rows.map((row, rIdx) => (
+                                  <tr key={rIdx} className="border-b border-[#D3D1CB] last:border-0">
+                                    {row.map((cell, cIdx) => (
+                                      <td
+                                        key={cIdx}
+                                        style={{
+                                          paddingTop: '7px',
+                                          paddingBottom: '7px',
+                                          paddingLeft: '9px',
+                                          paddingRight: '9px',
+                                          ...(section.table.headers
+                                            ? {}
+                                            : cIdx === 0
+                                              ? { backgroundColor: '#f7f6f3' }
+                                              : {}),
+                                          width: section.table.columnWidths?.[cIdx]
+                                            ? `${section.table.columnWidths[cIdx]}%`
+                                            : undefined,
+                                        }}
+                                        className="border-r border-[#D3D1CB] leading-relaxed whitespace-pre-line last:border-r-0"
+                                      >
+                                        {parseRichText(cell)}
+                                      </td>
+                                    ))}
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </PageContent>

@@ -24,11 +24,13 @@ export interface ProjectVisual {
   alt: string
   caption?: string
   kind?: 'diagram' | 'screenshot' | 'chart' | 'other'
+  widthPercent?: number
 }
 
 export interface ProjectSectionTable {
   headers?: string[]
   rows: string[][]
+  columnWidths?: number[]
 }
 
 export interface ProjectSection {
@@ -44,6 +46,10 @@ export interface ProjectSection {
     | 'separator'
     | 'callout'
   title?: string
+  source?: string
+  rightColumnAlign?: 'center'
+  tableTopSpacing?: number
+  tableBottomSpacing?: number
   body?: string[]
   bullets?: string[]
   visuals?: ProjectVisual[]
@@ -62,6 +68,7 @@ export interface ProjectItem {
   stack: string[]
   roles: string[]
   coverImageSrc: string
+  coverImageWidthPercent?: number
   order?: number
   links?: ProjectLink[]
   kpis?: ProjectKpi[]
