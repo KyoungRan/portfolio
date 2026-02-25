@@ -30,6 +30,33 @@ interface ExperienceContent {
   companies: ExperienceCompany[]
 }
 
+function renderCompanyName(name: string) {
+  const teldaPrefix = '(주)텔다 - 신재생에너지'
+  const webzenPrefix = '(주)웹젠 - 게임회사'
+
+  if (name.startsWith(teldaPrefix)) {
+    const rest = name.replace(teldaPrefix, '').trim()
+    return (
+      <>
+        <span style={{ color: '#A173BF' }}>{teldaPrefix}</span>
+        {rest ? <span style={{ color: '#2c2c2b' }}>{` ${rest}`}</span> : null}
+      </>
+    )
+  }
+
+  if (name.startsWith(webzenPrefix)) {
+    const rest = name.replace(webzenPrefix, '').trim()
+    return (
+      <>
+        <span style={{ color: '#A173BF' }}>{webzenPrefix}</span>
+        {rest ? <span style={{ color: '#2c2c2b' }}>{` ${rest}`}</span> : null}
+      </>
+    )
+  }
+
+  return <span style={{ color: '#A173BF' }}>{name}</span>
+}
+
 function formatPeriod(period: Period): string {
   if (period.display && period.display.trim().length > 0) {
     return period.display.trim()
@@ -45,39 +72,43 @@ export function ExperienceSection() {
 
   return (
     <Section id="experience" className="w-full pt-8 pb-20">
-      <div className="projects-shell w-full space-y-14">
+      <div className="projects-shell w-full space-y-12 text-[#2c2c2b]">
         <header>
           {/* 타이틀 색상: #A173BF 적용 */}
           <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">{content.title}</h2>
           {/* 라인 아래 padding 10px 적용 */}
-          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-            <div className="h-[1px] w-full bg-border" />
+          <div style={{ paddingTop: '10px', paddingBottom: '20px' }}>
+            <div className="h-[1px] w-full bg-[#D3D1CB]" />
           </div>
-          <p className="mb-0 text-[15px] leading-[1.6] text-foreground opacity-80">{content.summary}</p>
+          {content.summary?.trim() && (
+            <p className="mb-0 text-[15px] leading-[1.7] text-[#7d7a75]">
+              {content.summary}
+            </p>
+          )}
         </header>
 
-        <div className="space-y-20">
-          {content.companies.map((company) => (
+        <div className="space-y-[36px]">
+          {content.companies.map((company, companyIdx) => (
             <article key={`${company.companyName}-${company.period.start}`}>
-              <div className="grid gap-10 md:grid-cols-[160px_1fr]">
+              <div className="grid gap-[40px] md:grid-cols-[160px_1fr]">
                 {/* 좌측: 로고 & 기간 */}
-                <aside className="space-y-4 pt-1">
+                <aside className="space-y-2 pt-1 text-center">
                   {company.heroImageSrc && (
-                    <div className="relative h-14 w-14 overflow-hidden rounded-[4px] border border-border bg-background shadow-sm">
+                    <div className="relative mx-auto w-full max-w-[160px] overflow-hidden">
                       <img
                         alt={`${company.companyName} 로고`}
-                        className="h-full w-full object-contain p-1"
+                        className="block h-auto w-full object-contain"
                         loading="lazy"
                         src={company.heroImageSrc}
                       />
                     </div>
                   )}
-                  <div className="space-y-1.5">
-                    <p className="mb-0 text-[11.5px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <div className="space-y-1" style={{ marginTop: '8px' }}>
+                    <p className="mb-0 text-[14px] font-medium text-[#7d7a75]">
                       {formatPeriod(company.period)}
                     </p>
                     {company.domain && (
-                      <p className="mb-0 text-[11px] font-medium text-muted-foreground">
+                      <p className="mb-0 text-[14px] text-[#7d7a75]">
                         {company.domain}
                       </p>
                     )}
@@ -85,45 +116,62 @@ export function ExperienceSection() {
                 </aside>
 
                 {/* 우측: 상세 정보 */}
-                <div className="space-y-10">
-                  <header className="border-b border-muted pb-3.5">
-                    <h3 className="mb-1 text-[18px] font-bold text-foreground leading-[1.3]">
-                      {company.companyName}
+                <div className="space-y-[22px] pt-8 md:pl-2">
+                  <header className="space-y-2 pb-6 pt-3">
+                    <h3 className="mb-0 text-[20px] font-normal leading-[1.4]">
+                      {renderCompanyName(company.companyName)}
                     </h3>
-                    <p className="mb-0 text-[14px] font-semibold text-accent leading-none">
-                      {company.roleTitle}
-                    </p>
+                    {company.roleTitle?.trim() && (
+                      <p className="mb-0 text-[14px] font-medium text-[#7d7a75] leading-none">
+                        {company.roleTitle}
+                      </p>
+                    )}
                   </header>
 
-                  <div className="space-y-12">
-                    {company.entries.map((entry) => (
+                  <div className="space-y-[36px]">
+                    {company.entries.map((entry, entryIdx) => (
                       <section
                         key={`${company.companyName}-${entry.title}`}
-                        className="space-y-5"
+                        className="space-y-[20px]"
                       >
-                        <header className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between">
-                          <h4 className="mb-0 text-[15px] font-bold text-foreground flex items-center gap-2.5">
-                            <span className="w-1 h-4 bg-accent/60 rounded-full" />
-                            {entry.title}
-                          </h4>
-                          <span className="text-[11px] font-bold text-muted-foreground bg-muted px-2 py-0.5 rounded-[3px] uppercase tracking-tight">
-                            {entry.periodText}
-                          </span>
+                        <header
+                          className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between"
+                          style={{ paddingTop: '6px', paddingBottom: '10px' }}
+                        >
+                          <div className="flex items-center gap-2">
+                            <h4 className="mb-1 text-[16px] font-semibold text-[#2c2c2b]">
+                              {entry.title}
+                            </h4>
+                          </div>
+                          {entry.periodText?.trim() && (
+                            <span className="text-[12px] font-medium text-[#7d7a75]">
+                              {entry.periodText}
+                            </span>
+                          )}
                         </header>
 
-                        <ul className="list-none space-y-2.5 p-0">
+                        <ul className="list-outside list-disc space-y-[14px] pl-5 marker:text-[#7d7a75] marker:text-[0.9em]">
                           {entry.bullets.map((bullet) => (
-                            <li key={bullet} className="flex items-start gap-2.5 text-[14px] leading-[1.65] text-foreground pl-1">
-                              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-border flex-shrink-0" />
-                              <span className="flex-1">{bullet}</span>
+                            <li key={bullet} className="text-[14px] leading-[1.6] text-[#2c2c2b]">
+                              {bullet}
                             </li>
                           ))}
                         </ul>
+                        {entryIdx < company.entries.length - 1 && (
+                          <div className="py-[12px]" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
+                            <div className="h-[1px] w-full bg-[#D3D1CB]" style={{ marginTop: '4px', marginBottom: '4px' }} />
+                          </div>
+                        )}
                       </section>
                     ))}
                   </div>
                 </div>
               </div>
+              {companyIdx < content.companies.length - 1 && (
+                <div className="mt-[40px]">
+                  <div className="h-[1px] w-full bg-[#D3D1CB]" style={{ marginTop: '14px', marginBottom: '14px' }} />
+                </div>
+              )}
             </article>
           ))}
         </div>
