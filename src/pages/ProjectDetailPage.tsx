@@ -3,6 +3,39 @@ import { PageContent } from '@/components/layout/PageContent'
 import { getProjectBySlug } from '@/features/projects/loader'
 import { parseRichText } from '@/lib/parseRichText'
 
+type LabelPalette = { bg: string; text: string }
+
+const listClassName = 'list-disc space-y-1 pl-6 text-[14px] leading-[26px]'
+const listItemClassName = 'm-0 leading-[26px]'
+
+function renderLineWithLabel(line: string, palette: LabelPalette) {
+  const match = line.match(/^(.+?):\s*(.+)$/)
+  if (!match) return parseRichText(line)
+  const labelText = match[1].trim()
+  const content = match[2]
+
+  return (
+    <>
+      <span
+        style={{
+          display: 'inline-block',
+          padding: '2.7px 5.4px',
+          borderRadius: '4px',
+          backgroundColor: palette.bg,
+          color: palette.text,
+          fontWeight: 400,
+          fontSize: '13.6px',
+          lineHeight: 'normal',
+        }}
+      >
+        {labelText}
+      </span>
+      <span style={{ marginRight: '4px' }}>:</span>
+      {parseRichText(content)}
+    </>
+  )
+}
+
 interface ProjectDetailPageProps {
   slug: string
 }
@@ -33,36 +66,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
   const labelPalette = project.labelPalette ?? {
     default: { bg: 'rgba(211, 168, 0, 0.137)', text: '#2c2c2b' },
   }
-
-  const renderLineWithLabel = (line: string) => {
-    const match = line.match(/^(.+?):\s*(.+)$/)
-    if (!match) return parseRichText(line)
-    const labelText = match[1].trim()
-    const content = match[2]
-    const palette = labelPalette.default
-    const shouldHighlight = true
-
-    return (
-      <>
-        <span
-          style={{
-            display: 'inline-block',
-            padding: shouldHighlight ? '2.7px 5.4px' : undefined,
-            borderRadius: shouldHighlight ? '4px' : undefined,
-            backgroundColor: shouldHighlight ? palette.bg : undefined,
-            color: shouldHighlight ? palette.text : undefined,
-            fontWeight: 400,
-            fontSize: shouldHighlight ? '13.6px' : undefined,
-            lineHeight: shouldHighlight ? 'normal' : undefined,
-          }}
-        >
-          {labelText}
-        </span>
-        <span style={{ marginRight: '4px' }}>:</span>
-        {parseRichText(content)}
-      </>
-    )
-  }
+  const labelStyle = labelPalette.default
 
   return (
     <PageContent>
@@ -121,7 +125,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                         .filter((line) => (typeof line === 'string' ? line.trim() !== '' : true))
                         .map((line, idx) => (
                           <p key={idx} className="m-0 whitespace-pre-wrap" style={{ margin: 0 }}>
-                            {renderLineWithLabel(line)}
+                            {renderLineWithLabel(line, labelStyle)}
                           </p>
                         ))}
                     </div>
@@ -214,15 +218,15 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                           {section.body && section.body.length > 0 && (
                             <div className="flex flex-col gap-[10px] text-[14px]" style={{ marginTop: section.source ? 0 : undefined, lineHeight: '21px' }}>
                               {section.body.map((line, idx) => (
-                                <p key={idx} className="m-0">{renderLineWithLabel(line)}</p>
+                                <p key={idx} className="m-0">{renderLineWithLabel(line, labelStyle)}</p>
                               ))}
                             </div>
                           )}
                           {section.bullets && section.bullets.length > 0 && (
-                            <ul className="list-disc space-y-1 pl-6 text-[14px] leading-[26px]">
+                            <ul className={listClassName}>
                               {section.bullets.map((line, lineIdx) => (
-                                <li key={lineIdx} className="m-0">
-                                  {renderLineWithLabel(line)}
+                                <li key={lineIdx} className={listItemClassName}>
+                                  {renderLineWithLabel(line, labelStyle)}
                                 </li>
                               ))}
                             </ul>
@@ -234,7 +238,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                         {section.body && section.body.length > 0 && (
                           <div className="flex flex-col gap-[10px] text-[14px]" style={{ lineHeight: '21px' }}>
                             {section.body.map((line, idx) => (
-                              <p key={idx} className="m-0">{renderLineWithLabel(line)}</p>
+                              <p key={idx} className="m-0">{renderLineWithLabel(line, labelStyle)}</p>
                             ))}
                           </div>
                         )}
@@ -267,10 +271,10 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                         )}
 
                         {section.bullets && section.bullets.length > 0 && (
-                          <ul className="list-disc space-y-1 pl-6 text-[14px] leading-[26px]">
+                          <ul className={listClassName}>
                             {section.bullets.map((line, lineIdx) => (
-                              <li key={lineIdx}>
-                                {renderLineWithLabel(line)}
+                              <li key={lineIdx} className={listItemClassName}>
+                                {renderLineWithLabel(line, labelStyle)}
                               </li>
                             ))}
                           </ul>

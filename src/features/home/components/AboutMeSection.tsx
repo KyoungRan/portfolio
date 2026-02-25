@@ -136,7 +136,6 @@ export function AboutMeSection() {
           </div>
         </header>
 
-        {/* 본문 영역: 박스 아래 라인 삭제, 30px 공백 유지 */}
         <div className="grid items-start md:grid-cols-[260px_1fr]">
           
           <aside className="flex flex-col self-start gap-5">
@@ -152,7 +151,7 @@ export function AboutMeSection() {
               />
             </div>
 
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-3">
               <h3 
                 style={{ color: '#A173BF', fontSize: '28px', fontWeight: 800, letterSpacing: '3px', paddingLeft: '20px' }}
               >
@@ -163,11 +162,11 @@ export function AboutMeSection() {
                 style={{ borderLeft: '5px solid #37352f', paddingLeft: '14px' }}
                 className="flex flex-col py-1"
               >
-                <p className="text-[16px] font-bold text-[#787774] uppercase tracking-[0.2em] mb-4">
+                <p className="text-[16px] font-bold text-[#787774] mb-4">
                   AI Agent Developer
                 </p>
 
-                <div className="flex flex-col text-[#37352f] gap-2">
+                <div className="flex flex-col text-[#37352f] gap-1">
                   <div className="flex flex-col">
                     <span className="text-[11px] font-extrabold text-[#9b9a97] uppercase tracking-widest">PHONE</span>
                     <div className="font-bold text-[16px] tracking-tight" style={{ paddingBottom: '8px' }}>
@@ -217,10 +216,10 @@ export function AboutMeSection() {
                 <div className="h-[1px] w-full bg-[#e1dfdd]" />
               </div>
               <div className="flex flex-col pt-4">
-                <p className="text-[20px] font-bold leading-[1.5] text-[#37352f] tracking-tight">
+                <p className="text-[16px] font-bold leading-[1.5] text-[#37352f] tracking-tight">
                   {parseRichText(content.about.description)}
                 </p>
-                <div className="flex flex-col text-[16.5px] leading-[1.7] text-[#37352f] tracking-[-0.01em]">
+                <div className="flex flex-col text-[16px] leading-[1.7] text-[#37352f] tracking-[-0.01em]">
                   {content.about.body.map((paragraph, idx) => (
                     <p className="mb-0" key={idx}>
                       {parseRichText(paragraph)}
@@ -243,11 +242,11 @@ export function AboutMeSection() {
                     {parseRichText(content.overview.totalExperienceText)}
                   </p>
                 )}
-                <ul className="list-disc flex flex-col gap-4 pl-6 text-[#37352f] leading-[26px]">
+                <ul className="list-disc flex flex-col gap-2 pl-6 text-[#37352f] leading-[26px]">
                   {content.overview.companies.map((company) => (
                     <li
                       key={`${company.company}-${company.period.start}`}
-                      className="text-[18px] tracking-tight"
+                      className="text-[16px] tracking-tight"
                     >
                       <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-3">
                         <span className="font-bold">{company.company}</span>
@@ -270,13 +269,13 @@ export function AboutMeSection() {
               <div style={{ paddingTop: '5px', paddingBottom: '20px' }}>
                 <div className="h-[1px] w-full bg-[#e1dfdd]" />
               </div>
-              <ul className="list-disc flex flex-col gap-4 pl-6 pt-6 text-[#37352f] leading-[26px]">
+              <ul className="list-disc flex flex-col gap-2 pl-6 pt-6 text-[#37352f]">
                 {content.educationSummary.items.map((item) => (
                   <li
                     key={`${item.name}-${item.periodText}`}
-                    className="text-[18px] tracking-tight"
+                    className="text-[16px] tracking-tight"
                   >
-                    <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-4">
+                    <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-2">
                       <span className="font-bold">{item.name}</span>
                       <span className="ml-4 text-[13.5px] font-bold text-[#7d7a75] px-2.5 py-1 rounded-[3px] uppercase tracking-tight">
                         {item.periodText}

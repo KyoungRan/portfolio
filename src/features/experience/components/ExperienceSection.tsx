@@ -152,9 +152,9 @@ export function ExperienceSection() {
                           )}
                         </header>
 
-                        <ul className="list-outside list-disc space-y-[14px] pl-5 marker:text-[#7d7a75] marker:text-[0.9em]">
+                        <ul className="list-outside list-disc space-y-[14px] pl-5 marker:text-[#7d7a75] marker:text-[0.9em] leading-[26px]">
                           {entry.bullets.map((bullet) => (
-                            <li key={bullet} className="text-[14px] leading-[1.6] text-[#2c2c2b]">
+                            <li key={bullet} className="text-[14px] leading-[26px] text-[#2c2c2b]">
                               {bullet}
                             </li>
                           ))}
