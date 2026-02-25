@@ -18,74 +18,180 @@ interface EducationContent {
 
 export function EducationSection() {
   const content = education as EducationContent
+  const bulletItemStyle = {
+    paddingTop: '3px',
+    paddingBottom: '5px',
+    paddingLeft: '2px',
+    paddingRight: '2px',
+    lineHeight: '24px',
+  } as const
 
   return (
     <Section id="education-training" className="w-full pt-8 pb-12">
-      <div className="projects-shell w-full space-y-10">
+      <div className="projects-shell w-full">
         <header>
           <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
             {content.title}
           </h2>
-          {/* 라인 아래 padding 10px 적용 */}
-          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+          <div style={{ paddingTop: '11px', paddingBottom: '11px' }}>
             <div className="h-[1px] w-full bg-[#e1dfdd]" />
           </div>
         </header>
 
-        <div className="grid gap-6">
-          {content.items.map((item) => (
-            <article
-              key={`${item.name}-${item.periodText}`}
-              className="group relative rounded-[4px] border border-[rgba(55,53,47,0.16)] bg-transparent px-6 py-5 transition-all hover:bg-[rgba(55,53,47,0.02)]"
-            >
-              <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div className="flex items-start gap-4">
-                  {item.iconSrc && (
-                    <div className="relative h-12 w-14 flex-shrink-0 overflow-hidden rounded-[3px] border border-[rgba(55,53,47,0.09)] bg-background p-1.5 shadow-sm">
-                      <img
-                        alt={`${item.name} 로고`}
-                        className="h-full w-full object-contain"
-                        loading="lazy"
-                        src={item.iconSrc}
-                      />
+        <div className="flex flex-col gap-3">
+          {content.items.map((item) => {
+            const isCertificate = item.name === '자격증'
+            const certificateMatch = isCertificate && item.bullets?.[0]
+              ? item.bullets[0].match(/^(.*?)(\s+\d{4}\.\d{2})$/)
+              : null
+            return (
+              <article
+                key={`${item.name}-${item.periodText}`}
+                className="rounded-[3px] border border-[#e1dfdd] bg-white"
+                style={{ padding: isCertificate ? '16px 20px 16px 20px' : '16px 20px 16px 12px' }}
+              >
+                {!isCertificate ? (
+                  <div className="grid grid-cols-[28px_1fr] items-start gap-[8px]">
+                    {item.iconSrc && (
+                      <div className="relative h-[28px] w-[28px] overflow-hidden rounded-[3px] border border-[rgba(55,53,47,0.09)] bg-background p-1">
+                        <img
+                          alt={`${item.name} 로고`}
+                          className="h-full w-full object-contain"
+                          loading="lazy"
+                          src={item.iconSrc}
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <div className="flex items-start justify-between gap-6">
+                        <h3
+                          className="mb-0 font-normal text-[#37352f]"
+                          style={{ fontSize: '16px', lineHeight: '24px', paddingLeft: '0px', paddingRight: '0px' }}
+                        >
+                          {item.name}
+                        </h3>
+                        {item.periodText && (
+                          <span
+                            className="whitespace-nowrap font-normal text-[#9b9a97]"
+                            style={{ fontSize: '12px', lineHeight: '18px' }}
+                          >
+                            {item.periodText}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  )}
-                  <div className="space-y-1">
-                    <h3 className="mb-0 text-[17px] font-bold leading-tight text-[#37352f] group-hover:text-[#2383e2] transition-colors tracking-tight">
+                  </div>
+                ) : (
+                  <div>
+                    <h3
+                      className="mb-0 font-normal text-[#37352f]"
+                      style={{ fontSize: '16px', lineHeight: '24px', paddingLeft: '2px', paddingRight: '2px' }}
+                    >
                       {item.name}
                     </h3>
-                    <p className="mb-0 text-[12px] font-bold uppercase tracking-wider text-[#787774] opacity-80">
-                      {item.periodText}
-                    </p>
                   </div>
-                </div>
-              </div>
+                )}
 
-              {item.bullets && item.bullets.length > 0 && (
-                <ul className="mb-5 list-none space-y-2.5 p-0">
-                  {item.bullets.map((bullet) => (
-                    <li key={`${item.name}-${bullet}`} className="flex items-start gap-3 text-[14.5px] leading-relaxed text-[#37352f] pl-1 tracking-tight">
-                      <span className="mt-2.5 w-1 h-1 rounded-full bg-[rgba(55,53,47,0.2)] flex-shrink-0" />
-                      <span className="flex-1 opacity-90">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+                {isCertificate && item.bullets && item.bullets[0] && (
+                  <div
+                    style={{
+                      marginTop: '2px',
+                      paddingTop: '3px',
+                      paddingBottom: '3px',
+                      paddingLeft: '2px',
+                      paddingRight: '2px',
+                    }}
+                  >
+                    <div className="flex items-center gap-2" style={{ marginLeft: '35px' }}>
+                      {item.iconSrc && (
+                        <img
+                          alt="oxford_logo"
+                          className="shrink-0 object-contain"
+                          loading="lazy"
+                          src={item.iconSrc}
+                          style={{ width: '19px', height: '19px' }}
+                        />
+                      )}
+                      <div style={{ fontSize: '14px', lineHeight: '24px', color: '#37352f' }}>
+                        {certificateMatch ? (
+                          <>
+                            <span>{certificateMatch[1]}</span>
+                            <span style={{ color: '#9b9a97', paddingLeft: '30px', fontSize: '12px' }}>
+                              {certificateMatch[2].trimStart()}
+                            </span>
+                          </>
+                        ) : (
+                          item.bullets[0]
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
 
-              {item.keywords && item.keywords.length > 0 && (
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {item.keywords.map((keyword) => (
-                    <span
-                      className="rounded-[3px] bg-[#f1f1ef] px-2.5 py-0.5 text-[11px] font-bold text-[#787774] border border-transparent group-hover:border-[rgba(55,53,47,0.1)] transition-all"
-                      key={`${item.name}-${keyword}`}
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </article>
-          ))}
+                {!isCertificate && item.bullets && item.bullets.length > 0 && (() => {
+                  const items = [...item.bullets]
+                  const labelIndex = items.indexOf('기술 키워드')
+                  if (labelIndex >= 0 && items[labelIndex + 1]) {
+                    const combined = `${items[labelIndex]}||${items[labelIndex + 1]}`
+                    items.splice(labelIndex, 2, combined)
+                  }
+
+                  return (
+                    <div className="grid grid-cols-[28px_1fr] gap-2" style={{ marginTop: '2px' }}>
+                      <div />
+                      <ul
+                        className="m-0 list-disc list-outside text-[14px] text-[#37352f] marker:text-[#bdbab4]"
+                        style={{ lineHeight: '24px', paddingLeft: '26px' }}
+                      >
+                        {items.map((bullet) => {
+                          const isPlainContinuation = bullet.trim().startsWith('(')
+                          if (bullet.includes('||')) {
+                            const [label, rest] = bullet.split('||')
+                            return (
+                              <li key={`${item.name}-${bullet}`} style={bulletItemStyle}>
+                                <span className="font-normal">{label}</span>
+                                {rest ? ` ${rest}` : null}
+                              </li>
+                            )
+                          }
+
+                          const colonIndex = bullet.indexOf(':')
+                          if (colonIndex > 0) {
+                            const label = bullet.slice(0, colonIndex)
+                            const rest = bullet.slice(colonIndex + 1)
+                            return (
+                              <li key={`${item.name}-${bullet}`} style={bulletItemStyle}>
+                                <span className="font-normal">{label}</span>
+                                {rest ? `:${rest}` : ':'}
+                              </li>
+                            )
+                          }
+
+                          if (isPlainContinuation) {
+                            return (
+                              <li
+                                key={`${item.name}-${bullet}`}
+                                className="list-none"
+                                style={{ ...bulletItemStyle, marginLeft: '-26px' }}
+                              >
+                                {bullet}
+                              </li>
+                            )
+                          }
+
+                          return (
+                            <li key={`${item.name}-${bullet}`} style={bulletItemStyle}>
+                              {bullet}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  )
+                })()}
+              </article>
+            )
+          })}
         </div>
       </div>
     </Section>

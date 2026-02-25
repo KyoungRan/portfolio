@@ -3,63 +3,62 @@
   "items": [
     {
       "name": "원티드 포텐업 AI 에이전트 부트캠프(2기) | AI Agent·LLM·RAG·멀티모달 실습 수료",
-      "periodText": "2025.07.07 - 2026.01.09",
+      "periodText": "2025.07.07 – 2026.01.09",
       "iconSrc": "/assets/education/wanted.jpg",
       "bullets": [
-        "RAG/Agent 개발 역량: LangChain·LangSmith 기반 RAG 파이프라인 구성 및 평가",
-        "Agent 오케스트레이션: LCEL, Tool 기반 설계, LangGraph로 AI 비서 서비스 구현",
-        "LLM 활용/운영: ChatGPT API, Ollama, HuggingFace 모델 실습 및 파인튜닝 경험",
-        "서비스화/백엔드: FastAPI 서버, Streamlit 프로토타입 구현"
-      ],
-      "keywords": ["AI Agent", "LLM", "RAG", "멀티모달"]
+        "RAG/Agent 개발 역량: LangChain·LangSmith 기반 RAG 파이프라인(문서 로딩/분할 → 임베딩 → 벡터DB 저장 → 검색기·Reranker) 구성, 출력 파서/모델 설정 및 RAG 평가 수행",
+        "Agent 오케스트레이션: LCEL로 체인 구성, 프롬프트 설계, 메모리 구조 적용, Tool 기반 AI Agent 설계, LangGraph로 AI 비서 서비스 구현",
+        "LLM 활용/운영: ChatGPT API, Ollama, HuggingFace 모델 기반 LLM 실습 및 LLM 파인튜닝 경험",
+        "멀티모달/생성형 실습: LoRA, Inpaint/Outpaint, Flux·Flux LoRA, ComfyUI 기반 영상 생성 워크플로우 실습",
+        "AI 프로젝트 구현 경험: 시계열 예측, 객체 탐지(YOLO v11), OCR·FastSAM, Mediapipe 기반 프로젝트 수행",
+        "서비스화/백엔드: FastAPI로 AI 서버 구현, Streamlit로 챗봇/AI 스피커 등 프로토타입 서비스 구현",
+        "데이터 분석 기반기: Python/NumPy/Pandas/시각화/통계(EDA·장바구니 분석) 및 NLP(감성·토픽·연관어 네트워크), 공공데이터·OpenAPI·BeautifulSoup·Selenium 기반 수집/전처리 실습",
+        "기술 키워드",
+        "LangChain, LangGraph, LangSmith, RAG, Vector DB, Retriever/Reranker, Prompt/Parser/Memory, FastAPI, Streamlit, PyTorch, YOLO, OCR, Mediapipe, LoRA, ComfyUI, Ollama, HuggingFace"
+      ]
     },
     {
       "name": "삼성 SDS 멀티캠퍼스(Android Open API 활용 전문가 과정)",
       "periodText": "2015.09 - 2015.11",
       "iconSrc": "/assets/education/multicampus.png",
       "bullets": [
-        "JAVA Programming, Android Programming, Android Network Programming",
-        "Open API, Oracle, JSP, 앱 기획 및 UX/UI"
-      ],
-      "keywords": ["Android", "Open API", "Java", "Oracle"]
+        "JAVA Programming, 앱 기획 및 UX/UI, Android Programming, Android Network Programming, Open API, Oracle, JSP 등"
+      ]
     },
     {
       "name": "SUN Education(SUN)",
-      "periodText": "2001.07 - 2001.08",
+      "periodText": "2001.07-2001.08",
       "iconSrc": "/assets/education/oxford_logo.jpg",
       "bullets": [
         "JAVA Programming",
-        "SL-110 Programming for Beginners using Java, SL-275 Java Programming"
-      ],
-      "keywords": ["Java"]
+        "( SL-110 Programming for Beginners using Java, SL-275 Java Programming )"
+      ]
     },
     {
       "name": "단국대학교 전자계산학과(컴퓨터공학)",
       "periodText": "2001.03 - 2004.02",
       "iconSrc": "/assets/education/dku.jpg",
       "bullets": [
-        "이산수학, 컴퓨터구조론, 자료구조, 데이터베이스, 운영체제",
-        "객체지향 C++, 분산처리, 소프트웨어공학, 알고리즘, 인공지능"
-      ],
-      "keywords": ["Computer Science", "AI", "Algorithm"]
+        "2001년: 이산수학, 컴퓨터과학개론, 컴퓨터 활용, 어셈블러 언어와 마이크로프로세서, 자료통신 및 컴퓨터망, 컴퓨터구조론, JAVA 프로그래밍, 데이터베이스, 운영체제, 자료구조, 컴파일러 구성론",
+        "2002년: 객체지향 C ++, 분산처리, 소프트웨어공학, 정보보호이론, 컴퓨터알고리즘",
+        "2003년: 웹 엔지니어링, 인공지능, 인터넷기술과 응용, 컴퓨터 게임프로그래밍, 프로젝트개발론"
+      ]
     },
     {
       "name": "Golden West College (컴퓨터 공학) - 미국",
-      "periodText": "2011.08 - 2013.06",
+      "periodText": "2011.08 ~ 2013.06",
       "iconSrc": "/assets/education/gwc-logo.png",
       "bullets": [
-        "Game Programming, Introduction",
-        "IPhone Programming, Data Structure With C++",
-        "C++, C#, ASP.NET Web Programming with C#"
-      ],
-      "keywords": ["C++", "C#", "ASP.NET", "Game Programming"]
+        "2011년: Game Programming, Introduction",
+        "2012년: IPhone Programming, Data Structure With C++",
+        "2013년: C++ Programming, C++ Advanced Programming, C#, ASP·NET Web Programming with C#"
+      ]
     },
     {
       "name": "자격증",
-      "periodText": "2015.02",
+      "periodText": "",
       "iconSrc": "/assets/education/oxford_logo.jpg",
-      "bullets": ["Teaching English as a foreign language (미국 OXFORD)"],
-      "keywords": ["TEFL"]
+      "bullets": ["Teaching English as a foreign language (미국 OXFORD)   2015.02"]
     }
   ]
 }
