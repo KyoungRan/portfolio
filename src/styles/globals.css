@@ -104,11 +104,17 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Gmarket Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   line-height: 1.5;
   color: var(--fg);
   background-color: var(--bg);
+}
+
+/* 배너/푸터 제외: Gmarket Sans 적용을 상속하지 않도록 지정 */
+.hero-banner,
+footer {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /* 홈 본문 섹션 간격 통일: 첫 번째 섹션(About Me)은 배너와의 간격을 위해 제외 */

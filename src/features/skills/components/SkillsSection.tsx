@@ -18,39 +18,44 @@ export function SkillsSection() {
 
   return (
     <Section id="skills" className="w-full pt-8 pb-12">
-      <div className="projects-shell w-full space-y-8">
+      <div className="projects-shell w-full space-y-7">
         <header>
           {/* 타이틀 색상: #A173BF 적용 */}
-          <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">{content.title}</h2>
+          <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
+            {content.title}
+          </h2>
           {/* 라인 아래 padding 10px 적용 */}
           <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-            <div className="h-[1px] w-full bg-border" />
+            <div className="h-[1px] w-full bg-[#e1dfdd]" />
           </div>
         </header>
 
-        <div className="w-full overflow-x-auto overflow-y-hidden rounded-[3px] border border-border">
-          <table className="w-full min-w-[600px] border-collapse text-left text-[13px] leading-relaxed text-foreground">
-            <thead className="bg-muted/50 text-[11px] font-bold uppercase tracking-tight text-muted-foreground border-b border-border">
+        <div className="w-full overflow-x-auto overflow-y-hidden border border-[#D3D1CB]">
+          <table className="w-full min-w-[620px] border-collapse text-[14px] leading-[1.6] text-[#2c2c2b]">
+            <thead className="border-b border-[#D3D1CB] bg-[#f8f8f7] text-[13px] font-semibold text-[#6f6c67]">
               <tr>
-                <th className="w-48 px-3 py-1.5 border-r border-border font-bold text-center">Category</th>
-                <th className="px-3 py-1.5 font-bold">Technologies & Tools</th>
+                <th
+                  className="w-[200px] border-r border-[#D3D1CB] text-center font-semibold"
+                  style={{ padding: '5px 9px' }}
+                >
+                  범주
+                </th>
+                <th className="text-center font-semibold" style={{ padding: '5px 9px' }}>
+                  기술
+                </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
+            <tbody className="divide-y divide-[#D3D1CB]">
               {content.rows.map((row) => (
-                <tr key={row.category} className="group hover:bg-muted/30 transition-colors">
-                  <td className="border-r border-border bg-muted/20 px-3 py-2 align-top font-bold text-foreground">
+                <tr key={row.category}>
+                  <td
+                    className="border-r border-[#D3D1CB] text-left align-top font-semibold text-[#2c2c2b]"
+                    style={{ padding: '5px 9px' }}
+                  >
                     {row.category}
                   </td>
-                  <td className="px-3 py-2 font-medium text-foreground">
-                    <div className="flex flex-wrap gap-x-3 gap-y-1">
-                      {row.skills.map((skill) => (
-                        <span key={skill} className="inline-flex items-center gap-1.5">
-                          <span className="w-1 h-1 rounded-full bg-border group-hover:bg-accent transition-colors" />
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
+                  <td className="text-left font-normal text-[#2c2c2b]" style={{ padding: '5px 9px' }}>
+                    {row.skills.join(', ')}
                   </td>
                 </tr>
               ))}

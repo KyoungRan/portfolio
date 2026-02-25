@@ -75,10 +75,12 @@ export function ExperienceSection() {
       <div className="projects-shell w-full space-y-12 text-[#2c2c2b]">
         <header>
           {/* 타이틀 색상: #A173BF 적용 */}
-          <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">{content.title}</h2>
+          <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
+            {content.title}
+          </h2>
           {/* 라인 아래 padding 10px 적용 */}
-          <div style={{ paddingTop: '10px', paddingBottom: '20px' }}>
-            <div className="h-[1px] w-full bg-[#D3D1CB]" />
+          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+            <div className="h-[1px] w-full bg-[#e1dfdd]" />
           </div>
           {content.summary?.trim() && (
             <p className="mb-0 text-[15px] leading-[1.7] text-[#7d7a75]">

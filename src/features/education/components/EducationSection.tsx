@@ -22,11 +22,13 @@ export function EducationSection() {
   return (
     <Section id="education-training" className="w-full pt-8 pb-12">
       <div className="projects-shell w-full space-y-10">
-        <header className="space-y-4">
-          <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">{content.title}</h2>
+        <header>
+          <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
+            {content.title}
+          </h2>
           {/* 라인 아래 padding 10px 적용 */}
           <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-            <div className="h-[1px] w-full bg-border" />
+            <div className="h-[1px] w-full bg-[#e1dfdd]" />
           </div>
         </header>
 

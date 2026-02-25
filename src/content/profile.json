@@ -24,7 +24,7 @@
     ]
   },
   "overview": {
-    "totalExperienceText": "총 경력 12년 3개월",
+    "totalExperienceText": "총 경력 13년 6개월",
     "companies": [
       {
         "company": "(주) 텔다",
@@ -42,6 +42,15 @@
           "start": "2006-03",
           "end": "2010-06",
           "display": "2006.03 - 2010.06"
+        }
+      },
+      {
+        "company": "(주) 대동광학",
+        "role": "",
+        "period": {
+          "start": "2004-06",
+          "end": "2005-08",
+          "display": "2004.06 - 2005.08"
         }
       }
     ]

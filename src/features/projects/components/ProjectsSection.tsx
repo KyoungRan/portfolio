@@ -13,11 +13,13 @@ export function ProjectsSection() {
       <div className="projects-shell w-full space-y-8">
         <header>
           {/* Project 타이틀 색상: #A173BF */}
-          <h2 style={{ color: '#A173BF' }} className="text-[26px] font-bold tracking-tight">Projects</h2>
+          <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
+            Projects
+          </h2>
           
           {/* 라인(선) 아래 padding 10px 적용 */}
           <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-            <div className="h-[1px] w-full bg-border" />
+            <div className="h-[1px] w-full bg-[#e1dfdd]" />
           </div>
           
           <p className="mb-0 text-[14.5px] leading-relaxed text-foreground/80">

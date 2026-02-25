@@ -20,12 +20,16 @@ export function ProjectsPage() {
     <PageContent>
       <Section className="w-full">
         <div className="projects-shell w-full space-y-10">
-          <header className="space-y-4">
-            <h2 className="text-[28px] leading-none font-semibold text-[#A173BF] md:text-[30px]">Projects</h2>
+          <header>
+            <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
+              Projects
+            </h2>
+            <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
+              <div className="h-[1px] w-full bg-[#e1dfdd]" />
+            </div>
             <p className="mb-0 text-[11px] leading-6 text-[#6f6e69]">
               프로젝트 카드를 태그별로 필터링해 확인할 수 있습니다.
             </p>
-            <div className="h-px w-full bg-[#e6e3e1]" />
           </header>
 
           <div className="flex flex-wrap gap-1.5">
