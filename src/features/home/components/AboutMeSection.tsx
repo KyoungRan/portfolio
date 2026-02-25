@@ -63,6 +63,33 @@ export function AboutMeSection() {
       ? content.profileImageSrc
       : '/assets/profile/resume-photo.jpg'
   const displayName = content.name.trim().split('').join(' ')
+  const labelPalette = { bg: 'rgba(211, 168, 0, 0.137)', text: '#2c2c2b' }
+  const renderHeadline = (line: string) => {
+    const match = line.match(/^(.+?):\s*(.+)$/)
+    if (!match) return parseRichText(line)
+    const labelText = match[1].trim()
+    const rest = match[2]
+    return (
+      <>
+        <span
+          style={{
+            display: 'inline-block',
+            padding: '2.7px 5.4px',
+            borderRadius: '4px',
+            backgroundColor: labelPalette.bg,
+            color: labelPalette.text,
+            fontWeight: 400,
+            fontSize: '13.6px',
+            lineHeight: 'normal',
+          }}
+        >
+          {labelText}
+        </span>
+        <span style={{ marginRight: '4px' }}>:</span>
+        {parseRichText(rest)}
+      </>
+    )
+  }
 
   return (
     <Section id="about-me" className="w-full">
@@ -104,7 +131,7 @@ export function AboutMeSection() {
               </div>
             </div>
             <div className="flex-1 text-[17px] leading-[1.6] text-[#37352f] font-medium pt-0.5 tracking-tight">
-              {parseRichText(content.headline)}
+              {renderHeadline(content.headline)}
             </div>
           </div>
         </header>
@@ -216,9 +243,12 @@ export function AboutMeSection() {
                     {parseRichText(content.overview.totalExperienceText)}
                   </p>
                 )}
-                <ul className="list-disc flex flex-col gap-4 pl-6 text-[#37352f]">
+                <ul className="list-disc flex flex-col gap-4 pl-6 text-[#37352f] leading-[26px]">
                   {content.overview.companies.map((company) => (
-                    <li key={`${company.company}-${company.period.start}`} className="text-[18px] leading-none tracking-tight">
+                    <li
+                      key={`${company.company}-${company.period.start}`}
+                      className="text-[18px] tracking-tight"
+                    >
                       <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-3">
                         <span className="font-bold">{company.company}</span>
                         <span className="text-[#9b9a97] font-normal">/</span>
@@ -240,9 +270,12 @@ export function AboutMeSection() {
               <div style={{ paddingTop: '5px', paddingBottom: '20px' }}>
                 <div className="h-[1px] w-full bg-[#e1dfdd]" />
               </div>
-              <ul className="list-disc flex flex-col gap-4 pl-6 pt-6 text-[#37352f]">
+              <ul className="list-disc flex flex-col gap-4 pl-6 pt-6 text-[#37352f] leading-[26px]">
                 {content.educationSummary.items.map((item) => (
-                  <li key={`${item.name}-${item.periodText}`} className="text-[18px] leading-none tracking-tight">
+                  <li
+                    key={`${item.name}-${item.periodText}`}
+                    className="text-[18px] tracking-tight"
+                  >
                     <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-4">
                       <span className="font-bold">{item.name}</span>
                       <span className="ml-4 text-[13.5px] font-bold text-[#7d7a75] px-2.5 py-1 rounded-[3px] uppercase tracking-tight">

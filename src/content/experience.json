@@ -14,7 +14,7 @@
       "entries": [
         {
           "title": "태양광 RTU 연동 모니터링 시스템 개발",
-          "periodText": "24.07 - 24.12",
+          "periodText": "2024.07 - 2024.12",
           "bullets": [
             "인버터 데이터를 RS485로 수집하고 PC Server로 TCP/IP·HTTP 전송하는 RTU 연동 파이프라인 구축",
             "InfluxDB 적재 데이터를 기반으로 PC용 모니터링 디스플레이 개발(실시간 상태/지표 시각화)",
@@ -25,7 +25,7 @@
         },
         {
           "title": "POM Solar ESS Project + RTU Monitoring System",
-          "periodText": "22.10 - 24.06",
+          "periodText": "2022.10 - 2024.06",
           "bullets": [
             "Port Moresby 지역 2MW 태양광 + 12MW FR-ESS 제어/모니터링을 위한 PC 기반 관제 애플리케이션 구축",
             "Solar Module 회로 전류/전압, 일사량·온도·미세먼지 등 환경 변수, 인버터 상태를 실시간 모니터링하고 알람/경보 제공",
@@ -36,7 +36,7 @@
         },
         {
           "title": "에너지 블록체인 P2P 전력거래 시스템(웹 모니터링 대시보드·월렛 연동 개발)",
-          "periodText": "22.10 - 24.06",
+          "periodText": "2022.10 - 2024.06",
           "bullets": [
             "Web Monitoring(DApp) 화면을 구축해 거래/상태 정보를 웹에서 조회·추적 가능하게 구현",
             "Energy Agent–Ethereum 연동 결과를 표시하고 TTA V&V 기준에 맞춰 처리시간/오류율/응답속도 지표를 점검·리포팅",
@@ -47,7 +47,7 @@
         },
         {
           "title": "블록체인 기반 ESS·스마트미터 P2P 전력거래 웹 모니터링/정산 서비스 구축)",
-          "periodText": "17.08 - 18.06",
+          "periodText": "2017.08 - 2018.06",
           "bullets": [
             "운영자 포털(대시보드/관리자/거래/노드)을 설계·개발해 상태를 한눈에 확인하도록 구성",
             "노드(ESS·스마트미터) 데이터 적재 및 일/월/연 단위 시각화, 월별 정산/결제/리포트 출력 기능 구현",

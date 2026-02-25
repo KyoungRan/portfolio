@@ -4,6 +4,7 @@ export interface ProjectPeriod {
   start: string
   end?: string | null
   display?: string
+  detailDisplay?: string
 }
 
 export interface ProjectLink {
@@ -46,6 +47,7 @@ export interface ProjectSection {
     | 'separator'
     | 'callout'
   title?: string
+  titleLevel?: 2 | 3 | 4
   source?: string
   rightColumnAlign?: 'center'
   tableTopSpacing?: number
@@ -63,6 +65,7 @@ export interface ProjectItem {
   type?: string
   subtitle?: string
   summary: string
+  labelPalette?: Record<string, { bg: string; text: string; border?: string }>
   period: ProjectPeriod
   tags: string[]
   stack: string[]

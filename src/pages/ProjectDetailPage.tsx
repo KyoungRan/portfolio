@@ -1,6 +1,6 @@
 // ProjectDetailPage: 프로젝트 콘텐츠를 slug로 로드해 상세를 렌더한다.
 import { PageContent } from '@/components/layout/PageContent'
-import { formatProjectPeriod, getProjectBySlug } from '@/features/projects/loader'
+import { getProjectBySlug } from '@/features/projects/loader'
 import { parseRichText } from '@/lib/parseRichText'
 
 interface ProjectDetailPageProps {
@@ -24,21 +24,53 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
     )
   }
 
-  const periodText = formatProjectPeriod(project)
-  const splitQuoteSentences = (lines: string[]) =>
-    lines
-      .flatMap((line) => line.split(/\r?\n/))
-      .flatMap((segment) =>
-        segment
-          .split(/(?<=[.!?]|[。！？])\s+/u)
-          .map((sentence) => sentence.trim())
-          .filter(Boolean)
-      )
+  const headingStyleByLevel: Record<number, { fontSize: string; lineHeight: string; fontWeight: number; color: string }> = {
+    2: { fontSize: '20px', lineHeight: '28px', fontWeight: 600, color: '#2c2c2b' },
+    3: { fontSize: '20px', lineHeight: '28px', fontWeight: 600, color: '#2c2c2b' },
+    4: { fontSize: '20px', lineHeight: '28px', fontWeight: 600, color: '#2c2c2b' },
+  }
+  const romanTitleStyle = { fontSize: '22px', lineHeight: '30px', fontWeight: 600, color: '#2c2c2b' }
+  const labelPalette = project.labelPalette ?? {
+    default: { bg: 'rgba(211, 168, 0, 0.137)', text: '#2c2c2b' },
+  }
+
+  const renderLineWithLabel = (line: string) => {
+    const match = line.match(/^(.+?):\s*(.+)$/)
+    if (!match) return parseRichText(line)
+    const labelText = match[1].trim()
+    const content = match[2]
+    const palette = labelPalette.default
+    const shouldHighlight = true
+
+    return (
+      <>
+        <span
+          style={{
+            display: 'inline-block',
+            padding: shouldHighlight ? '2.7px 5.4px' : undefined,
+            borderRadius: shouldHighlight ? '4px' : undefined,
+            backgroundColor: shouldHighlight ? palette.bg : undefined,
+            color: shouldHighlight ? palette.text : undefined,
+            fontWeight: 400,
+            fontSize: shouldHighlight ? '13.6px' : undefined,
+            lineHeight: shouldHighlight ? 'normal' : undefined,
+          }}
+        >
+          {labelText}
+        </span>
+        <span style={{ marginRight: '4px' }}>:</span>
+        {parseRichText(content)}
+      </>
+    )
+  }
 
   return (
     <PageContent>
       <div className="flex w-full justify-center px-6 py-16 text-[#37352f] md:px-16 lg:px-28">
         <div className="w-full max-w-[710px]">
+          <div className="flex flex-col" style={{ marginTop: '6px', marginBottom: '10px' }}>
+          </div>
+
           {/* 1. Cover Image: 본문 폭에 맞춰 배치 */}
           {project.coverImageSrc && (
             <div className="w-full" style={{ marginTop: '20px', marginBottom: '20px' }}>
@@ -61,7 +93,10 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
           {/* 2. Sections Loop */}
           <div className="space-y-1">
             {project.sections?.map((section, sectionIdx) => (
-              <article key={`${project.slug}-${section.type}-${sectionIdx}`} className="py-1">
+              <article
+                key={`${project.slug}-${section.type}-${sectionIdx}`}
+                className={section.type === 'quote' ? 'py-0' : 'py-1'}
+              >
                 {section.type === 'separator' ? (
                   <div style={{ paddingTop: '15px', paddingBottom: '15px' }}>
                     <div className="h-[1px] w-full bg-[#D3D1CB]" />
@@ -69,27 +104,32 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                 ) : section.type === 'quote' ? (
                   <blockquote
                     style={{
-                      marginTop: '16px',
-                      marginBottom: '16px',
-                      paddingTop: '4px',
-                      paddingBottom: '4px',
+                      marginTop: '8px',
+                      marginBottom: '8px',
+                      paddingTop: '0px',
+                      paddingBottom: '0px',
                       paddingLeft: '16px',
                       paddingRight: '15px',
                       borderLeft: '3px solid #37352f',
                       boxSizing: 'border-box',
                     }}
-                    className="w-full text-[18px] font-medium leading-relaxed text-[#37352f]"
+                    className="w-full text-[#2c2c2b]"
                   >
-                    <ul className="list-disc space-y-1 pl-4 pr-[15px]">
-                      {splitQuoteSentences(section.body ?? section.bullets ?? []).map((sentence, idx) => (
-                        <li key={idx} className="m-0 whitespace-pre-wrap">{parseRichText(sentence)}</li>
-                      ))}
-                    </ul>
+                    <div className="flex flex-col gap-1 text-[14px]" style={{ lineHeight: '21px' }}>
+                      {(section.body ?? section.bullets ?? [])
+                        .map((line) => (typeof line === 'string' ? line.replace(/\s+$/g, '') : line))
+                        .filter((line) => (typeof line === 'string' ? line.trim() !== '' : true))
+                        .map((line, idx) => (
+                          <p key={idx} className="m-0 whitespace-pre-wrap" style={{ margin: 0 }}>
+                            {renderLineWithLabel(line)}
+                          </p>
+                        ))}
+                    </div>
                   </blockquote>
                 ) : section.type === 'callout' ? (
                   <div className="my-4 flex w-full items-start gap-[10px] rounded-[4px] bg-[#f1f1ef] px-4 py-4">
                     <span className="mt-0.5 text-[18px]">💡</span>
-                    <div className="flex flex-col gap-[10px] text-[16px] leading-[1.6] text-[#37352f]">
+                    <div className="flex flex-col gap-[10px] text-[14px] text-[#2c2c2b]" style={{ lineHeight: '21px' }}>
                       {(section.body ?? section.bullets ?? []).map((line, idx) => (
                         <p key={idx}>{parseRichText(line)}</p>
                       ))}
@@ -99,9 +139,33 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                   <div className="flex flex-col gap-[10px] py-2">
                     {section.title && (
                       <div className={`mt-6 ${section.source ? 'mb-1' : 'mb-2'}`}>
-                        <h3 className="text-[24px] font-bold tracking-tight text-[#37352f]">
-                          {section.title}
-                        </h3>
+                        {(() => {
+                          const trimmedTitle = section.title?.trim()
+                          const isRomanTitle = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)\./.test(trimmedTitle ?? '')
+                          const resolvedStyle = isRomanTitle ? romanTitleStyle : headingStyleByLevel[section.titleLevel === 4 ? 4 : section.titleLevel === 2 ? 2 : 3]
+                          const titleClassName = 'tracking-tight'
+                          const resolvedMarginBottom = isRomanTitle ? '10px' : '5px'
+
+                          if (section.titleLevel === 2) {
+                            return (
+                              <h2 style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }} className={titleClassName}>
+                                {section.title}
+                              </h2>
+                            )
+                          }
+                          if (section.titleLevel === 4) {
+                            return (
+                              <h4 style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }} className={titleClassName}>
+                                {section.title}
+                              </h4>
+                            )
+                          }
+                          return (
+                            <h3 style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }} className={titleClassName}>
+                              {section.title}
+                            </h3>
+                          )
+                        })()}
                         {section.source && (
                           <p
                             className="mt-1 text-[14px] leading-[1.5] text-[#7d7a75]"
@@ -148,16 +212,18 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                           }`}
                         >
                           {section.body && section.body.length > 0 && (
-                            <div className="flex flex-col gap-[10px] text-[16px] leading-[1.6]" style={{ marginTop: section.source ? 0 : undefined }}>
+                            <div className="flex flex-col gap-[10px] text-[14px]" style={{ marginTop: section.source ? 0 : undefined, lineHeight: '21px' }}>
                               {section.body.map((line, idx) => (
-                                <p key={idx} className="m-0">{parseRichText(line)}</p>
+                                <p key={idx} className="m-0">{renderLineWithLabel(line)}</p>
                               ))}
                             </div>
                           )}
                           {section.bullets && section.bullets.length > 0 && (
-                            <ul className="list-disc space-y-2 pl-6 text-[16px] leading-[1.6]">
+                            <ul className="list-disc space-y-1 pl-6 text-[14px] leading-[26px]">
                               {section.bullets.map((line, lineIdx) => (
-                                <li key={lineIdx} className="m-0">{parseRichText(line)}</li>
+                                <li key={lineIdx} className="m-0">
+                                  {renderLineWithLabel(line)}
+                                </li>
                               ))}
                             </ul>
                           )}
@@ -166,15 +232,15 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                     ) : (
                       <>
                         {section.body && section.body.length > 0 && (
-                          <div className="flex flex-col gap-[10px] text-[16px] leading-[1.6]">
+                          <div className="flex flex-col gap-[10px] text-[14px]" style={{ lineHeight: '21px' }}>
                             {section.body.map((line, idx) => (
-                              <p key={idx} className="m-0">{parseRichText(line)}</p>
+                              <p key={idx} className="m-0">{renderLineWithLabel(line)}</p>
                             ))}
                           </div>
                         )}
 
                         {section.visuals && section.visuals.length > 0 && (
-                          <div className="my-4 flex flex-col items-center gap-[10px]">
+                          <div className="mt-4 flex flex-col items-center gap-[10px]" style={{ marginBottom: '5px' }}>
                             {section.visuals.map((visual, visualIdx) => {
                               const widthPercent = visual.widthPercent ?? 80
                               return (
@@ -201,9 +267,11 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                         )}
 
                         {section.bullets && section.bullets.length > 0 && (
-                          <ul className="list-disc space-y-2 pl-6 text-[16px] leading-[1.6]">
+                          <ul className="list-disc space-y-1 pl-6 text-[14px] leading-[26px]">
                             {section.bullets.map((line, lineIdx) => (
-                              <li key={lineIdx}>{parseRichText(line)}</li>
+                              <li key={lineIdx}>
+                                {renderLineWithLabel(line)}
+                              </li>
                             ))}
                           </ul>
                         )}
@@ -216,10 +284,10 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                               marginBottom: section.tableBottomSpacing ?? 0,
                             }}
                           >
-                            <table className="w-full border-collapse text-[14px] border border-[#D3D1CB]">
+                            <table className="w-full border-collapse text-[14px] border border-[#e6e5e3]">
                               {section.table.headers && (
                                 <thead>
-                                  <tr className="border-b border-[#D3D1CB] bg-[#f7f6f3]">
+                                  <tr className="border-b border-[#e6e5e3] bg-[#f7f6f3]">
                                     {section.table.headers.map((h, hIdx) => (
                                       <th
                                         key={hIdx}
@@ -232,7 +300,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                                             ? `${section.table.columnWidths[hIdx]}%`
                                             : undefined,
                                         }}
-                                        className="border-r border-[#D3D1CB] text-left font-semibold text-[#787774] last:border-r-0"
+                                        className="border-r border-[#e6e5e3] text-left font-semibold text-[#787774] last:border-r-0"
                                       >
                                         {parseRichText(h)}
                                       </th>
@@ -242,7 +310,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                               )}
                               <tbody>
                                 {section.table.rows.map((row, rIdx) => (
-                                  <tr key={rIdx} className="border-b border-[#D3D1CB] last:border-0">
+                                  <tr key={rIdx} className="border-b border-[#e6e5e3] last:border-0">
                                     {row.map((cell, cIdx) => (
                                       <td
                                         key={cIdx}
@@ -253,14 +321,14 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                                           paddingRight: '9px',
                                           ...(section.table.headers
                                             ? {}
-                                            : cIdx === 0
-                                              ? { backgroundColor: '#f7f6f3' }
+                                            : cIdx % 2 === 0
+                                              ? { backgroundColor: '#f7f6f3', fontWeight: 600 }
                                               : {}),
                                           width: section.table.columnWidths?.[cIdx]
                                             ? `${section.table.columnWidths[cIdx]}%`
                                             : undefined,
                                         }}
-                                        className="border-r border-[#D3D1CB] leading-relaxed whitespace-pre-line last:border-r-0"
+                                        className="border-r border-[#e6e5e3] whitespace-pre-line last:border-r-0"
                                       >
                                         {parseRichText(cell)}
                                       </td>

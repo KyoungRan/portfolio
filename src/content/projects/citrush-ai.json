@@ -4,6 +4,9 @@
   "subtitle": ": CITRUSH",
   "type": "AI에이전트",
   "summary": "Light Ontology, RAG와 Agent workflow 기반의 AI Teeth 전용 두뇌 구현",
+  "labelPalette": {
+    "default": { "bg": "rgba(211, 168, 0, 0.137)", "text": "#2c2c2b" }
+  },
   "period": {
     "start": "2025-11-12",
     "end": "2026-01-08",
@@ -18,19 +21,602 @@
   "order": 1,
   "sections": [
     {
+      "type": "quote",
+      "body": [
+        "2~3초 주기 상황분석 → 전술 선택 → 클라이언트에서 실행 가능한 명령 반환 BrainCam/로그로 판단 근거를 남겨 디버깅·밸런싱·리포트까지 운영"
+      ]
+    },
+    { "type": "separator" },
+
+    {
       "type": "problem",
-      "title": "Problem",
-      "body": ["치과 진료 및 경영 데이터의 파편화로 인해 체계적인 의사결정이 어려웠습니다."]
+      "title": "I. Context & Problem (게임/요구사항/문제정의)",
+      "titleLevel": 2
+    },
+    {
+      "type": "problem",
+      "title": "1. 게임 한눈에 보기: 규칙·승패·역할",
+      "titleLevel": 3,
+      "table": {
+        "columnWidths": [15, 35, 15, 35],
+        "rows": [
+          ["게임명", "CITRUSH (시트러쉬) - City + Rush", "장르", "비대칭 추격 레이싱 PvE"],
+          ["팀구성", "4인 1팀 (1명의 커맨더+3명의 레이서)", "플랫폼", "Steam"],
+          ["플레이시간", "라운드당 8~10분", "핵심 컨셉", "현실 공간에서 전개되는 Teeth 추격전 레이싱"],
+          ["내 역할", "AI Teeth 전략 에이전트 서버 설계·구현", "AI 핵심기술", "Ontology + RAG + Agent Workflow(LangGraph/LangChain)"]
+        ]
+      }
+    },
+    {
+      "type": "quote",
+      "body": [
+        "4인 협동 플레이어(Driver) + 1인의 지휘관(Commander)이 협동해 Teeth(적)의 방해를 돌파하고 라운드 목표를 달성하는 전술 레이싱 게임"
+      ]
+    },
+    {
+      "type": "problem",
+      "bullets": [
+        "라운드 종료: Teeth 처치 또는 Driver 전원 사망 시 즉시 종료 → 생존 팀 승리",
+        "플레이 목표: Driver+Commander 협동으로 라운드 목표를 수행하며 Teeth를 처치",
+        "Teeth 목표: 추격·차단·교란으로 팀을 분산시키고 Driver 전원 사망을 유도"
+      ]
+    },
+    {
+      "type": "problem",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_01.png",
+          "alt": "CITRUSH 구성 흐름",
+          "widthPercent": 100
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "bullets": [
+        "전략 변동 요인: 정보 비대칭(드라이버 vs 지휘관) + 페이즈/아이템 변화 + 거리·속도·자원 상태 변화 → 최적 전략이 계속 바뀜",
+        "요구사항: 2~3초 주기 전술 재계산 + 안전 폴백 + 근거 기록(Brain-cam/로그)",
+        "포인트: 협동 플레이 흐름 속에서 적(Teeth)이 ‘판단하는 존재’가 되어야 함"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "problem",
+      "title": "2. 문제정의: Teeth(적)에게 왜 AI가 필요한가",
+      "titleLevel": 3
+    },
+    {
+      "type": "quote",
+      "body": ["변수가 폭증하는 실시간 전장에서, 고정 패턴은 반복·오판·튜닝 불가로 이어진다."]
+    },
+    {
+      "type": "problem",
+      "bullets": [
+        "정보 비대칭(Driver vs Commander) + 페이즈/아이템 변화로 매 순간 최적 전술이 바뀐다",
+        "맵·거리·속도·자원 상태 조합이 폭증해 고정 패턴/스크립트로는 커버할 수 없다",
+        "규칙을 추가할수록 예외 처리 누적으로 유지보수 비용과 버그/밸런스 리스크가 커진다"
+      ]
+    },
+    {
+      "type": "problem",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_02.png",
+          "alt": "문제 정의 다이어그램",
+          "widthPercent": 81
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "bullets": [
+        "요구사항: 2~3초 주기 전술 재계산 + 안전 폴백 + 근거 기록(BrainCam/로그)",
+        "기대효과: 전술 다양성(재플레이성) 확보 + 안정적 운영(디버깅/밸런싱) 가능"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "II. Solution & Architecture (해결 구조/지식 설계/에이전트 흐름)",
+      "titleLevel": 2
     },
     {
       "type": "approach",
-      "title": "Approach",
-      "body": ["경량 온톨로지 구조를 설계하여 지식 간 관계를 정의하고 RAG 기술을 결합했습니다."]
+      "title": "1. 설계 요구사항: 실시간 · 안전 · 운영 · 설명가능성",
+      "titleLevel": 3
     },
     {
-      "type": "result",
-      "title": "Result",
-      "body": ["진료 전략 수립 보조를 통해 의사결정의 일관성과 효율성을 높였습니다."]
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_03.png",
+          "alt": "설계 요구사항",
+          "widthPercent": 88
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "실시간: 2~3초 주기 의사결정 — 지연은 곧 플레이 붕괴",
+        "안전: 실행 전 검증 + 실패 시 안전 폴백(가드레일)",
+        "운영/설명: 로그·근거가 있어야 디버깅/밸런싱/리포트가 가능"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "2. 에이전트 파이프라인: “역할 분리”가 운영 품질을 만든다",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "Analyst: 게임 상태 → 핵심 신호/태그로 요약",
+        "DecisionGate: 복잡도/리스크 → NOOP·LIGHT·FULL 선택",
+        "Planner: 태그 기반 후보 전술(카드) 구성",
+        "Tactical: 최종 전술 선택(LIGHT/FULL)",
+        "Executor: 명령 변환·검증 후 UE 실행",
+        "Logger: 근거/결과 기록 → 튜닝·리포트"
+      ]
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_04.png",
+          "alt": "에이전트 파이프라인",
+          "widthPercent": 100
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "역할 분리: 단계별 입력/출력을 고정해 원인 추적과 부분 교체가 가능",
+        "비용 제어: DecisionGate가 NOOP/LIGHT/FULL로 실시간 예산을 지킨다",
+        "흐름: Analyst → DecisionGate → Planner → Tactical → Executor → Logger"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "3. 지식 기반 의사결정 2축: 온톨로지(상황 언어) × 전략카드(행동 레시피)",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_05.png",
+          "alt": "온톨로지와 전략카드",
+          "widthPercent": 54
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "기존 한계: 전술이 코드/스크립트에 박히면 수정=재배포, 비개발자 튜닝이 어렵고 속도가 느리다",
+        "해결 방식: 전술을 데이터(카드)로 관리해 추가/비활성/버전으로 운영",
+        "구조: 상황(온톨로지 태그) → 검색/선택(RAG) → 행동(전략카드 실행)"
+      ]
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_06.png",
+          "alt": "태그-카드 구조",
+          "widthPercent": 74
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "body": ["“상황을 ‘태그’로 만들고, 전술을 ‘카드’로 고른다.”"]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "4. 경량 온톨로지 선택: “완전한 의미체계’보다 ‘빠른 분류/태깅”이 먼저",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_07.png",
+          "alt": "경량 온톨로지",
+          "widthPercent": 81
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "선택 기준: 실시간 게임에서는 정교한 지식 모델링보다 즉시 분류 가능한 태그가 우선이다",
+        "역할: 게임 상태를 공통 언어(태그)로 압축해 검색/규칙/전술 선택의 입력으로 만든다",
+        "효과: 의사결정 일관성 확보 + 카드 검색 정확도 향상 + 결정 과정 추적 가능"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "5. 전략의 원천(전략카드): 전술을 ‘운영 가능한 실행 단위’로 분리",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_08.png",
+          "alt": "전략카드",
+          "widthPercent": 88
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "전략카드란: “언제/왜/무엇을”을 담은 실행 가능한 전술 블록(레시피) - 전술 라이브러리",
+        "운영 장점: 카드 단위로 추가·수정·비활성·버전 관리가 가능(코드 변경 최소화)",
+        "의미: 전략카드는 RAG의 검색 대상이면서 동시에 즉시 실행 행동 레시피"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "6. Analyst Agent: 상태를 ‘의사결정 입력(태그 후보)’로 정리",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_09.png",
+          "alt": "Analyst Agent",
+          "widthPercent": 88
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "입력: Unreal GameState(원본 상태/센서 값)",
+        "처리: 위협·기회·목표 신호를 추출해 요약(Summary) + 태그 후보 생성",
+        "출력: Planner가 바로 쓰는 정규화된 상황 입력(노이즈↓, 계산량↓, 재현성↑)"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "7. DecisionGate: 예산을 지키는 3-Mode 분기-NOOP/LIGHT/FULL",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_10.png",
+          "alt": "DecisionGate",
+          "widthPercent": 88
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "목적: 매 순간 복잡 연산/LLM을 돌리면 지연이 누적되어 실시간성이 무너진다",
+        "전략: 상황 변화/리스크에 따라 NOOP(유지) · LIGHT(규칙) · FULL(고도 판단)로 비용을 제어",
+        "효과: 시간예산 준수 + 비용 최적화 + 실패 대비(안전 폴백) 기반 확보"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "8. Planner Agent: 태그 → 검색 → 후보군 구성(RAG 의사결정 플로우)",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_11.png",
+          "alt": "Planner Agent",
+          "widthPercent": 88
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "핵심: 태그가 검색을 만들고, 카드가 행동을 만든다",
+        "흐름: 태그 정리 → 카드 후보 검색(Qdrant 등) → 제약/우선순위 적용 → 전략 패키지 생성",
+        "의도: “생성”보다 “선택” 중심으로 설계해 일관성·재현성·튜닝 가능성을 높인다"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "9. Tactical Agent: 최종 전술 선택 엔진(LIGHT vs FULL)",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_12.png",
+          "alt": "Tactical Agent",
+          "widthPercent": 100
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "LIGHT: 규칙 기반으로 빠르고 안정적인 기본 전술을 선택",
+        "FULL: 고난도 상황에서 조합/우선순위/맥락 판단으로 유연성을 확보",
+        "산출: 최종 전술(선택/조정) → Executor로 전달"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "callout",
+      "body": [
+        "전술을 ‘선택’했다면, 다음은 오명령 없이 ‘실행’하고 근거를 ‘기록’해 운영 가능한 시스템으로 닫는다."
+      ]
+    },
+
+    {
+      "type": "approach",
+      "title": "III. Execution & Ops (실행/검증/운영/확장)",
+      "titleLevel": 2
+    },
+    {
+      "type": "approach",
+      "title": "1. Executor Agent: 명령 변환·검증·안전 폴백(가드레일)",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "body": ["“좋은 전술도 실행 불가하면 실패다 → 실행 전에 반드시 검증한다.”"]
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_13.png",
+          "alt": "Executor Agent",
+          "widthPercent": 100
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "형식 검증: JSON/스키마 오류 차단",
+        "제약 검증: 이동 가능 구역/금지 조건/쿨다운 등 게임 제약 반영",
+        "안전 폴백: 실패 시 안전 행동(Safe Fallback) 강제 실행 → 오명령 리스크 최소화"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "2. Logger Agent: 기록 → 재현 → 개선(운영 루프 완성)",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "body": ["“로그가 없으면 운영은 감(느낌)으로 한다 → 기록이 곧 품질이다.”"]
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_14.png",
+          "alt": "Logger Agent",
+          "widthPercent": 81
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "기록: 결정 로그 + BrainCam(XAI) + KPI(지연/성공률) 저장",
+        "재현: 문제 상황을 재현해 원인을 추적",
+        "개선: 카드/규칙/모드 기준을 데이터로 튜닝 → 밸런싱/리포트까지 연결"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "3. 오케스트레이션: LangGraph(흐름/제어) + LangChain(도구/연동)",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "body": ["“운영에서 중요한 건 ‘똑똑함’보다 ‘통제/추적 가능함’이다.”"]
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_15.png",
+          "alt": "오케스트레이션",
+          "widthPercent": 88
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "LangGraph: 분기·상태·재시도·추적을 그래프로 관리 → 파이프라인이 “설계대로” 동작",
+        "LangChain: RAG/프롬프트/LLM 호출 등 도구 연결 → 구현 속도와 확장성 확보",
+        "결과: 단계별 책임이 고정되어 테스트/교체/관찰 가능성이 올라간다"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "4. API 설계: 왜 실시간 제어는 HTTP 계약으로 고정했나",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_16.png",
+          "alt": "API 설계",
+          "widthPercent": 100
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "계약 단순화: 요청(State JSON) → 응답(Command JSON)으로 인터페이스를 고정",
+        "디버그/리플레이: 요청·응답이 남아 재현이 쉽고, 문제 분석이 빠르다",
+        "시간 제어: 타임아웃/폴백을 계약 레벨에서 다룰 수 있어 실시간성이 안정된다"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "5. 실시간 동작 안전성: 시간 예산 + 폴백이 필수",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "body": ["“완벽한 판단보다, 제때 나오는 안전한 판단이 더 중요하다.”"]
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_17.png",
+          "alt": "실시간 동작 안전성",
+          "widthPercent": 100
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "원칙: 지연은 실시간 게임에서 사실상 실패 → 제한 시간 안에 끝내야 한다",
+        "설계: 시간 예산을 두고, 초과/실패 시 NOOP 또는 LIGHT로 즉시 폴백",
+        "효과: “최선”이 아니더라도 “안전한 결과”를 항상 반환해 플레이 붕괴를 막는다"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "6. BrainCam(XAI): 판단 근거 시각화가 신뢰와 튜닝을 만든다",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "body": ["“결과만 있으면 튜닝이 막힌다 → 근거가 남아야 개선이 빨라진다.”"]
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_18.png",
+          "alt": "BrainCam",
+          "widthPercent": 81
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "구성: Perception(상황 요약) → Reasoning(근거/전략) → Decision(최종 명령)",
+        "효과: 결과만 보는 튜닝에서 벗어나, 왜 선택됐는지를 기준으로 개선 가능",
+        "연결: 디버깅·밸런싱·리포트가 “근거 기반”으로 전환"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "7. 운영 인프라/데이터 스택 & 확장 계획",
+      "titleLevel": 3
+    },
+    {
+      "type": "approach",
+      "title": "(A) 운영 인프라: 왜 로그·지식·서버를 분리했나",
+      "titleLevel": 4
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_19.png",
+          "alt": "운영 인프라",
+          "widthPercent": 100
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "실시간 처리(API 서버): 짧은 응답 시간과 안정성이 최우선",
+        "지식 관리(Qdrant/DB/Cache): 카드/태그/검색 성능을 독립적으로 튜닝",
+        "운영 데이터(PostgreSQL/메트릭): 추적 가능성이 품질이 되도록 로그/지표를 축적"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "(B) 확장 계획: 다음 단계가 설계에 포함돼야 하는 이유",
+      "titleLevel": 4
+    },
+    {
+      "type": "approach",
+      "visuals": [
+        {
+          "src": "/assets/projects/citrush-ai/visuals/citrush_img_20.png",
+          "alt": "확장 계획",
+          "widthPercent": 88
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "bullets": [
+        "확장: 전략카드/입력 신호 추가로 전술 라이브러리 확장",
+        "품질: 테스트 자동화·관찰성 강화·지연 최적화",
+        "운영: 자동 튜닝/자동 리포트/데이터 버전 관리로 운영 비용 절감"
+      ]
+    },
+    {
+      "type": "quote",
+      "body": ["전술 선택(지식) + 실행(안전) + 설명(BrainCam) + 운영(로그) 루프 구축”"]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "IV. PPT",
+      "titleLevel": 2
     }
   ]
 }
