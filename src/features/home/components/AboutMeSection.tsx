@@ -141,7 +141,7 @@ export function AboutMeSection() {
           <aside className="flex flex-col self-start gap-5">
             <div 
               style={{ border: '1px solid rgba(55, 53, 47, 0.09)' }}
-              className="w-full overflow-hidden rounded-[1px]"
+              className="w-full max-w-[220px] overflow-hidden rounded-[1px] sm:max-w-[240px] md:max-w-none"
             >
               <img
                 alt={`${content.name} 프로필 사진`}
