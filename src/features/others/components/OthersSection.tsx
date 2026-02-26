@@ -1,5 +1,6 @@
 // Home의 Others 섹션
 // 기간/활동 표를 JSON 데이터로 렌더해 단순 업데이트 경로를 유지한다.
+import { TableColumnGroup } from '@/components/table/TableColumnGroup'
 import others from '@/content/others.json'
 import { Section } from '@/components/layout/Section'
 
@@ -10,6 +11,9 @@ interface OthersRow {
 
 interface OthersContent {
   title: string
+  table?: {
+    columnWidths?: Array<number | string | null>
+  }
   rows: OthersRow[]
 }
 
@@ -32,10 +36,11 @@ export function OthersSection() {
 
         <div className="w-full overflow-x-auto overflow-y-hidden rounded-[3px] border border-border">
           <table className="w-full min-w-[600px] border-collapse text-left text-[13.5px] leading-relaxed text-[#37352f]">
+            <TableColumnGroup widths={content.table?.columnWidths} />
             <thead className="bg-[#f7f6f3]/80 text-[11px] font-normal tracking-tight text-[#787774] border-b border-[rgba(55,53,47,0.09)]">
               <tr>
                 <th
-                  className="w-48 border-r border-[rgba(55,53,47,0.09)] font-normal text-center"
+                  className="border-r border-[rgba(55,53,47,0.09)] font-normal text-center"
                   style={{ padding: '5px 9px' }}
                 >
                   기간

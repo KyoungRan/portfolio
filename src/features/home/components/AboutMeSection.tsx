@@ -98,7 +98,7 @@ export function AboutMeSection() {
         
         <header>
           {/* 헤드라인 콜아웃: 아래 공백 30px 적용, 라인 없음 */}
-          <div 
+          <div
             style={{ 
               marginTop: '0px', 
               marginBottom: '30px', 
@@ -107,7 +107,7 @@ export function AboutMeSection() {
               borderRadius: '4px',
               background: 'transparent'
             }}
-            className="flex w-full items-start gap-5 shadow-sm"
+            className="flex w-full flex-col items-start gap-5 shadow-sm sm:flex-row"
           >
             <div className="flex-shrink-0 mt-1">
               <div 
@@ -136,7 +136,7 @@ export function AboutMeSection() {
           </div>
         </header>
 
-        <div className="grid items-start md:grid-cols-[260px_1fr]">
+        <div className="grid items-start gap-8 md:grid-cols-[260px_1fr] md:gap-0">
           
           <aside className="flex flex-col self-start gap-5">
             <div 
@@ -207,7 +207,7 @@ export function AboutMeSection() {
             </div>
           </aside>
 
-          <div style={{ marginLeft: '80px' }} className="flex flex-col ga">
+          <div className="aboutme-content flex flex-col ga">
             <article className="flex flex-col">
               <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
                 {aboutTitle}
@@ -248,7 +248,7 @@ export function AboutMeSection() {
                       key={`${company.company}-${company.period.start}`}
                       className="text-[16px] tracking-tight"
                     >
-                      <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-3">
+                      <div className="flex flex-row flex-wrap items-center gap-3 whitespace-normal md:flex-nowrap md:whitespace-nowrap">
                         <span className="font-bold">{company.company}</span>
                         <span className="text-[#9b9a97] font-normal">/</span>
                         <span className="font-semibold opacity-80">{company.role}</span>
@@ -275,7 +275,7 @@ export function AboutMeSection() {
                     key={`${item.name}-${item.periodText}`}
                     className="text-[16px] tracking-tight"
                   >
-                    <div className="flex flex-row items-center flex-nowrap whitespace-nowrap gap-2">
+                    <div className="flex flex-row flex-wrap items-center gap-2 whitespace-normal md:flex-nowrap md:whitespace-nowrap">
                       <span className="font-bold">{item.name}</span>
                       <span className="ml-4 text-[13.5px] font-bold text-[#7d7a75] px-2.5 py-1 rounded-[3px] uppercase tracking-tight">
                         {item.periodText}

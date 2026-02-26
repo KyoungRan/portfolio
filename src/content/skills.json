@@ -1,5 +1,8 @@
 {
   "title": "Skills",
+  "table": {
+    "columnWidths": [15, 85]
+  },
   "rows": [
     { "category": "AI Agent", "skills": ["RAG", "Langchain", "Langsmith", "Langgraph"] },
     {

@@ -63,7 +63,7 @@ export function EducationSection() {
                       </div>
                     )}
                     <div>
-                      <div className="flex items-start justify-between gap-6">
+                      <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:gap-6">
                         <h3
                           className="mb-0 font-normal text-[#37352f]"
                           style={{ fontSize: '16px', lineHeight: '24px', paddingLeft: '0px', paddingRight: '0px' }}
@@ -72,7 +72,7 @@ export function EducationSection() {
                         </h3>
                         {item.periodText && (
                           <span
-                            className="whitespace-nowrap font-normal text-[#9b9a97]"
+                            className="font-normal text-[#9b9a97] sm:whitespace-nowrap"
                             style={{ fontSize: '12px', lineHeight: '18px' }}
                           >
                             {item.periodText}
@@ -102,7 +102,7 @@ export function EducationSection() {
                       paddingRight: '2px',
                     }}
                   >
-                    <div className="flex items-center gap-2" style={{ marginLeft: '35px' }}>
+                    <div className="flex flex-wrap items-center gap-2" style={{ marginLeft: '35px' }}>
                       {item.iconSrc && (
                         <img
                           alt="oxford_logo"

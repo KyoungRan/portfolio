@@ -138,6 +138,12 @@ main section[id]:not(:first-of-type) {
   }
 }
 
+@media (min-width: 768px) {
+  .aboutme-content {
+    margin-left: 80px;
+  }
+}
+
 /* 컨테이너 fallback */
 .container {
   width: 100%;

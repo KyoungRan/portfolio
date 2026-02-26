@@ -1,5 +1,8 @@
 {
   "title": "Others",
+  "table": {
+    "columnWidths": ["12rem"]
+  },
   "rows": [
     { "periodText": "2011.01 ~ 2011.07", "activity": "Los Angeles City College (미국 ESL))", "description": "" },
     { "periodText": "2010.06 ~ 2010.12", "activity": "KAPLAN WESTWOOD (미국 어학연수)", "description": "" },

@@ -1,5 +1,6 @@
 // ProjectDetailPage: 프로젝트 콘텐츠를 slug로 로드해 상세를 렌더한다.
 import { PageContent } from '@/components/layout/PageContent'
+import { TableColumnGroup } from '@/components/table/TableColumnGroup'
 import { getProjectBySlug } from '@/features/projects/loader'
 import { parseRichText } from '@/lib/parseRichText'
 
@@ -289,6 +290,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                             }}
                           >
                             <table className="w-full border-collapse text-[14px] border border-[#e6e5e3]">
+                              <TableColumnGroup widths={section.table.columnWidths} />
                               {section.table.headers && (
                                 <thead>
                                   <tr className="border-b border-[#e6e5e3] bg-[#f7f6f3]">
@@ -300,9 +302,6 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                                           paddingBottom: '7px',
                                           paddingLeft: '9px',
                                           paddingRight: '9px',
-                                          width: section.table.columnWidths?.[hIdx]
-                                            ? `${section.table.columnWidths[hIdx]}%`
-                                            : undefined,
                                         }}
                                         className="border-r border-[#e6e5e3] text-left font-semibold text-[#787774] last:border-r-0"
                                       >
@@ -328,9 +327,6 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                                             : cIdx % 2 === 0
                                               ? { backgroundColor: '#f7f6f3', fontWeight: 600 }
                                               : {}),
-                                          width: section.table.columnWidths?.[cIdx]
-                                            ? `${section.table.columnWidths[cIdx]}%`
-                                            : undefined,
                                         }}
                                         className="border-r border-[#e6e5e3] whitespace-pre-line last:border-r-0"
                                       >
