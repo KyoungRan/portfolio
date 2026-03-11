@@ -1,5 +1,6 @@
 // Home의 Education & Training 섹션
 // 항목은 JSON 기반으로 렌더해 교육 내역 추가/수정 시 컴포넌트 변경을 피한다.
+import { SectionHeader } from '@/components/layout/SectionHeader'
 import education from '@/content/education.json'
 import { Section } from '@/components/layout/Section'
 
@@ -30,12 +31,10 @@ export function EducationSection() {
     <Section id="education-training" className="w-full pt-8 pb-12">
       <div className="projects-shell w-full">
         <header>
-          <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
-            {content.title}
-          </h2>
-          <div style={{ paddingTop: '11px', paddingBottom: '11px' }}>
-            <div className="h-[1px] w-full bg-[#e1dfdd]" />
-          </div>
+          <SectionHeader
+            title={content.title}
+            dividerSpacingStyle={{ paddingTop: '11px', paddingBottom: '11px' }}
+          />
         </header>
 
         <div className="flex flex-col gap-3">

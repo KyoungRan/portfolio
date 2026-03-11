@@ -1,5 +1,7 @@
 // 프로젝트 도메인 타입 정의
 // 카드/상세/내비에서 동일 스키마를 공유해 필드 불일치를 방지한다.
+import type { TableColumnWidths } from '@/lib/tableColumnWidths'
+
 export interface ProjectPeriod {
   start: string
   end?: string | null
@@ -31,7 +33,7 @@ export interface ProjectVisual {
 export interface ProjectSectionTable {
   headers?: string[]
   rows: string[][]
-  columnWidths?: number[]
+  columnWidths?: TableColumnWidths
 }
 
 export interface ProjectSection {

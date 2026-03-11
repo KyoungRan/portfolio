@@ -1,8 +1,10 @@
 // Home의 Skills 섹션
 // 표 구조를 유지해 Notion의 정보 스캔 흐름을 웹에서도 그대로 재현한다.
+import { SectionHeader } from '@/components/layout/SectionHeader'
 import { TableColumnGroup } from '@/components/table/TableColumnGroup'
 import skills from '@/content/skills.json'
 import { Section } from '@/components/layout/Section'
+import type { TableColumnWidthConfig } from '@/lib/tableColumnWidths'
 
 interface SkillsRow {
   category: string
@@ -11,9 +13,7 @@ interface SkillsRow {
 
 interface SkillsContent {
   title: string
-  table?: {
-    columnWidths?: Array<number | string | null>
-  }
+  table?: TableColumnWidthConfig
   rows: SkillsRow[]
 }
 
@@ -25,13 +25,7 @@ export function SkillsSection() {
       <div className="projects-shell w-full space-y-7">
         <header>
           {/* 타이틀 색상: #A173BF 적용 */}
-          <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
-            {content.title}
-          </h2>
-          {/* 라인 아래 padding 10px 적용 */}
-          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-            <div className="h-[1px] w-full bg-[#e1dfdd]" />
-          </div>
+          <SectionHeader title={content.title} />
         </header>
 
         <div className="w-full overflow-x-auto overflow-y-hidden border border-[#D3D1CB]">

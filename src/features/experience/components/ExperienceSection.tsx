@@ -2,6 +2,7 @@
 // 회사 단위 데이터와 엔트리(성과/기술)를 모두 렌더해 노션의 컬럼형 읽기 흐름을 유지한다.
 import experience from '@/content/experience.json'
 import { Section } from '@/components/layout/Section'
+import { SectionHeader } from '@/components/layout/SectionHeader'
 
 interface Period {
   start: string
@@ -75,18 +76,13 @@ export function ExperienceSection() {
       <div className="projects-shell w-full space-y-12 text-[#2c2c2b]">
         <header>
           {/* 타이틀 색상: #A173BF 적용 */}
-          <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
-            {content.title}
-          </h2>
-          {/* 라인 아래 padding 10px 적용 */}
-          <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-            <div className="h-[1px] w-full bg-[#e1dfdd]" />
-          </div>
-          {content.summary?.trim() && (
-            <p className="mb-0 text-[15px] leading-[1.7] text-[#7d7a75]">
-              {content.summary}
-            </p>
-          )}
+          <SectionHeader title={content.title}>
+            {content.summary?.trim() && (
+              <p className="mb-0 text-[15px] leading-[1.7] text-[#7d7a75]">
+                {content.summary}
+              </p>
+            )}
+          </SectionHeader>
         </header>
 
         <div className="space-y-[36px]">

@@ -1,21 +1,8 @@
-export type TableColumnWidth = number | string | null
+import type { TableColumnWidths } from '@/lib/tableColumnWidths'
+import { resolveTableColumnWidth } from '@/lib/tableColumnWidths'
 
 interface TableColumnGroupProps {
-  widths?: TableColumnWidth[] | null
-}
-
-function resolveColumnWidth(width: TableColumnWidth): string | undefined {
-  if (typeof width === 'number') {
-    if (!Number.isFinite(width) || width <= 0) return undefined
-    return `${width}%`
-  }
-
-  if (typeof width === 'string') {
-    const trimmed = width.trim()
-    return trimmed.length > 0 ? trimmed : undefined
-  }
-
-  return undefined
+  widths?: TableColumnWidths | null
 }
 
 export function TableColumnGroup({ widths }: TableColumnGroupProps) {
@@ -24,7 +11,7 @@ export function TableColumnGroup({ widths }: TableColumnGroupProps) {
   return (
     <colgroup>
       {widths.map((width, index) => {
-        const resolvedWidth = resolveColumnWidth(width)
+        const resolvedWidth = resolveTableColumnWidth(width)
         return <col key={index} style={resolvedWidth ? { width: resolvedWidth } : undefined} />
       })}
     </colgroup>

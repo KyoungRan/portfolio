@@ -1,5 +1,9 @@
 // Home의 AboutMe 섹션
 // 노션 상단 구조(프로필/연락처 + 소개/요약)를 단일 섹션으로 구성한다.
+import { SectionHeader } from '@/components/layout/SectionHeader'
+import {
+  SECTION_TITLE_STYLE,
+} from '@/components/layout/sectionHeaderTokens'
 import profile from '@/content/profile.json'
 import { Section } from '@/components/layout/Section'
 import { parseRichText } from '@/lib/parseRichText'
@@ -209,12 +213,7 @@ export function AboutMeSection() {
 
           <div className="aboutme-content flex flex-col ga">
             <article className="flex flex-col">
-              <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
-                {aboutTitle}
-              </h3>
-              <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-                <div className="h-[1px] w-full bg-[#e1dfdd]" />
-              </div>
+              <SectionHeader as="h3" title={aboutTitle} />
               <div className="flex flex-col pt-4">
                 <p className="text-[16px] font-bold leading-[1.5] text-[#37352f] tracking-tight">
                   {parseRichText(content.about.description)}
@@ -230,12 +229,12 @@ export function AboutMeSection() {
             </article>
 
             <article className="flex flex-col">
-              <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, marginTop: 20 }}>
-                Experience Overview
-              </h3>
-              <div style={{ paddingTop: '10px', paddingBottom: '15px' }}>
-                <div className="h-[1px] w-full bg-[#e1dfdd]" />
-              </div>
+              <SectionHeader
+                as="h3"
+                title="Experience Overview"
+                titleStyle={{ ...SECTION_TITLE_STYLE, marginTop: 20 }}
+                dividerSpacingStyle={{ paddingTop: '10px', paddingBottom: '15px' }}
+              />
               <div className="flex flex-col pt-4">
                 {content.overview.totalExperienceText && (
                   <p className="text-[18px] font-bold text-[#37352f] tracking-tight mb-2">
@@ -263,12 +262,12 @@ export function AboutMeSection() {
             </article>
 
             <article className="flex flex-col">
-              <h3 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, marginTop: 30 }}>
-                Education
-              </h3>
-              <div style={{ paddingTop: '5px', paddingBottom: '20px' }}>
-                <div className="h-[1px] w-full bg-[#e1dfdd]" />
-              </div>
+              <SectionHeader
+                as="h3"
+                title="Education"
+                titleStyle={{ ...SECTION_TITLE_STYLE, marginTop: 30 }}
+                dividerSpacingStyle={{ paddingTop: '5px', paddingBottom: '20px' }}
+              />
               <ul className="list-disc flex flex-col gap-2 pl-6 pt-6 text-[#37352f]">
                 {content.educationSummary.items.map((item) => (
                   <li

@@ -2,8 +2,16 @@
 import { useMemo, useState } from 'react'
 import { PageContent } from '@/components/layout/PageContent'
 import { Section } from '@/components/layout/Section'
+import { SectionHeader } from '@/components/layout/SectionHeader'
+import { TableColumnGroup } from '@/components/table/TableColumnGroup'
 import { ProjectCard } from '@/features/projects/components/ProjectCard'
 import { getAllProjects, getAllProjectTags, getProjectsByTag } from '@/features/projects/loader'
+import type { TableColumnWidthConfig } from '@/lib/tableColumnWidths'
+
+const projectSummaryTable: TableColumnWidthConfig = {
+  // Tailwind w-10 / w-40 값을 그대로 유지한다.
+  columnWidths: ['2.5rem', null, null, '10rem'],
+}
 
 export function ProjectsPage() {
   const [activeTag, setActiveTag] = useState<string>('ALL')
@@ -21,15 +29,11 @@ export function ProjectsPage() {
       <Section className="w-full">
         <div className="projects-shell w-full space-y-10">
           <header>
-            <h2 style={{ color: '#A173BF', fontSize: '26px', fontWeight: 800, letterSpacing: '-0.02em' }}>
-              Projects
-            </h2>
-            <div style={{ paddingTop: '5px', paddingBottom: '10px' }}>
-              <div className="h-[1px] w-full bg-[#e1dfdd]" />
-            </div>
-            <p className="mb-0 text-[11px] leading-6 text-[#6f6e69]">
-              프로젝트 카드를 태그별로 필터링해 확인할 수 있습니다.
-            </p>
+            <SectionHeader title="Projects">
+              <p className="mb-0 text-[11px] leading-6 text-[#6f6e69]">
+                프로젝트 카드를 태그별로 필터링해 확인할 수 있습니다.
+              </p>
+            </SectionHeader>
           </header>
 
           <div className="flex flex-wrap gap-1.5">
@@ -63,12 +67,13 @@ export function ProjectsPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full min-w-[620px] border border-[#dcd9d6] text-left text-[11px] leading-[1.55] text-[#37352f]">
+              <TableColumnGroup widths={projectSummaryTable.columnWidths} />
               <thead className="bg-[#f8f7f6]">
                 <tr>
-                  <th className="w-10 border border-[#e3e2e0] px-3 py-2 font-medium">#</th>
+                  <th className="border border-[#e3e2e0] px-3 py-2 font-medium">#</th>
                   <th className="border border-[#e3e2e0] px-3 py-2 font-medium">제목</th>
                   <th className="border border-[#e3e2e0] px-3 py-2 font-medium">설명</th>
-                  <th className="w-40 border border-[#e3e2e0] px-3 py-2 font-medium">기간</th>
+                  <th className="border border-[#e3e2e0] px-3 py-2 font-medium">기간</th>
                 </tr>
               </thead>
               <tbody>
