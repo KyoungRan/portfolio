@@ -68,6 +68,20 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
     default: { bg: 'rgba(211, 168, 0, 0.137)', text: '#2c2c2b' },
   }
   const labelStyle = labelPalette.default
+  const sectionAnchorMap = new Map<string, string>()
+  project.sections?.forEach((section, idx) => {
+    if (section.title) {
+      sectionAnchorMap.set(section.title.trim(), `section-${project.slug}-${idx}`)
+    }
+  })
+
+  function handleTocClick(anchorId: string) {
+    const target = document.getElementById(anchorId)
+    if (!target) return
+    const headerOffset = 78
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
 
   return (
     <PageContent>
@@ -97,7 +111,12 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
 
           {/* 2. Sections Loop */}
           <div className="space-y-1">
-            {project.sections?.map((section, sectionIdx) => (
+            {project.sections?.map((section, sectionIdx) => {
+              const sectionAnchorId = section.title
+                ? sectionAnchorMap.get(section.title.trim())
+                : undefined
+
+              return (
               <article
                 key={`${project.slug}-${section.type}-${sectionIdx}`}
                 className={section.type === 'quote' ? 'py-0' : 'py-1'}
@@ -153,20 +172,32 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
 
                           if (section.titleLevel === 2) {
                             return (
-                              <h2 style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }} className={titleClassName}>
+                              <h2
+                                id={sectionAnchorId}
+                                style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }}
+                                className={titleClassName}
+                              >
                                 {section.title}
                               </h2>
                             )
                           }
                           if (section.titleLevel === 4) {
                             return (
-                              <h4 style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }} className={titleClassName}>
+                              <h4
+                                id={sectionAnchorId}
+                                style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }}
+                                className={titleClassName}
+                              >
                                 {section.title}
                               </h4>
                             )
                           }
                           return (
-                            <h3 style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }} className={titleClassName}>
+                            <h3
+                              id={sectionAnchorId}
+                              style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }}
+                              className={titleClassName}
+                            >
                               {section.title}
                             </h3>
                           )
@@ -185,7 +216,11 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                     {section.layout === 'split' ? (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px] items-start my-2">
                         {/* Left Column: Visuals */}
-                        <div className="flex flex-col items-center gap-[10px]">
+                        <div
+                          className={`flex flex-col gap-[10px] ${
+                            section.visualAlign === 'left' ? 'items-start' : 'items-center'
+                          }`}
+                        >
                           {section.visuals?.map((visual, visualIdx) => {
                             const widthPercent = visual.widthPercent ?? 80
                             return (
@@ -244,8 +279,45 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                           </div>
                         )}
 
+                        {section.tocColumns && section.tocColumns.length > 0 && (
+                          <div className="grid grid-cols-1 gap-x-12 gap-y-1 text-[14px] leading-[26px] md:grid-cols-2">
+                            {section.tocColumns.map((column, columnIdx) => (
+                              <div key={`toc-col-${columnIdx}`} className="flex flex-col">
+                                {column.map((item, itemIdx) => (
+                                  (() => {
+                                    const anchorId = sectionAnchorMap.get(item.trim())
+                                    if (!anchorId) {
+                                      return (
+                                        <p key={`toc-item-${columnIdx}-${itemIdx}`} className="m-0">
+                                          {parseRichText(item)}
+                                        </p>
+                                      )
+                                    }
+
+                                    return (
+                                      <button
+                                        key={`toc-item-${columnIdx}-${itemIdx}`}
+                                        type="button"
+                                        onClick={() => handleTocClick(anchorId)}
+                                        className="m-0 w-fit cursor-pointer border-0 border-b-2 border-transparent bg-transparent p-0 pb-[1px] text-left text-[#2c2c2b] no-underline hover:border-[#b197fc] focus-visible:border-[#b197fc] focus-visible:outline-none"
+                                      >
+                                        {parseRichText(item)}
+                                      </button>
+                                    )
+                                  })()
+                                ))}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
                         {section.visuals && section.visuals.length > 0 && (
-                          <div className="mt-4 flex flex-col items-center gap-[10px]" style={{ marginBottom: '5px' }}>
+                          <div
+                            className={`mt-4 flex flex-col gap-[10px] ${
+                              section.visualAlign === 'left' ? 'items-start' : 'items-center'
+                            }`}
+                            style={{ marginBottom: '5px' }}
+                          >
                             {section.visuals.map((visual, visualIdx) => {
                               const widthPercent = visual.widthPercent ?? 80
                               return (
@@ -344,7 +416,8 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                   </div>
                 )}
               </article>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>

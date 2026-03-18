@@ -55,8 +55,10 @@ export interface ProjectSection {
   tableTopSpacing?: number
   tableBottomSpacing?: number
   body?: string[]
+  tocColumns?: string[][]
   bullets?: string[]
   visuals?: ProjectVisual[]
+  visualAlign?: 'left' | 'center'
   table?: ProjectSectionTable
   layout?: 'default' | 'split'
 }

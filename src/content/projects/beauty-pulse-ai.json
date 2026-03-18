@@ -3,35 +3,431 @@
   "title": "화장품 상품 분석 AI 에이전트",
   "subtitle": ": Beauty Pulse AI",
   "type": "AI에이전트",
-  "summary": "근거·재현성·품질 게이트로 신뢰 가능한 화장품 리포트를 자동 생성",
+  "summary": "리뷰·가격·성분·규정을 근거로 검증해 PDF로 생성",
+  "labelPalette": {
+    "default": { "bg": "rgba(161, 115, 191, 0.2)", "text": "#2c2c2b" }
+  },
   "period": {
     "start": "2025-10-21",
     "end": "2025-11-03",
     "display": "25.10.21 - 25.11.03"
   },
-  "tags": ["RAG", "LangGraph", "LangChain", "LLM", "FastAPI"],
-  "stack": ["RAG", "LangGraph", "LangChain", "LLM", "FastAPI"],
-  "roles": ["데이터 파이프라인", "시각화 대시보드", "서비스 기획"],
-  "coverImageSrc": "/assets/projects/beauty-pulse-ai/cover.png",
+  "tags": ["RAG", "LangGraph", "LangChain", "LLM", "FastAPI", "PostgreSQL", "pgvector", "DuckDB"],
+  "stack": ["RAG", "LangGraph", "LangChain", "LLM", "FastAPI", "PostgreSQL", "pgvector", "DuckDB"],
+  "roles": ["데이터 파이프라인", "검색·정규화 설계", "품질 게이트 및 운영 검증"],
+  "coverImageSrc": "/assets/projects/beauty-pulse-ai/cover.jpg",
   "coverImageWidthPercent": 100,
   "links": [{ "label": "Detail", "href": "#/projects/beauty-pulse-ai", "external": false }],
-  "kpis": [{ "label": "분석 시간", "value": "수작업 대비 단축", "context": "채널별 포맷 통합" }],
   "order": 2,
   "sections": [
     {
+      "type": "quote",
+      "body": [
+        "핵심 차별점: 요약 생성이 아니라, 주장과 근거를 함께 남기는 리포트 시스템",
+        "비교 가능성: 리뷰·가격·성분·규정을 한 구조로 맞춰야 공정 비교가 가능",
+        "검증 가능성: URL·근거 문장·수집 시각까지 남겨 결과를 다시 확인할 수 있게 설계"
+      ]
+    },
+    { "type": "separator" },
+    {
       "type": "problem",
-      "title": "Problem",
-      "body": ["채널별 데이터 형식이 달라 수동 분석 비용이 컸습니다."]
+      "title": "목차",
+      "titleLevel": 4,
+      "tocColumns": [
+        [
+          "I. Intro",
+          "II. Why (문제 정의)",
+          "III. Goals (설계 목표/성공 기준)",
+          "IV. How (구조 설계)"
+        ],
+        [
+          "V. Proof (성능 검증)",
+          "VI. Ops (운영 및 모니터링)",
+          "VII. Close"
+        ]
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "problem",
+      "title": "I. Intro",
+      "titleLevel": 2
+    },
+    {
+      "type": "problem",
+      "title": "1. 프로젝트 개요",
+      "titleLevel": 3,
+      "tableBottomSpacing": 10,
+      "table": {
+        "columnWidths": [22, 78],
+        "rows": [
+          ["프로젝트명", "Beauty Pulse AI - 근거 기반 화장품 시장조사 리포트 시스템"],
+          ["한줄 설명", "리뷰·가격·성분·규정 정보를 근거(Evidence)로 연결해 비교·검증 가능한 리포트를 발행"],
+          ["유형", "AI Agent 기반 데이터 파이프라인/리포트 시스템(멀티에이전트+RAG)"],
+          ["대상/사용 상황", "시장조사/브랜드/MD/마케팅: 근거로 비교·검증하며 의사결정해야 하는 상황"],
+          ["핵심 설계", "· ① 근거 우선\n· ② 재현성(as_of·captured_at·URL 보존)\n· ③ 운영가능(상태·로그·복구)"],
+          ["결과물", "조건 입력\n→ 진행 상태\n→ 화장품 상품 분석 리포트(본문 + 근거 부록)"],
+          ["핵심 성과 (KPI) N=100", "· 리포트 성공률 100%(100/100)\n· 처리 소요시간 P95 7.33초(P50 6.11초)\n· 병렬 효과 P95 2.11배(P50 1.83배)\n· 병렬 절감 효과 P95 2.14초(P50 1.65초)\n· Claim Coverage 100%(100/100)"],
+          ["검색 AB (Eval) N=100", "· text 79%(79/100) P95 55ms\n· vector 100%(100/100) P95 387ms\n· hybrid 100%(100/100) P95 448ms"],
+          ["기술 스택", "LangGraph, RAG, FastAPI, PostgreSQL, pgvector, DuckDB"]
+        ]
+      }
+    },
+    {
+      "type": "problem",
+      "title": "용어(Glossary)",
+      "titleLevel": 4,
+      "bullets": [
+        "P50(중앙값): 여러 번 실행한 시간들을 정렬했을 때 가운데 값(평균 아님)",
+        "P95(95퍼센타일): 실행시간을 적은 순서로 정렬했을 때 95% 지점의 값(최대값 아님)",
+        "Freshness P95(최신성 P95): 근거가 얼마나 오래된 데이터인지 P95 적용한 값, 95%가 0.52일(약 12.5시간) 이내",
+        "Claim(주장): 리포트 본문에 적는 판단/결론 문장",
+        "Evidence(근거): Claim(주장)을 뒷받침하는 원문 URL/snippet/수집시각",
+        "Claim Coverage(근거 연결률): 전체 Claim 중 Evidence가 연결된 비율",
+        "hit_rate: 검색 테스트에서 원하는 근거를 찾은 비율(hit_cases/cases)"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "problem",
+      "title": "II. Why (문제 정의)",
+      "titleLevel": 2
+    },
+    {
+      "type": "problem",
+      "title": "1. 시장조사 현실",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_01.jpg", "alt": "시장조사 현실", "widthPercent": 100 }
+      ],
+      "bullets": [
+        "수작업 반복으로 시간·인력이 낭비되고 매번 처음부터 다시 정리하는 구조",
+        "외부 리포트 의존으로 비용 부담, 시점 차이, 비교 기준 불일치가 발생",
+        "핵심 문제: 어떤 데이터로, 언제 수집한 것으로 결론을 냈는지 역추적이 어려움"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "problem",
+      "title": "2. 구조적 원인 → 시스템 요구사항",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_02.png", "alt": "구조적 원인과 시스템 요구사항", "widthPercent": 80 }
+      ],
+      "bullets": [
+        "근거 유실: 수치 출처를 모르면 재사용·검증이 막힘",
+        "비교 기준 부재: 용량·가격 단위가 다르면 공정 비교가 어려움",
+        "재현 불가: 같은 조건으로 돌려도 다른 결과가 나오면 운영 신뢰가 무너짐",
+        "이 구조적 결함이 시스템 요구사항의 직접 근거"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "approach",
+      "title": "III. Goals (설계 목표/성공 기준)",
+      "titleLevel": 2
+    },
+    {
+      "type": "approach",
+      "title": "1. 설계 목표",
+      "titleLevel": 3,
+      "body": ["데이터 신뢰성 확보와 자동화 시스템 구축을 위한 핵심 원칙"],
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_03.jpg", "alt": "설계 목표", "widthPercent": 90 }
+      ],
+      "bullets": [
+        "근거 우선: 주장보다 근거를 먼저 두고, 근거 없는 결론은 설계 단계에서 차단",
+        "재현성: as_of 기준일 고정으로 동일 시점 결과 재현 가능",
+        "운영 가능성: 상태·로그·복구 지점을 남겨 실패 이후에도 이어서 처리 가능"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "approach",
+      "title": "2. 성공 기준(측정 항목 정의)",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_04.jpg", "alt": "성공 기준", "widthPercent": 100 }
+      ],
+      "bullets": [
+        "다중 기준 측정: 처리시간·검색품질·근거연결·최신성을 함께 측정",
+        "회귀 방지: 품질 저하를 감이 아니라 수치로 탐지",
+        "운영 기준화: 성능과 품질을 동시에 관리할 공통 기준점 마련"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "architecture",
+      "title": "IV. How (구조 설계)",
+      "titleLevel": 2
     },
     {
       "type": "architecture",
-      "title": "Architecture",
-      "body": ["수집-정제-집계 단계를 분리한 파이프라인을 구축했습니다."]
+      "title": "1. End-to-End 파이프라인",
+      "titleLevel": 3,
+      "layout": "split",
+      "visualAlign": "left",
+      "rightColumnAlign": "center",
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_05.jpg", "alt": "End-to-End 파이프라인 - 스냅샷/SSOT", "widthPercent": 70 }
+      ],
+      "bullets": [
+        "비교 가능한 스냅샷 기준 확보",
+        "검색·분석 이전에 원천 데이터(SSOT)를 먼저 고정"
+      ]
+    },
+    {
+      "type": "architecture",
+      "visualAlign": "left",
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_06.jpg", "alt": "End-to-End 파이프라인 - 생성 구간 분리", "widthPercent": 60 }
+      ],
+      "bullets": [
+        "생성 구간 분리: 수집 단계와 리포트 생성 단계를 분리해 사용자 대기 구간을 명확히 관리",
+        "단계별 책임분리(운영 품질↑): 검색·분석·검증·생성을 나눠 문제 지점을 바로 추적 가능하게 설계"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "architecture",
+      "title": "2. 수집 설계",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_07.png", "alt": "수집 설계", "widthPercent": 90 }
+      ],
+      "bullets": [
+        "사이트별 구조·단위·기준이 다르기 때문에 원문 그대로 적재 시 비교 불가능",
+        "원문 보존: URL, 수집 시각, 스냅샷을 함께 저장해 재현 가능하게 설계",
+        "시점 관리: 분석 시점과 수집 시점을 분리해 최신성(freshness) 판단 가능"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "architecture",
+      "title": "3. 정규화 설계",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_08.png", "alt": "정규화 설계", "widthPercent": 90 }
+      ],
+      "bullets": [
+        "용량 단위(ml/g)·가격 단위가 달라 그대로 비교하면 오분석 발생",
+        "원/10ml 표준화: 가격·용량을 동일 단위로 변환 저장해 공정 비교 기반 확보",
+        "정규화 규칙 버전 관리로 기준 변경 시 소급 재계산 가능"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "architecture",
+      "title": "4. 3-레이어 데이터 아키텍처: 저장·검색·집계",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_09.jpg", "alt": "3레이어 데이터 아키텍처", "widthPercent": 80 }
+      ],
+      "bullets": [
+        "역할 분리: 원천 저장·검색·집계를 한 저장소에 섞지 않고 분리",
+        "목적 분리: 검색은 근거 회수, 집계는 지표 계산에 집중",
+        "원천 기준 고정: PostgreSQL을 기준점으로 두어 무결성과 재현성 확보"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "architecture",
+      "title": "5. 하이브리드 검색 전략: 키워드 + 의미 검색",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_10.jpg", "alt": "하이브리드 검색 전략", "widthPercent": 80 }
+      ],
+      "bullets": [
+        "키워드 검색 한계: 단어가 달라지면 필요한 근거를 놓칠 수 있음",
+        "의미 검색 한계: 정확한 제품명·성분명 우선순위가 흐려질 수 있음",
+        "결합 검색 채택: 단어 기준 후보와 의미 기준 후보를 함께 모아 누락 감소",
+        "재정렬: 중복 후보 제거 및 우선순위 재계산으로 리포트용 근거 확정"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "architecture",
+      "title": "6. 다중 에이전트 병렬 처리 + 결과 통합 검증",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_11.jpg", "alt": "다중 에이전트 병렬 처리", "widthPercent": 100 }
+      ],
+      "bullets": [
+        "리뷰·가격·성분·규제를 단일 에이전트 순차 처리하면 지연이 길고 근거 추적이 어려움",
+        "도메인 분리: 리뷰·가격·성분·규정 분리 분석으로 전문성 향상",
+        "JOIN 검증: 4개 에이전트 결과 통합 시 기준 불일치 감지·해결",
+        "병렬 처리로 분석 품질과 처리 시간을 동시에 확보"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "result",
+      "title": "V. Proof (성능 검증)",
+      "titleLevel": 2
+    },
+    {
+      "type": "result",
+      "title": "1. 핵심 지표·평가·비용 요약(N=100)",
+      "titleLevel": 3,
+      "body": ["DB 조회부터 PDF 생성 구간 기준"],
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_12.png", "alt": "핵심 지표 요약", "widthPercent": 80 }
+      ],
+      "bullets": [
+        "100건 연속 실행 안정성 검증: 성공률 100%(재시도/복구율 0%)",
+        "Claim Coverage 100%: 모든 주장에 근거 연결(Evidence 누락 0건)",
+        "P95 7.33초: 상위 95% 케이스가 이 시간 내 완료"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "result",
+      "title": "2. 처리 성능 & 병렬 처리 효과 (N=100)",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_13.png", "alt": "병렬 처리 효과", "widthPercent": 100 }
+      ],
+      "bullets": [
+        "병렬화의 의미: 단순 가속이 아니라 병목 분산과 총 처리시간 단축",
+        "순차 대비 병렬 처리로 P95 기준 2.14초 단축, 2.11배 가속"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "result",
+      "title": "3. 검색(Retrieval) 방식 비교(N=100)",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_14.jpg", "alt": "검색 방식 비교", "widthPercent": 80 }
+      ],
+      "bullets": [
+        "텍스트 79%: 동의어·비격식 표현을 글자 일치로 잡지 못하는 구조적 한계",
+        "의미 검색 100%: 다만 의미만으로 탐색 시 후보 범위가 넓어져 안정성 저하 가능",
+        "하이브리드: 텍스트로 후보 확보 후 의미 검색 재정렬",
+        "정확도 100% 유지, 추가 처리시간은 전체의 0.8%(+61ms)"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "result",
+      "title": "4. 근거(Evidence) 연결 체계",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_15.png", "alt": "근거 연결 체계", "widthPercent": 85 }
+      ],
+      "bullets": [
+        "14,908건 근거에서 URL 유효율·최신성 위반율·발췌문 빈값율 모두 0%",
+        "평균 Claim 1개당 근거 3.0개로 주장당 복수 출처 검증",
+        "근거가 없으면 주장을 쓸 수 없는 구조",
+        "최신성 P95 0.52일(약 12.5시간) 이내"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "result",
+      "title": "5. 리포트 구조 품질",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_16.png", "alt": "리포트 구조 품질", "widthPercent": 80 }
+      ],
+      "bullets": [
+        "LLM 생성 결과를 그대로 내보내지 않고 품질 게이트 통과 후 발행",
+        "커버리지·최신성·표본 적합성·정합성을 항목별 수치로 관리",
+        "등급 미달 시 발행 차단 또는 제한 처리"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "result",
+      "title": "6. 비용 지표",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_17.png", "alt": "비용 지표", "widthPercent": 80 }
+      ],
+      "bullets": [
+        "리포트 1건당 $0.00314, 평균 3,565 토큰",
+        "멀티에이전트 병렬 구조에서도 토큰 중복 없이 역할 분리로 최소화",
+        "비용은 설계 선택의 결과: 역할 분리와 검색 최적화가 토큰 낭비를 차단"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "lessons",
+      "title": "VI. Ops (운영 및 모니터링)",
+      "titleLevel": 2
     },
     {
       "type": "lessons",
-      "title": "Lessons",
-      "body": ["변동성이 큰 데이터는 스키마 변경 가능성을 먼저 고려해야 한다는 점을 확인했습니다."]
+      "title": "1. 운영을 위한 상태·로그·복구 체계",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_18.jpg", "alt": "운영 로그 및 복구 체계", "widthPercent": 90 }
+      ],
+      "bullets": [
+        "로그가 없으면 장애 재현과 원인 추적이 불가능",
+        "단계별 상태 기록: Step 시작·종료·재시도 횟수를 job_id 기준 추적",
+        "체크포인트(중단 복구): 실패 지점부터 재개해 데이터 손실 방지",
+        "관측 가능성이 운영 품질의 핵심"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "lessons",
+      "title": "2. 품질 게이트",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_19.jpg", "alt": "품질 게이트", "widthPercent": 90 }
+      ],
+      "bullets": [
+        "생성 이후 검사가 아니라 생성 전에 차단하는 구조",
+        "Gate 1: Evidence 최소 1개 강제(Claim Coverage 100% 보장)",
+        "Gate 2: URL 유효성 검증(404/만료 링크 차단)",
+        "Gate 3: 최신성 체크(as_of 기준 이내 데이터만 허용)",
+        "게이트 실패 시 리포트 생성 중단"
+      ]
+    },
+    { "type": "separator" },
+    {
+      "type": "lessons",
+      "title": "3. 트러블슈팅",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_20.jpg", "alt": "트러블슈팅", "widthPercent": 90 }
+      ],
+      "bullets": [
+        "실제 발생한 3가지 장애 사례를 운영 기준으로 해결",
+        "HTML 합성 실패: 스키마 검증 + null 가드로 성공률 100% 확보",
+        "벡터 검색 지연: 인덱스 튜닝 + 경량화 + 캐시로 P95 안정화",
+        "근거 미연결: JOIN 단계에서 근거 최소 1개 강제해 미연결 0건",
+        "문제→원인→조치→결과를 추적 가능한 구조로 운영 신뢰성 확보"
+      ]
+    },
+    { "type": "separator" },
+
+    {
+      "type": "lessons",
+      "title": "VII. Close",
+      "titleLevel": 2
+    },
+    {
+      "type": "lessons",
+      "title": "1. 향후 로드맵",
+      "titleLevel": 3,
+      "visuals": [
+        { "src": "/assets/projects/beauty-pulse-ai/visuals/beauty_pulse_img_21.jpg", "alt": "향후 로드맵", "widthPercent": 80 }
+      ],
+      "bullets": [
+        "현재 텍스트 검색 79%는 다음 개선 대상으로 지정(동의어 사전 도입)",
+        "근거 스냅샷 영구 저장으로 외부 URL 삭제 이후에도 분석 재현 가능",
+        "카테고리 확장 시 현재 파이프라인·DB·에이전트 구조 재사용 가능",
+        "로드맵은 재설계가 아닌 현재 구조의 확장"
+      ]
     }
   ]
 }
