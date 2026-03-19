@@ -2,21 +2,134 @@
 import { PageContent } from '@/components/layout/PageContent'
 import { TableColumnGroup } from '@/components/table/TableColumnGroup'
 import { getProjectBySlug } from '@/features/projects/loader'
+import { TocGrid } from '@/features/projects/components/TocGrid'
+import type { RichText, RichTextSegment } from '@/features/projects/model'
 import { parseRichText } from '@/lib/parseRichText'
 
 type LabelPalette = { bg: string; text: string }
+const DEFAULT_LABEL_PALETTE: LabelPalette = { bg: 'rgba(211, 168, 0, 0.137)', text: '#2c2c2b' }
 
 const listClassName = 'list-disc space-y-1 pl-6 text-[14px] leading-[26px]'
 const listItemClassName = 'm-0 leading-[26px]'
+const DEFAULT_TABLE_TOP_SPACING = 8
+const DEFAULT_TABLE_BOTTOM_SPACING = 15
 
-function renderLineWithLabel(line: string, palette: LabelPalette) {
-  const match = line.match(/^(.+?):\s*(.+)$/)
+function getPlainText(value: RichText | undefined) {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  return value.map((segment) => segment.text).join('')
+}
+
+function getRomanSectionKey(value: string) {
+  const match = value.trim().match(/^((?:I|II|III|IV|V|VI|VII|VIII|IX|X)\.\s+[A-Za-z]+)/)
+  return match ? match[1] : null
+}
+
+function splitSegmentsAtIndex(segments: RichTextSegment[], index: number) {
+  const before: RichTextSegment[] = []
+  const after: RichTextSegment[] = []
+  let cursor = 0
+
+  segments.forEach((segment) => {
+    const end = cursor + segment.text.length
+    if (end <= index) {
+      before.push(segment)
+    } else if (cursor >= index) {
+      after.push(segment)
+    } else {
+      const splitAt = index - cursor
+      const left = segment.text.slice(0, splitAt)
+      const right = segment.text.slice(splitAt)
+      if (left) before.push({ ...segment, text: left })
+      if (right) after.push({ ...segment, text: right })
+    }
+    cursor = end
+  })
+
+  return { before, after }
+}
+
+function trimLeadingSpaces(segments: RichTextSegment[]) {
+  if (segments.length === 0) return segments
+  const trimmed = [...segments]
+  while (trimmed.length > 0) {
+    const first = trimmed[0]
+    const nextText = first.text.replace(/^\s+/, '')
+    if (nextText === first.text) break
+    if (nextText) {
+      trimmed[0] = { ...first, text: nextText }
+      break
+    }
+    trimmed.shift()
+  }
+  return trimmed
+}
+
+function resolvePaletteForLabel(
+  labelText: string,
+  palettes: Record<string, LabelPalette>,
+  overrides?: Record<string, string>,
+) {
+  if (!overrides) return palettes.default ?? DEFAULT_LABEL_PALETTE
+  const key = overrides[labelText]
+  if (key && palettes[key]) return palettes[key]
+  return palettes.default ?? DEFAULT_LABEL_PALETTE
+}
+
+function renderLineWithLabel(
+  line: RichText,
+  palettes: Record<string, LabelPalette>,
+  overrides?: Record<string, string>,
+) {
+  const plainLine = getPlainText(line)
+  const match = plainLine.match(/^(.+?):\s*([\s\S]*)$/)
   if (!match) return parseRichText(line)
   const labelText = match[1].trim()
-  const content = match[2]
+  const circledMatch = labelText.match(/^([①②③④⑤⑥⑦⑧⑨⑩])\s*(.*)$/)
+  const circledPrefix = circledMatch ? circledMatch[1] : null
+  const circledLabel = circledMatch ? circledMatch[2] : labelText
+  const isMiddleDotLabel = labelText.startsWith('·')
+  const normalizedLabelText = labelText
+    .replace(/^·\s?/, '')
+    .replace(/^([①②③④⑤⑥⑦⑧⑨⑩])\s*/, '')
+    .trim()
+  const palette = resolvePaletteForLabel(normalizedLabelText, palettes, overrides)
+  const colonIndex = plainLine.indexOf(':')
+
+  let content: RichText = match[2]
+  if (Array.isArray(line) && colonIndex !== -1) {
+    const { after } = splitSegmentsAtIndex(line, colonIndex + 1)
+    content = trimLeadingSpaces(after)
+  }
+
+  if (isMiddleDotLabel) {
+    const plainLabel = normalizedLabelText
+    return (
+      <>
+        <span>· </span>
+        <span
+          style={{
+            display: 'inline-block',
+            padding: '2.7px 5.4px',
+            borderRadius: '4px',
+            backgroundColor: palette.bg,
+            color: palette.text,
+            fontWeight: 700,
+            fontSize: '14px',
+            lineHeight: 'normal',
+          }}
+        >
+          {plainLabel}
+        </span>
+        <span style={{ marginRight: '4px' }}>:</span>
+        {parseRichText(content)}
+      </>
+    )
+  }
 
   return (
     <>
+      {circledPrefix && <span>{`${circledPrefix} `}</span>}
       <span
         style={{
           display: 'inline-block',
@@ -24,17 +137,44 @@ function renderLineWithLabel(line: string, palette: LabelPalette) {
           borderRadius: '4px',
           backgroundColor: palette.bg,
           color: palette.text,
-          fontWeight: 400,
-          fontSize: '13.6px',
+          fontWeight: 700,
+          fontSize: '14px',
           lineHeight: 'normal',
         }}
       >
-        {labelText}
+        {circledLabel.replace(/^·\s?/, '')}
       </span>
       <span style={{ marginRight: '4px' }}>:</span>
       {parseRichText(content)}
     </>
   )
+}
+
+function removeLeadingTabs(segments: RichTextSegment[], count: number) {
+  let remaining = count
+  return segments
+    .map((segment) => {
+      if (remaining <= 0) return segment
+      const match = segment.text.match(/^\t+/)
+      if (!match) return segment
+      const removeCount = Math.min(match[0].length, remaining)
+      remaining -= removeCount
+      const nextText = segment.text.slice(removeCount)
+      if (!nextText) return null
+      return { ...segment, text: nextText }
+    })
+    .filter((segment): segment is RichTextSegment => Boolean(segment))
+}
+
+function extractIndentedLine(line: RichText) {
+  const plainLine = getPlainText(line)
+  const matched = plainLine.match(/^(\t+)(.*)$/)
+  if (!matched) return { indent: 0, text: line }
+  const indent = matched[1].length
+  if (typeof line === 'string') {
+    return { indent, text: matched[2] }
+  }
+  return { indent, text: removeLeadingTabs(line, indent) }
 }
 
 interface ProjectDetailPageProps {
@@ -64,14 +204,21 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
     4: { fontSize: '20px', lineHeight: '28px', fontWeight: 600, color: '#2c2c2b' },
   }
   const romanTitleStyle = { fontSize: '22px', lineHeight: '30px', fontWeight: 600, color: '#2c2c2b' }
-  const labelPalette = project.labelPalette ?? {
-    default: { bg: 'rgba(211, 168, 0, 0.137)', text: '#2c2c2b' },
-  }
-  const labelStyle = labelPalette.default
+  const labelPalettes = project.labelPalette ?? { default: DEFAULT_LABEL_PALETTE }
+  const labelOverrides = project.labelPaletteOverrides
   const sectionAnchorMap = new Map<string, string>()
+  const sectionRomanAnchorMap = new Map<string, string>()
   project.sections?.forEach((section, idx) => {
     if (section.title) {
-      sectionAnchorMap.set(section.title.trim(), `section-${project.slug}-${idx}`)
+      const titleText = getPlainText(section.title).trim()
+      if (titleText) {
+        const anchorId = `section-${project.slug}-${idx}`
+        sectionAnchorMap.set(titleText, anchorId)
+        const romanKey = getRomanSectionKey(titleText)
+        if (romanKey) {
+          sectionRomanAnchorMap.set(romanKey, anchorId)
+        }
+      }
     }
   })
 
@@ -81,6 +228,16 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
     const headerOffset = 78
     const top = target.getBoundingClientRect().top + window.scrollY - headerOffset
     window.scrollTo({ top, behavior: 'smooth' })
+  }
+
+  function getSectionAnchorId(item: RichText) {
+    const titleText = getPlainText(item).trim()
+    const exactAnchorId = sectionAnchorMap.get(titleText)
+    if (exactAnchorId) return exactAnchorId
+
+    const romanKey = getRomanSectionKey(titleText)
+    if (!romanKey) return undefined
+    return sectionRomanAnchorMap.get(romanKey)
   }
 
   return (
@@ -94,9 +251,11 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
           {project.coverImageSrc && (
             <div className="w-full" style={{ marginTop: '20px', marginBottom: '20px' }}>
               <div
-                className="mx-auto"
+                className="flex w-full justify-center"
                 style={{
-                  width: `${project.coverImageWidthPercent ?? 80}%`,
+                  width: '100%',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
                 }}
               >
                 <img
@@ -113,8 +272,9 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
           <div className="space-y-1">
             {project.sections?.map((section, sectionIdx) => {
               const sectionAnchorId = section.title
-                ? sectionAnchorMap.get(section.title.trim())
+                ? sectionAnchorMap.get(getPlainText(section.title).trim())
                 : undefined
+              const sectionLabelOverrides = section.labelPaletteOverrides ?? labelOverrides
 
               return (
               <article
@@ -143,11 +303,18 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                       {(section.body ?? section.bullets ?? [])
                         .map((line) => (typeof line === 'string' ? line.replace(/\s+$/g, '') : line))
                         .filter((line) => (typeof line === 'string' ? line.trim() !== '' : true))
-                        .map((line, idx) => (
-                          <p key={idx} className="m-0 whitespace-pre-wrap" style={{ margin: 0 }}>
-                            {renderLineWithLabel(line, labelStyle)}
-                          </p>
-                        ))}
+                        .map((line, idx) => {
+                          const { indent, text } = extractIndentedLine(line)
+                          return (
+                            <p
+                              key={idx}
+                              className="m-0 whitespace-pre-wrap"
+                              style={{ margin: 0, marginLeft: `${indent * 20}px` }}
+                            >
+                              {renderLineWithLabel(text, labelPalettes, sectionLabelOverrides)}
+                            </p>
+                          )
+                        })}
                     </div>
                   </blockquote>
                 ) : section.type === 'callout' ? (
@@ -164,7 +331,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                     {section.title && (
                       <div className={`mt-6 ${section.source ? 'mb-1' : 'mb-2'}`}>
                         {(() => {
-                          const trimmedTitle = section.title?.trim()
+                          const trimmedTitle = getPlainText(section.title).trim()
                           const isRomanTitle = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)\./.test(trimmedTitle ?? '')
                           const resolvedStyle = isRomanTitle ? romanTitleStyle : headingStyleByLevel[section.titleLevel === 4 ? 4 : section.titleLevel === 2 ? 2 : 3]
                           const titleClassName = 'tracking-tight'
@@ -177,7 +344,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                                 style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }}
                                 className={titleClassName}
                               >
-                                {section.title}
+                                {parseRichText(section.title)}
                               </h2>
                             )
                           }
@@ -188,7 +355,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                                 style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }}
                                 className={titleClassName}
                               >
-                                {section.title}
+                                {parseRichText(section.title)}
                               </h4>
                             )
                           }
@@ -198,7 +365,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                               style={{ ...resolvedStyle, marginBottom: resolvedMarginBottom }}
                               className={titleClassName}
                             >
-                              {section.title}
+                              {parseRichText(section.title)}
                             </h3>
                           )
                         })()}
@@ -207,7 +374,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                             className="mt-1 text-[14px] leading-[1.5] text-[#7d7a75]"
                             style={{ marginBottom: 0 }}
                           >
-                            {section.source}
+                            {parseRichText(section.source)}
                           </p>
                         )}
                       </div>
@@ -254,17 +421,24 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                           {section.body && section.body.length > 0 && (
                             <div className="flex flex-col gap-[10px] text-[14px]" style={{ marginTop: section.source ? 0 : undefined, lineHeight: '21px' }}>
                               {section.body.map((line, idx) => (
-                                <p key={idx} className="m-0">{renderLineWithLabel(line, labelStyle)}</p>
+                                <p key={idx} className="m-0">{renderLineWithLabel(line, labelPalettes, sectionLabelOverrides)}</p>
                               ))}
                             </div>
                           )}
                           {section.bullets && section.bullets.length > 0 && (
                             <ul className={listClassName}>
-                              {section.bullets.map((line, lineIdx) => (
-                                <li key={lineIdx} className={listItemClassName}>
-                                  {renderLineWithLabel(line, labelStyle)}
-                                </li>
-                              ))}
+                              {section.bullets.map((line, lineIdx) => {
+                                const { indent, text } = extractIndentedLine(line)
+                                return (
+                                  <li
+                                    key={lineIdx}
+                                    className={listItemClassName}
+                                    style={{ marginLeft: `${indent * 20}px` }}
+                                  >
+                                    {renderLineWithLabel(text, labelPalettes, sectionLabelOverrides)}
+                                  </li>
+                                )
+                              })}
                             </ul>
                           )}
                         </div>
@@ -274,41 +448,17 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                         {section.body && section.body.length > 0 && (
                           <div className="flex flex-col gap-[10px] text-[14px]" style={{ lineHeight: '21px' }}>
                             {section.body.map((line, idx) => (
-                              <p key={idx} className="m-0">{renderLineWithLabel(line, labelStyle)}</p>
+                              <p key={idx} className="m-0">{renderLineWithLabel(line, labelPalettes, sectionLabelOverrides)}</p>
                             ))}
                           </div>
                         )}
 
                         {section.tocColumns && section.tocColumns.length > 0 && (
-                          <div className="grid grid-cols-1 gap-x-12 gap-y-1 text-[14px] leading-[26px] md:grid-cols-2">
-                            {section.tocColumns.map((column, columnIdx) => (
-                              <div key={`toc-col-${columnIdx}`} className="flex flex-col">
-                                {column.map((item, itemIdx) => (
-                                  (() => {
-                                    const anchorId = sectionAnchorMap.get(item.trim())
-                                    if (!anchorId) {
-                                      return (
-                                        <p key={`toc-item-${columnIdx}-${itemIdx}`} className="m-0">
-                                          {parseRichText(item)}
-                                        </p>
-                                      )
-                                    }
-
-                                    return (
-                                      <button
-                                        key={`toc-item-${columnIdx}-${itemIdx}`}
-                                        type="button"
-                                        onClick={() => handleTocClick(anchorId)}
-                                        className="m-0 w-fit cursor-pointer border-0 border-b-2 border-transparent bg-transparent p-0 pb-[1px] text-left text-[#2c2c2b] no-underline hover:border-[#b197fc] focus-visible:border-[#b197fc] focus-visible:outline-none"
-                                      >
-                                        {parseRichText(item)}
-                                      </button>
-                                    )
-                                  })()
-                                ))}
-                              </div>
-                            ))}
-                          </div>
+                          <TocGrid
+                            columns={section.tocColumns}
+                            getAnchorId={getSectionAnchorId}
+                            onClick={handleTocClick}
+                          />
                         )}
 
                         {section.visuals && section.visuals.length > 0 && (
@@ -345,11 +495,18 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
 
                         {section.bullets && section.bullets.length > 0 && (
                           <ul className={listClassName}>
-                            {section.bullets.map((line, lineIdx) => (
-                              <li key={lineIdx} className={listItemClassName}>
-                                {renderLineWithLabel(line, labelStyle)}
-                              </li>
-                            ))}
+                            {section.bullets.map((line, lineIdx) => {
+                              const { indent, text } = extractIndentedLine(line)
+                              return (
+                                <li
+                                  key={lineIdx}
+                                  className={listItemClassName}
+                                  style={{ marginLeft: `${indent * 20}px` }}
+                                >
+                                  {renderLineWithLabel(text, labelPalettes, sectionLabelOverrides)}
+                                </li>
+                              )
+                            })}
                           </ul>
                         )}
 
@@ -357,8 +514,8 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                           <div
                             className="overflow-x-auto"
                             style={{
-                              marginTop: section.tableTopSpacing ?? 0,
-                              marginBottom: section.tableBottomSpacing ?? 0,
+                              marginTop: `${DEFAULT_TABLE_TOP_SPACING}px`,
+                              marginBottom: `${DEFAULT_TABLE_BOTTOM_SPACING}px`,
                             }}
                           >
                             <table className="w-full border-collapse text-[14px] border border-[#e6e5e3]">

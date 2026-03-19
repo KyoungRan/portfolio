@@ -37,7 +37,7 @@ const styles = {
   ),
   brandLogo: 'h-9 w-9',
   mobileToggle: cn(
-    'ml-auto inline-flex h-10 items-center justify-center rounded-md border border-border px-3 text-sm text-foreground md:hidden',
+    'ml-auto inline-flex min-h-10 min-w-[64px] items-center justify-center rounded-md border border-border p-[5px] text-sm text-foreground md:hidden',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
   ),
   desktopNav: 'ml-auto hidden items-center justify-end gap-3 md:flex lg:gap-4',
@@ -66,15 +66,18 @@ const styles = {
     'hover:bg-muted',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
   ),
-  mobileNav: 'border-t border-border py-3 md:hidden',
+  mobileNav: 'absolute top-full right-0 z-50 mt-3 w-[min(22rem,calc(100vw-3rem))] md:hidden',
   mobileItemButton: cn(
     'flex w-full items-center gap-2 rounded-md px-4 py-3 text-left text-sm font-medium text-muted-foreground transition-colors',
     'hover:bg-muted hover:text-foreground',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
   ),
-  mobileSubPanel: 'mt-1 space-y-1 pl-3',
+  mobileNavPanel: 'relative rounded-[18px] border border-[#e5e7eb] bg-card p-[5px] shadow-lg',
+  mobileNavList: 'overflow-hidden rounded-[14px] border border-[#e5e7eb] p-[5px]',
+  mobileSubPanel: 'mt-2 rounded-[18px] border border-[#e5e7eb] bg-card p-[5px] shadow-lg',
+  mobileSubList: 'overflow-hidden rounded-[14px] border border-[#e5e7eb] p-[5px]',
   mobileSubItem: cn(
-    'block w-full rounded-sm px-4 py-2.5 text-left text-sm text-muted-foreground transition-colors',
+    'block w-full rounded-sm border-b border-[#e5e7eb] p-[15px] text-left text-sm text-muted-foreground transition-colors last:border-b-0',
     'hover:bg-muted hover:text-foreground',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
   ),
@@ -373,7 +376,7 @@ export function Header({ currentPath, isProjectDetail }: HeaderProps) {
 
   return (
     <header className={styles.header}>
-      <Container className="px-6 sm:px-8 lg:px-12">
+      <Container className="relative px-6 sm:px-8 lg:px-12">
         <div className="flex h-16 items-center justify-between gap-4">
           <a
             className={styles.brandLink}
@@ -505,62 +508,66 @@ export function Header({ currentPath, isProjectDetail }: HeaderProps) {
 
         {isMenuOpen && (
           <nav aria-label="모바일 메뉴" className={styles.mobileNav} id="mobile-nav">
-            <ul className="space-y-1 px-0">
-              {navItems.map((item) => {
-                const isProjectItem = item.label === 'Project'
+            <div className={styles.mobileNavPanel}>
+              <ul className={styles.mobileNavList}>
+                {navItems.map((item) => {
+                  const isProjectItem = item.label === 'Project'
 
-                if (!isProjectItem) {
+                  if (!isProjectItem) {
+                    return (
+                      <li className="list-none border-b border-[#e5e7eb] last:border-b-0" key={item.sectionId}>
+                        <button
+                          className={styles.mobileItemButton}
+                          onClick={() => handleSectionClick(item.sectionId)}
+                          type="button"
+                        >
+                          <HeaderMenuIcon className="h-4 w-4" sectionId={item.sectionId} />
+                          <span>{item.label}</span>
+                        </button>
+                      </li>
+                    )
+                  }
+
                   return (
-                    <li className="list-none" key={item.sectionId}>
+                    <li className="list-none border-b border-[#e5e7eb] last:border-b-0" key={item.sectionId}>
                       <button
                         className={styles.mobileItemButton}
-                        onClick={() => handleSectionClick(item.sectionId)}
+                        onClick={() => setIsProjectOpen((open) => !open)}
                         type="button"
                       >
                         <HeaderMenuIcon className="h-4 w-4" sectionId={item.sectionId} />
                         <span>{item.label}</span>
                       </button>
+
+                      {isProjectOpen && (
+                        <div className={styles.mobileSubPanel}>
+                          <div className={styles.mobileSubList}>
+                            <button
+                              className={styles.mobileSubItem}
+                              onClick={() => handleSectionClick(item.sectionId)}
+                              type="button"
+                            >
+                              프로젝트 섹션으로 이동
+                            </button>
+
+                            {projects.map((project) => (
+                              <a
+                                className={styles.mobileSubItem}
+                                href={`#${ROUTE_PATHS.projects}/${project.slug}`}
+                                key={project.slug}
+                                onClick={closeMenu}
+                              >
+                                {project.title}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </li>
                   )
-                }
-
-                return (
-                  <li className="list-none" key={item.sectionId}>
-                    <button
-                      className={styles.mobileItemButton}
-                      onClick={() => setIsProjectOpen((open) => !open)}
-                      type="button"
-                    >
-                      <HeaderMenuIcon className="h-4 w-4" sectionId={item.sectionId} />
-                      <span>{item.label}</span>
-                    </button>
-
-                    {isProjectOpen && (
-                      <div className={styles.mobileSubPanel}>
-                        <button
-                          className={styles.mobileSubItem}
-                          onClick={() => handleSectionClick(item.sectionId)}
-                          type="button"
-                        >
-                          프로젝트 섹션으로 이동
-                        </button>
-
-                        {projects.map((project) => (
-                          <a
-                            className={styles.mobileSubItem}
-                            href={`#${ROUTE_PATHS.projects}/${project.slug}`}
-                            key={project.slug}
-                            onClick={closeMenu}
-                          >
-                            {project.title}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
+                })}
+              </ul>
+            </div>
           </nav>
         )}
       </Container>

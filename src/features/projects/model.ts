@@ -2,6 +2,14 @@
 // 카드/상세/내비에서 동일 스키마를 공유해 필드 불일치를 방지한다.
 import type { TableColumnWidths } from '@/lib/tableColumnWidths'
 
+export interface RichTextSegment {
+  text: string
+  bold?: boolean
+  color?: 'purple' | 'gray' | 'muted'
+}
+
+export type RichText = string | RichTextSegment[]
+
 export interface ProjectPeriod {
   start: string
   end?: string | null
@@ -25,14 +33,14 @@ export interface ProjectKpi {
 export interface ProjectVisual {
   src: string
   alt: string
-  caption?: string
+  caption?: RichText
   kind?: 'diagram' | 'screenshot' | 'chart' | 'other'
   widthPercent?: number
 }
 
 export interface ProjectSectionTable {
-  headers?: string[]
-  rows: string[][]
+  headers?: RichText[]
+  rows: RichText[][]
   columnWidths?: TableColumnWidths
 }
 
@@ -48,15 +56,16 @@ export interface ProjectSection {
     | 'quote'
     | 'separator'
     | 'callout'
-  title?: string
+  title?: RichText
   titleLevel?: 2 | 3 | 4
-  source?: string
+  source?: RichText
+  labelPaletteOverrides?: Record<string, string>
   rightColumnAlign?: 'center'
   tableTopSpacing?: number
   tableBottomSpacing?: number
-  body?: string[]
-  tocColumns?: string[][]
-  bullets?: string[]
+  body?: RichText[]
+  tocColumns?: RichText[][]
+  bullets?: RichText[]
   visuals?: ProjectVisual[]
   visualAlign?: 'left' | 'center'
   table?: ProjectSectionTable
@@ -70,6 +79,7 @@ export interface ProjectItem {
   subtitle?: string
   summary: string
   labelPalette?: Record<string, { bg: string; text: string; border?: string }>
+  labelPaletteOverrides?: Record<string, string>
   period: ProjectPeriod
   tags: string[]
   stack: string[]
