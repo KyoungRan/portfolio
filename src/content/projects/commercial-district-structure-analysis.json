@@ -137,9 +137,15 @@
     {
       "type": "approach",
       "title": "데이터셋",
+      "titleLevel": 4,
       "layout": "default",
       "bullets": [
-        "데이터 인벤토리(출처·기간) 표"
+        [
+          {
+            "text": "데이터 인벤토리(출처·기간) 표",
+            "bold": true
+          }
+        ]
       ],
       "tableTopSpacing": 10,
       "tableBottomSpacing": 10,
@@ -214,7 +220,12 @@
     {
       "type": "approach",
       "bullets": [
-        "수집·전처리 요약(가공 규칙/정규화) 표"
+        [
+          {
+            "text": "수집·전처리 요약(가공 규칙/정규화) 표",
+            "bold": true
+          }
+        ]
       ],
       "tableTopSpacing": 10,
       "table": {

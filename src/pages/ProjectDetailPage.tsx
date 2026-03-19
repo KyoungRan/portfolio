@@ -25,6 +25,23 @@ function getRomanSectionKey(value: string) {
   return match ? match[1] : null
 }
 
+function isSourceMetaLine(value: RichText) {
+  return /^출처\s*:/.test(getPlainText(value).trim())
+}
+
+function inferTitleLevel(title: RichText | undefined, explicitLevel?: 2 | 3 | 4) {
+  if (explicitLevel) return explicitLevel
+
+  const titleText = getPlainText(title).trim()
+  if (/^(I|II|III|IV|V|VI|VII|VIII|IX|X)\./.test(titleText)) {
+    return 2
+  }
+  if (/^\d+\./.test(titleText)) {
+    return 3
+  }
+  return 4
+}
+
 function splitSegmentsAtIndex(segments: RichTextSegment[], index: number) {
   const before: RichTextSegment[] = []
   const after: RichTextSegment[] = []
@@ -327,17 +344,28 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col gap-[10px] py-2">
+                  <div
+                    className={`flex flex-col ${
+                      !section.title && section.table ? 'py-0' : 'py-2'
+                    }`}
+                  >
                     {section.title && (
-                      <div className={`mt-6 ${section.source ? 'mb-1' : 'mb-2'}`}>
+                      <div
+                        className={`${
+                          inferTitleLevel(section.title, section.titleLevel) === 4 ? 'mt-[15px]' : 'mt-6'
+                        } ${section.source ? 'mb-1' : 'mb-2'}`}
+                      >
                         {(() => {
                           const trimmedTitle = getPlainText(section.title).trim()
                           const isRomanTitle = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)\./.test(trimmedTitle ?? '')
-                          const resolvedStyle = isRomanTitle ? romanTitleStyle : headingStyleByLevel[section.titleLevel === 4 ? 4 : section.titleLevel === 2 ? 2 : 3]
+                          const resolvedTitleLevel = inferTitleLevel(section.title, section.titleLevel)
+                          const resolvedStyle = isRomanTitle
+                            ? romanTitleStyle
+                            : headingStyleByLevel[resolvedTitleLevel]
                           const titleClassName = 'tracking-tight'
                           const resolvedMarginBottom = isRomanTitle ? '10px' : '5px'
 
-                          if (section.titleLevel === 2) {
+                          if (resolvedTitleLevel === 2) {
                             return (
                               <h2
                                 id={sectionAnchorId}
@@ -348,7 +376,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                               </h2>
                             )
                           }
-                          if (section.titleLevel === 4) {
+                          if (resolvedTitleLevel === 4) {
                             return (
                               <h4
                                 id={sectionAnchorId}
@@ -381,10 +409,10 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                     )}
 
                     {section.layout === 'split' ? (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-[10px] items-start my-2">
+                      <div className="my-1 grid grid-cols-1 items-start gap-x-[10px] gap-y-[6px] md:grid-cols-2">
                         {/* Left Column: Visuals */}
                         <div
-                          className={`flex flex-col gap-[10px] ${
+                          className={`flex flex-col gap-[6px] ${
                             section.visualAlign === 'left' ? 'items-start' : 'items-center'
                           }`}
                         >
@@ -414,14 +442,24 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
 
                         {/* Right Column: Body + Bullets */}
                         <div
-                          className={`flex h-full flex-col gap-[10px] ${
+                          className={`flex h-full flex-col gap-[6px] ${
                             section.rightColumnAlign === 'center' ? 'justify-center' : ''
                           }`}
                         >
                           {section.body && section.body.length > 0 && (
-                            <div className="flex flex-col gap-[10px] text-[14px]" style={{ marginTop: section.source ? 0 : undefined, lineHeight: '21px' }}>
+                            <div
+                              className="flex flex-col gap-[6px] text-[14px]"
+                              style={{ marginTop: section.source ? 0 : undefined, lineHeight: '21px' }}
+                            >
                               {section.body.map((line, idx) => (
-                                <p key={idx} className="m-0">{renderLineWithLabel(line, labelPalettes, sectionLabelOverrides)}</p>
+                                <p
+                                  key={idx}
+                                  className={isSourceMetaLine(line) ? 'm-0 text-[#7d7a75]' : 'm-0'}
+                                >
+                                  {isSourceMetaLine(line)
+                                    ? parseRichText(line)
+                                    : renderLineWithLabel(line, labelPalettes, sectionLabelOverrides)}
+                                </p>
                               ))}
                             </div>
                           )}
@@ -446,9 +484,16 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                     ) : (
                       <>
                         {section.body && section.body.length > 0 && (
-                          <div className="flex flex-col gap-[10px] text-[14px]" style={{ lineHeight: '21px' }}>
+                          <div className="flex flex-col gap-[6px] text-[14px]" style={{ lineHeight: '21px' }}>
                             {section.body.map((line, idx) => (
-                              <p key={idx} className="m-0">{renderLineWithLabel(line, labelPalettes, sectionLabelOverrides)}</p>
+                              <p
+                                key={idx}
+                                className={isSourceMetaLine(line) ? 'm-0 text-[#7d7a75]' : 'm-0'}
+                              >
+                                {isSourceMetaLine(line)
+                                  ? parseRichText(line)
+                                  : renderLineWithLabel(line, labelPalettes, sectionLabelOverrides)}
+                              </p>
                             ))}
                           </div>
                         )}
@@ -463,7 +508,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
 
                         {section.visuals && section.visuals.length > 0 && (
                           <div
-                            className={`mt-4 flex flex-col gap-[10px] ${
+                            className={`mt-2 flex flex-col gap-[6px] ${
                               section.visualAlign === 'left' ? 'items-start' : 'items-center'
                             }`}
                             style={{ marginBottom: '5px' }}
