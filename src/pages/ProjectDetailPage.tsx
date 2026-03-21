@@ -555,64 +555,69 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                           </ul>
                         )}
 
-                        {section.table && (
-                          <div
-                            className="overflow-x-auto"
-                            style={{
-                              marginTop: `${DEFAULT_TABLE_TOP_SPACING}px`,
-                              marginBottom: `${DEFAULT_TABLE_BOTTOM_SPACING}px`,
-                            }}
-                          >
-                            <table className="w-full border-collapse text-[14px] border border-[#e6e5e3]">
-                              <TableColumnGroup widths={section.table.columnWidths} />
-                              {section.table.headers && (
-                                <thead>
-                                  <tr className="border-b border-[#e6e5e3] bg-[#f7f6f3]">
-                                    {section.table.headers.map((h, hIdx) => (
-                                      <th
-                                        key={hIdx}
-                                        style={{
-                                          paddingTop: '7px',
-                                          paddingBottom: '7px',
-                                          paddingLeft: '9px',
-                                          paddingRight: '9px',
-                                        }}
-                                        className="border-r border-[#e6e5e3] text-left font-semibold text-[#787774] last:border-r-0"
-                                      >
-                                        {parseRichText(h)}
-                                      </th>
-                                    ))}
-                                  </tr>
-                                </thead>
-                              )}
-                              <tbody>
-                                {section.table.rows.map((row, rIdx) => (
-                                  <tr key={rIdx} className="border-b border-[#e6e5e3] last:border-0">
-                                    {row.map((cell, cIdx) => (
-                                      <td
-                                        key={cIdx}
-                                        style={{
-                                          paddingTop: '7px',
-                                          paddingBottom: '7px',
-                                          paddingLeft: '9px',
-                                          paddingRight: '9px',
-                                          ...(section.table.headers
-                                            ? {}
-                                            : cIdx % 2 === 0
-                                              ? { backgroundColor: '#f7f6f3', fontWeight: 600 }
-                                              : {}),
-                                        }}
-                                        className="border-r border-[#e6e5e3] whitespace-pre-line last:border-r-0"
-                                      >
-                                        {parseRichText(cell)}
-                                      </td>
-                                    ))}
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
-                        )}
+                        {(() => {
+                          const table = section.table
+                          if (!table) return null
+
+                          return (
+                            <div
+                              className="overflow-x-auto"
+                              style={{
+                                marginTop: `${DEFAULT_TABLE_TOP_SPACING}px`,
+                                marginBottom: `${DEFAULT_TABLE_BOTTOM_SPACING}px`,
+                              }}
+                            >
+                              <table className="w-full border-collapse text-[14px] border border-[#e6e5e3]">
+                                <TableColumnGroup widths={table.columnWidths} />
+                                {table.headers && (
+                                  <thead>
+                                    <tr className="border-b border-[#e6e5e3] bg-[#f7f6f3]">
+                                      {table.headers.map((h, hIdx) => (
+                                        <th
+                                          key={hIdx}
+                                          style={{
+                                            paddingTop: '7px',
+                                            paddingBottom: '7px',
+                                            paddingLeft: '9px',
+                                            paddingRight: '9px',
+                                          }}
+                                          className="border-r border-[#e6e5e3] text-left font-semibold text-[#787774] last:border-r-0"
+                                        >
+                                          {parseRichText(h)}
+                                        </th>
+                                      ))}
+                                    </tr>
+                                  </thead>
+                                )}
+                                <tbody>
+                                  {table.rows.map((row, rIdx) => (
+                                    <tr key={rIdx} className="border-b border-[#e6e5e3] last:border-0">
+                                      {row.map((cell, cIdx) => (
+                                        <td
+                                          key={cIdx}
+                                          style={{
+                                            paddingTop: '7px',
+                                            paddingBottom: '7px',
+                                            paddingLeft: '9px',
+                                            paddingRight: '9px',
+                                            ...(table.headers
+                                              ? {}
+                                              : cIdx % 2 === 0
+                                                ? { backgroundColor: '#f7f6f3', fontWeight: 600 }
+                                                : {}),
+                                          }}
+                                          className="border-r border-[#e6e5e3] whitespace-pre-line last:border-r-0"
+                                        >
+                                          {parseRichText(cell)}
+                                        </td>
+                                      ))}
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          )
+                        })()}
                       </>
                     )}
                   </div>

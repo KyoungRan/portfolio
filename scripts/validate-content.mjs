@@ -29,6 +29,20 @@ function isArrayOfNonEmptyString(value) {
   return Array.isArray(value) && value.length > 0 && value.every(isNonEmptyString)
 }
 
+function isNonEmptyRichText(value) {
+  if (isNonEmptyString(value)) return true
+
+  if (!Array.isArray(value) || value.length === 0) {
+    return false
+  }
+
+  return value.some((segment) => isNonEmptyString(segment?.text))
+}
+
+function isArrayOfNonEmptyRichText(value) {
+  return Array.isArray(value) && value.length > 0 && value.every(isNonEmptyRichText)
+}
+
 function isValidPeriodToken(value) {
   return typeof value === 'string' && /^\d{4}-\d{2}(-\d{2})?$/.test(value)
 }
@@ -136,10 +150,6 @@ function validateExperienceContent() {
     fail('[experience.json] title은 필수 문자열입니다.')
   }
 
-  if (!isNonEmptyString(data.summary)) {
-    fail('[experience.json] summary는 필수 문자열입니다.')
-  }
-
   if (!Array.isArray(data.companies)) {
     return
   }
@@ -147,10 +157,6 @@ function validateExperienceContent() {
   for (const company of data.companies) {
     if (!isNonEmptyString(company.companyName)) {
       fail('[experience.json] companyName은 필수 문자열입니다.')
-    }
-
-    if (!isNonEmptyString(company.roleTitle)) {
-      fail('[experience.json] roleTitle은 필수 문자열입니다.')
     }
 
     if (company.period) {
@@ -191,10 +197,6 @@ function validateEducationContent() {
   for (const item of data.items) {
     if (!isNonEmptyString(item.name ?? item.title)) {
       fail('[education.json] item.name 또는 item.title은 필수 문자열입니다.')
-    }
-
-    if (!isNonEmptyString(item.periodText)) {
-      fail('[education.json] item.periodText는 필수 문자열입니다.')
     }
 
     if (isNonEmptyString(item.iconSrc)) {
@@ -319,15 +321,17 @@ function validateProjects() {
           fail(`[${sourcePath}] sections.type은 필수 문자열입니다.`)
         }
 
-        const lines = section?.body ?? section?.bullets ?? []
+        const hasBody = isArrayOfNonEmptyRichText(section?.body)
+        const hasBullets = isArrayOfNonEmptyRichText(section?.bullets)
         const hasTable =
           section?.table && Array.isArray(section.table.rows) && section.table.rows.length > 0
         const hasVisuals = Array.isArray(section?.visuals) && section.visuals.length > 0
         const isSeparator = section?.type === 'separator'
+        const hasTitle = isNonEmptyRichText(section?.title)
 
-        if (!isArrayOfNonEmptyString(lines) && !hasTable && !hasVisuals && !isSeparator) {
+        if (!hasBody && !hasBullets && !hasTable && !hasVisuals && !hasTitle && !isSeparator) {
           fail(
-            `[${sourcePath}] sections는 body, bullets, table, visuals 중 하나 이상의 유효한 콘텐츠를 포함해야 합니다 (separator 제외).`,
+            `[${sourcePath}] sections는 title, body, bullets, table, visuals 중 하나 이상의 유효한 콘텐츠를 포함해야 합니다 (separator 제외).`,
           )
         }
       }
