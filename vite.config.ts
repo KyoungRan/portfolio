@@ -5,6 +5,7 @@ import path from 'node:path'
 
 // Vite 설정: React + Tailwind CSS v4 + 경로 별칭(@ -> src)
 export default defineConfig({
+  base: '/portfolio/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
