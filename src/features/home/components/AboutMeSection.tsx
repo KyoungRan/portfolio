@@ -6,6 +6,7 @@ import {
 } from '@/components/layout/sectionHeaderTokens'
 import profile from '@/content/profile.json'
 import { Section } from '@/components/layout/Section'
+import { assetPath } from '@/lib/assetPath'
 import { parseRichText } from '@/lib/parseRichText'
 
 interface Period {
@@ -151,7 +152,7 @@ export function AboutMeSection() {
                 alt={`${content.name} 프로필 사진`}
                 className="h-auto w-full object-cover transition-opacity hover:opacity-95"
                 loading="lazy"
-                src={profileImageSrc}
+                src={assetPath(profileImageSrc)}
               />
             </div>
 

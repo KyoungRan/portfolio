@@ -2,6 +2,7 @@
 // 노션 갤러리 뷰의 정밀한 레이아웃을 재현한다.
 import type { ProjectItem } from '@/features/projects/model'
 import { formatProjectPeriod } from '@/features/projects/loader'
+import { assetPath } from '@/lib/assetPath'
 
 interface ProjectCardProps {
   project: ProjectItem
@@ -21,7 +22,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {project.coverImageSrc ? (
         <div className="relative aspect-[1.7/1] w-full overflow-hidden border-b border-[rgba(55,53,47,0.09)] bg-[rgba(55,53,47,0.02)]">
           <img
-            src={project.coverImageSrc}
+            src={assetPath(project.coverImageSrc)}
             alt={`${project.title} 커버 이미지`}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"

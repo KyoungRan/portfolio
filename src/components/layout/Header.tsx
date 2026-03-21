@@ -4,6 +4,7 @@ import { ROUTE_PATHS, type StaticRoutePath } from '@/app/routes'
 import { Container } from '@/components/layout/Container'
 import site from '@/content/site.json'
 import { getAllProjects } from '@/features/projects/loader'
+import { assetPath } from '@/lib/assetPath'
 import { cn } from '@/lib/cn'
 import { scrollToSectionStart } from '@/lib/scrollToSectionStart'
 
@@ -389,7 +390,7 @@ export function Header({ currentPath, isProjectDetail }: HeaderProps) {
             }}
             style={{ color: 'var(--gradient-start)' }}
           >
-            <img alt="Logo" className={styles.brandLogo} src="/assets/logo.png" />
+            <img alt="Logo" className={styles.brandLogo} src={assetPath('/assets/logo.png')} />
             <span className="text-[var(--gradient-start)]">Home</span>
           </a>
 

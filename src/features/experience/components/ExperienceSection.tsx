@@ -3,6 +3,7 @@
 import experience from '@/content/experience.json'
 import { Section } from '@/components/layout/Section'
 import { SectionHeader } from '@/components/layout/SectionHeader'
+import { assetPath } from '@/lib/assetPath'
 
 interface Period {
   start: string
@@ -97,7 +98,7 @@ export function ExperienceSection() {
                         alt={`${company.companyName} 로고`}
                         className="block h-auto w-full object-contain"
                         loading="lazy"
-                        src={company.heroImageSrc}
+                        src={assetPath(company.heroImageSrc)}
                       />
                     </div>
                   )}

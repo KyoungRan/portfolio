@@ -3,6 +3,7 @@
 import { SectionHeader } from '@/components/layout/SectionHeader'
 import education from '@/content/education.json'
 import { Section } from '@/components/layout/Section'
+import { assetPath } from '@/lib/assetPath'
 
 interface EducationItem {
   name: string
@@ -57,7 +58,7 @@ export function EducationSection() {
                           alt={`${item.name} 로고`}
                           className="h-full w-full object-contain"
                           loading="lazy"
-                          src={item.iconSrc}
+                          src={assetPath(item.iconSrc)}
                         />
                       </div>
                     )}
@@ -107,7 +108,7 @@ export function EducationSection() {
                           alt="oxford_logo"
                           className="shrink-0 object-contain"
                           loading="lazy"
-                          src={item.iconSrc}
+                          src={assetPath(item.iconSrc)}
                           style={{ width: '19px', height: '19px' }}
                         />
                       )}

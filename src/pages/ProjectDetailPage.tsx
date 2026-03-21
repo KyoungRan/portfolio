@@ -4,6 +4,7 @@ import { TableColumnGroup } from '@/components/table/TableColumnGroup'
 import { getProjectBySlug } from '@/features/projects/loader'
 import { TocGrid } from '@/features/projects/components/TocGrid'
 import type { RichText, RichTextSegment } from '@/features/projects/model'
+import { assetPath } from '@/lib/assetPath'
 import { parseRichText } from '@/lib/parseRichText'
 
 type LabelPalette = { bg: string; text: string }
@@ -276,7 +277,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                 }}
               >
                 <img
-                  src={project.coverImageSrc}
+                  src={assetPath(project.coverImageSrc)}
                   alt={`${project.title} 커버`}
                   className="block h-[30vh] w-full rounded-[1px] object-cover md:h-[35vh]"
                   loading="lazy"
@@ -425,7 +426,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                                 style={{ width: `${widthPercent}%` }}
                               >
                                 <img
-                                  src={visual.src}
+                                  src={assetPath(visual.src)}
                                   alt={visual.alt}
                                   className="w-full rounded-[1px]"
                                   loading="lazy"
@@ -522,7 +523,7 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                                   style={{ width: `${widthPercent}%` }}
                                 >
                                   <img
-                                    src={visual.src}
+                                    src={assetPath(visual.src)}
                                     alt={visual.alt}
                                     className="w-full rounded-[1px]"
                                     loading="lazy"
