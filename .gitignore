@@ -26,3 +26,6 @@ docs/*
 .env
 history_md/*
 .playwright-cli/
+.playwright-mcp/
+output/playwright/
+tmp-*.png
