@@ -1,0 +1,508 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - link "Logo Home" [ref=e7] [cursor=pointer]:
+        - /url: "#/"
+        - img "Logo" [ref=e8]
+        - generic [ref=e9]: Home
+      - navigation "주요 메뉴" [ref=e10]:
+        - button "AboutMe" [ref=e11]:
+          - generic [ref=e12]:
+            - img [ref=e13]
+            - generic [ref=e15]: AboutMe
+        - button "Project" [ref=e17]:
+          - generic [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e21]: Project
+          - img [ref=e22]
+        - button "Experience" [ref=e24]:
+          - generic [ref=e25]:
+            - img [ref=e26]
+            - generic [ref=e29]: Experience
+        - button "Skills" [ref=e30]:
+          - generic [ref=e31]:
+            - img [ref=e32]
+            - generic [ref=e35]: Skills
+        - button "Edu&Training" [ref=e36]:
+          - generic [ref=e37]:
+            - img [ref=e38]
+            - generic [ref=e40]: Edu&Training
+        - button "Others" [ref=e41]:
+          - generic [ref=e42]:
+            - img [ref=e43]
+            - generic [ref=e45]: Others
+  - main [ref=e46]:
+    - generic [ref=e49]:
+      - img "AI Teeth 전략 에이전트 커버" [ref=e52]
+      - generic [ref=e53]:
+        - article [ref=e54]:
+          - blockquote [ref=e55]:
+            - paragraph [ref=e57]: 2~3초 주기 상황분석 → 전술 선택 → 클라이언트에서 실행 가능한 명령 반환 BrainCam/로그로 판단 근거를 남겨 디버깅·밸런싱·리포트까지 운영
+        - article [ref=e58]
+        - article [ref=e61]:
+          - heading "I. Context & Problem (게임/요구사항/문제정의)" [level=2] [ref=e64]
+        - article [ref=e65]:
+          - generic [ref=e66]:
+            - 'heading "1. 게임 한눈에 보기: 규칙·승패·역할" [level=3] [ref=e68]'
+            - table [ref=e70]:
+              - rowgroup [ref=e76]:
+                - row "게임명 CITRUSH (시트러쉬) - City + Rush 장르 비대칭 추격 레이싱 PvE" [ref=e77]:
+                  - cell "게임명" [ref=e78]
+                  - cell "CITRUSH (시트러쉬) - City + Rush" [ref=e79]
+                  - cell "장르" [ref=e80]
+                  - cell "비대칭 추격 레이싱 PvE" [ref=e81]
+                - row "팀구성 4인 1팀 (1명의 커맨더+3명의 레이서) 플랫폼 Steam" [ref=e82]:
+                  - cell "팀구성" [ref=e83]
+                  - cell "4인 1팀 (1명의 커맨더+3명의 레이서)" [ref=e84]
+                  - cell "플랫폼" [ref=e85]
+                  - cell "Steam" [ref=e86]
+                - row "플레이시간 라운드당 8~10분 핵심 컨셉 현실 공간에서 전개되는 Teeth 추격전 레이싱" [ref=e87]:
+                  - cell "플레이시간" [ref=e88]
+                  - cell "라운드당 8~10분" [ref=e89]
+                  - cell "핵심 컨셉" [ref=e90]
+                  - cell "현실 공간에서 전개되는 Teeth 추격전 레이싱" [ref=e91]
+                - row "내 역할 AI Teeth 전략 에이전트 서버 설계·구현 AI 핵심기술 Ontology + RAG + Agent Workflow(LangGraph/LangChain)" [ref=e92]:
+                  - cell "내 역할" [ref=e93]
+                  - cell "AI Teeth 전략 에이전트 서버 설계·구현" [ref=e94]
+                  - cell "AI 핵심기술" [ref=e95]
+                  - cell "Ontology + RAG + Agent Workflow(LangGraph/LangChain)" [ref=e96]
+        - article [ref=e97]:
+          - blockquote [ref=e98]:
+            - paragraph [ref=e100]: 4인 협동 플레이어(Driver) + 1인의 지휘관(Commander)이 협동해 Teeth(적)의 방해를 돌파하고 라운드 목표를 달성하는 전술 레이싱 게임
+        - article [ref=e101]:
+          - list [ref=e103]:
+            - listitem [ref=e104]:
+              - generic [ref=e105]: 라운드 종료
+              - text: :Teeth 처치 또는 Driver 전원 사망 시 즉시 종료 → 생존 팀 승리
+            - listitem [ref=e106]:
+              - generic [ref=e107]: 플레이 목표
+              - text: :Driver+Commander 협동으로 라운드 목표를 수행하며 Teeth를 처치
+            - listitem [ref=e108]:
+              - generic [ref=e109]: Teeth 목표
+              - text: :추격·차단·교란으로 팀을 분산시키고 Driver 전원 사망을 유도
+        - article [ref=e110]:
+          - figure [ref=e113]:
+            - img "CITRUSH 구성 흐름" [ref=e114]
+        - article [ref=e115]:
+          - list [ref=e117]:
+            - listitem [ref=e118]:
+              - generic [ref=e119]: 전략 변동 요인
+              - text: :정보 비대칭(드라이버 vs 지휘관) + 페이즈/아이템 변화 + 거리·속도·자원 상태 변화 → 최적 전략이 계속 바뀜
+            - listitem [ref=e120]:
+              - generic [ref=e121]: 요구사항
+              - text: :2~3초 주기 전술 재계산 + 안전 폴백 + 근거 기록(Brain-cam/로그)
+            - listitem [ref=e122]:
+              - generic [ref=e123]: 포인트
+              - text: :협동 플레이 흐름 속에서 적(Teeth)이 ‘판단하는 존재’가 되어야 함
+        - article [ref=e124]
+        - article [ref=e127]:
+          - 'heading "2. 문제정의: Teeth(적)에게 왜 AI가 필요한가" [level=3] [ref=e130]'
+        - article [ref=e131]:
+          - blockquote [ref=e132]:
+            - paragraph [ref=e134]: 변수가 폭증하는 실시간 전장에서, 고정 패턴은 반복·오판·튜닝 불가로 이어진다.
+        - article [ref=e135]:
+          - list [ref=e137]:
+            - listitem [ref=e138]: 정보 비대칭(Driver vs Commander) + 페이즈/아이템 변화로 매 순간 최적 전술이 바뀐다
+            - listitem [ref=e139]: 맵·거리·속도·자원 상태 조합이 폭증해 고정 패턴/스크립트로는 커버할 수 없다
+            - listitem [ref=e140]: 규칙을 추가할수록 예외 처리 누적으로 유지보수 비용과 버그/밸런스 리스크가 커진다
+        - article [ref=e141]:
+          - figure [ref=e144]:
+            - img "문제 정의 다이어그램" [ref=e145]
+        - article [ref=e146]:
+          - list [ref=e148]:
+            - listitem [ref=e149]:
+              - generic [ref=e150]: 요구사항
+              - text: :2~3초 주기 전술 재계산 + 안전 폴백 + 근거 기록(BrainCam/로그)
+            - listitem [ref=e151]:
+              - generic [ref=e152]: 기대효과
+              - text: :전술 다양성(재플레이성) 확보 + 안정적 운영(디버깅/밸런싱) 가능
+        - article [ref=e153]
+        - article [ref=e156]:
+          - heading "II. Solution & Architecture (해결 구조/지식 설계/에이전트 흐름)" [level=2] [ref=e159]
+        - article [ref=e160]:
+          - 'heading "1. 설계 요구사항: 실시간 · 안전 · 운영 · 설명가능성" [level=3] [ref=e163]'
+        - article [ref=e164]:
+          - figure [ref=e167]:
+            - img "설계 요구사항" [ref=e168]
+        - article [ref=e169]:
+          - list [ref=e171]:
+            - listitem [ref=e172]:
+              - generic [ref=e173]: 실시간
+              - text: :2~3초 주기 의사결정 — 지연은 곧 플레이 붕괴
+            - listitem [ref=e174]:
+              - generic [ref=e175]: 안전
+              - text: :실행 전 검증 + 실패 시 안전 폴백(가드레일)
+            - listitem [ref=e176]:
+              - generic [ref=e177]: 운영/설명
+              - text: :로그·근거가 있어야 디버깅/밸런싱/리포트가 가능
+        - article [ref=e178]
+        - article [ref=e181]:
+          - 'heading "2. 에이전트 파이프라인: “역할 분리”가 운영 품질을 만든다" [level=3] [ref=e184]'
+        - article [ref=e185]:
+          - list [ref=e187]:
+            - listitem [ref=e188]:
+              - generic [ref=e189]: Analyst
+              - text: :게임 상태 → 핵심 신호/태그로 요약
+            - listitem [ref=e190]:
+              - generic [ref=e191]: DecisionGate
+              - text: :복잡도/리스크 → NOOP·LIGHT·FULL 선택
+            - listitem [ref=e192]:
+              - generic [ref=e193]: Planner
+              - text: :태그 기반 후보 전술(카드) 구성
+            - listitem [ref=e194]:
+              - generic [ref=e195]: Tactical
+              - text: :최종 전술 선택(LIGHT/FULL)
+            - listitem [ref=e196]:
+              - generic [ref=e197]: Executor
+              - text: :명령 변환·검증 후 UE 실행
+            - listitem [ref=e198]:
+              - generic [ref=e199]: Logger
+              - text: :근거/결과 기록 → 튜닝·리포트
+        - article [ref=e200]:
+          - figure [ref=e203]:
+            - img "에이전트 파이프라인" [ref=e204]
+        - article [ref=e205]:
+          - list [ref=e207]:
+            - listitem [ref=e208]:
+              - generic [ref=e209]: 역할 분리
+              - text: :단계별 입력/출력을 고정해 원인 추적과 부분 교체가 가능
+            - listitem [ref=e210]:
+              - generic [ref=e211]: 비용 제어
+              - text: :DecisionGate가 NOOP/LIGHT/FULL로 실시간 예산을 지킨다
+            - listitem [ref=e212]:
+              - generic [ref=e213]: 흐름
+              - text: :Analyst → DecisionGate → Planner → Tactical → Executor → Logger
+        - article [ref=e214]
+        - article [ref=e217]:
+          - 'heading "3. 지식 기반 의사결정 2축: 온톨로지(상황 언어) × 전략카드(행동 레시피)" [level=3] [ref=e220]'
+        - article [ref=e221]:
+          - figure [ref=e224]:
+            - img "온톨로지와 전략카드" [ref=e225]
+        - article [ref=e226]:
+          - list [ref=e228]:
+            - listitem [ref=e229]:
+              - generic [ref=e230]: 기존 한계
+              - text: :전술이 코드/스크립트에 박히면 수정=재배포, 비개발자 튜닝이 어렵고 속도가 느리다
+            - listitem [ref=e231]:
+              - generic [ref=e232]: 해결 방식
+              - text: :전술을 데이터(카드)로 관리해 추가/비활성/버전으로 운영
+            - listitem [ref=e233]:
+              - generic [ref=e234]: 구조
+              - text: :상황(온톨로지 태그) → 검색/선택(RAG) → 행동(전략카드 실행)
+        - article [ref=e235]:
+          - figure [ref=e238]:
+            - img "태그-카드 구조" [ref=e239]
+        - article [ref=e240]:
+          - blockquote [ref=e241]:
+            - paragraph [ref=e243]: “상황을 ‘태그’로 만들고, 전술을 ‘카드’로 고른다.”
+        - article [ref=e244]
+        - article [ref=e247]:
+          - 'heading "4. 경량 온톨로지 선택: “완전한 의미체계’보다 ‘빠른 분류/태깅”이 먼저" [level=3] [ref=e250]'
+        - article [ref=e251]:
+          - figure [ref=e254]:
+            - img "경량 온톨로지" [ref=e255]
+        - article [ref=e256]:
+          - list [ref=e258]:
+            - listitem [ref=e259]:
+              - generic [ref=e260]: 선택 기준
+              - text: :실시간 게임에서는 정교한 지식 모델링보다 즉시 분류 가능한 태그가 우선이다
+            - listitem [ref=e261]:
+              - generic [ref=e262]: 역할
+              - text: :게임 상태를 공통 언어(태그)로 압축해 검색/규칙/전술 선택의 입력으로 만든다
+            - listitem [ref=e263]:
+              - generic [ref=e264]: 효과
+              - text: :의사결정 일관성 확보 + 카드 검색 정확도 향상 + 결정 과정 추적 가능
+        - article [ref=e265]
+        - article [ref=e268]:
+          - 'heading "5. 전략의 원천(전략카드): 전술을 ‘운영 가능한 실행 단위’로 분리" [level=3] [ref=e271]'
+        - article [ref=e272]:
+          - figure [ref=e275]:
+            - img "전략카드" [ref=e276]
+        - article [ref=e277]:
+          - list [ref=e279]:
+            - listitem [ref=e280]:
+              - generic [ref=e281]: 전략카드란
+              - text: :“언제/왜/무엇을”을 담은 실행 가능한 전술 블록(레시피) - 전술 라이브러리
+            - listitem [ref=e282]:
+              - generic [ref=e283]: 운영 장점
+              - text: :카드 단위로 추가·수정·비활성·버전 관리가 가능(코드 변경 최소화)
+            - listitem [ref=e284]:
+              - generic [ref=e285]: 의미
+              - text: :전략카드는 RAG의 검색 대상이면서 동시에 즉시 실행 행동 레시피
+        - article [ref=e286]
+        - article [ref=e289]:
+          - 'heading "6. Analyst Agent: 상태를 ‘의사결정 입력(태그 후보)’로 정리" [level=3] [ref=e292]'
+        - article [ref=e293]:
+          - generic [ref=e294]:
+            - generic:
+              - figure:
+                - img "Analyst Agent"
+        - article [ref=e295]:
+          - list [ref=e297]:
+            - listitem [ref=e298]:
+              - generic [ref=e299]: 입력
+              - text: :Unreal GameState(원본 상태/센서 값)
+            - listitem [ref=e300]:
+              - generic [ref=e301]: 처리
+              - text: :위협·기회·목표 신호를 추출해 요약(Summary) + 태그 후보 생성
+            - listitem [ref=e302]:
+              - generic [ref=e303]: 출력
+              - text: :Planner가 바로 쓰는 정규화된 상황 입력(노이즈↓, 계산량↓, 재현성↑)
+        - article [ref=e304]
+        - article [ref=e307]:
+          - 'heading "7. DecisionGate: 예산을 지키는 3-Mode 분기-NOOP/LIGHT/FULL" [level=3] [ref=e310]'
+        - article [ref=e311]:
+          - generic [ref=e312]:
+            - generic:
+              - figure:
+                - img "DecisionGate"
+        - article [ref=e313]:
+          - list [ref=e315]:
+            - listitem [ref=e316]:
+              - generic [ref=e317]: 목적
+              - text: :매 순간 복잡 연산/LLM을 돌리면 지연이 누적되어 실시간성이 무너진다
+            - listitem [ref=e318]:
+              - generic [ref=e319]: 전략
+              - text: :상황 변화/리스크에 따라 NOOP(유지) · LIGHT(규칙) · FULL(고도 판단)로 비용을 제어
+            - listitem [ref=e320]:
+              - generic [ref=e321]: 효과
+              - text: :시간예산 준수 + 비용 최적화 + 실패 대비(안전 폴백) 기반 확보
+        - article [ref=e322]
+        - article [ref=e325]:
+          - 'heading "8. Planner Agent: 태그 → 검색 → 후보군 구성(RAG 의사결정 플로우)" [level=3] [ref=e328]'
+        - article [ref=e329]:
+          - generic [ref=e330]:
+            - generic:
+              - figure:
+                - img "Planner Agent"
+        - article [ref=e331]:
+          - list [ref=e333]:
+            - listitem [ref=e334]:
+              - generic [ref=e335]: 핵심
+              - text: :태그가 검색을 만들고, 카드가 행동을 만든다
+            - listitem [ref=e336]:
+              - generic [ref=e337]: 흐름
+              - text: :태그 정리 → 카드 후보 검색(Qdrant 등) → 제약/우선순위 적용 → 전략 패키지 생성
+            - listitem [ref=e338]:
+              - generic [ref=e339]: 의도
+              - text: :“생성”보다 “선택” 중심으로 설계해 일관성·재현성·튜닝 가능성을 높인다
+        - article [ref=e340]
+        - article [ref=e343]:
+          - 'heading "9. Tactical Agent: 최종 전술 선택 엔진(LIGHT vs FULL)" [level=3] [ref=e346]'
+        - article [ref=e347]:
+          - generic [ref=e348]:
+            - generic:
+              - figure:
+                - img "Tactical Agent"
+        - article [ref=e349]:
+          - list [ref=e351]:
+            - listitem [ref=e352]:
+              - generic [ref=e353]: LIGHT
+              - text: :규칙 기반으로 빠르고 안정적인 기본 전술을 선택
+            - listitem [ref=e354]:
+              - generic [ref=e355]: FULL
+              - text: :고난도 상황에서 조합/우선순위/맥락 판단으로 유연성을 확보
+            - listitem [ref=e356]:
+              - generic [ref=e357]: 산출
+              - text: :최종 전술(선택/조정) → Executor로 전달
+        - article [ref=e358]
+        - article [ref=e361]:
+          - generic [ref=e362]:
+            - generic [ref=e363]: 💡
+            - paragraph [ref=e365]: 전술을 ‘선택’했다면, 다음은 오명령 없이 ‘실행’하고 근거를 ‘기록’해 운영 가능한 시스템으로 닫는다.
+        - article [ref=e366]:
+          - heading "III. Execution & Ops (실행/검증/운영/확장)" [level=2] [ref=e369]
+        - article [ref=e370]:
+          - 'heading "1. Executor Agent: 명령 변환·검증·안전 폴백(가드레일)" [level=3] [ref=e373]'
+        - article [ref=e374]:
+          - paragraph [ref=e377]: “좋은 전술도 실행 불가하면 실패다 → 실행 전에 반드시 검증한다.”
+        - article [ref=e378]:
+          - generic [ref=e379]:
+            - generic:
+              - figure:
+                - img "Executor Agent"
+        - article [ref=e380]:
+          - list [ref=e382]:
+            - listitem [ref=e383]:
+              - generic [ref=e384]: 형식 검증
+              - text: :JSON/스키마 오류 차단
+            - listitem [ref=e385]:
+              - generic [ref=e386]: 제약 검증
+              - text: :이동 가능 구역/금지 조건/쿨다운 등 게임 제약 반영
+            - listitem [ref=e387]:
+              - generic [ref=e388]: 안전 폴백
+              - text: :실패 시 안전 행동(Safe Fallback) 강제 실행 → 오명령 리스크 최소화
+        - article [ref=e389]
+        - article [ref=e392]:
+          - 'heading "2. Logger Agent: 기록 → 재현 → 개선(운영 루프 완성)" [level=3] [ref=e395]'
+        - article [ref=e396]:
+          - paragraph [ref=e399]: “로그가 없으면 운영은 감(느낌)으로 한다 → 기록이 곧 품질이다.”
+        - article [ref=e400]:
+          - generic [ref=e401]:
+            - generic:
+              - figure:
+                - img "Logger Agent"
+        - article [ref=e402]:
+          - list [ref=e404]:
+            - listitem [ref=e405]:
+              - generic [ref=e406]: 기록
+              - text: :결정 로그 + BrainCam(XAI) + KPI(지연/성공률) 저장
+            - listitem [ref=e407]:
+              - generic [ref=e408]: 재현
+              - text: :문제 상황을 재현해 원인을 추적
+            - listitem [ref=e409]:
+              - generic [ref=e410]: 개선
+              - text: :카드/규칙/모드 기준을 데이터로 튜닝 → 밸런싱/리포트까지 연결
+        - article [ref=e411]
+        - article [ref=e414]:
+          - 'heading "3. 오케스트레이션: LangGraph(흐름/제어) + LangChain(도구/연동)" [level=3] [ref=e417]'
+        - article [ref=e418]:
+          - paragraph [ref=e421]: “운영에서 중요한 건 ‘똑똑함’보다 ‘통제/추적 가능함’이다.”
+        - article [ref=e422]:
+          - generic [ref=e423]:
+            - generic:
+              - figure:
+                - img "오케스트레이션"
+        - article [ref=e424]:
+          - list [ref=e426]:
+            - listitem [ref=e427]:
+              - generic [ref=e428]: LangGraph
+              - text: :분기·상태·재시도·추적을 그래프로 관리 → 파이프라인이 “설계대로” 동작
+            - listitem [ref=e429]:
+              - generic [ref=e430]: LangChain
+              - text: :RAG/프롬프트/LLM 호출 등 도구 연결 → 구현 속도와 확장성 확보
+            - listitem [ref=e431]:
+              - generic [ref=e432]: 결과
+              - text: :단계별 책임이 고정되어 테스트/교체/관찰 가능성이 올라간다
+        - article [ref=e433]
+        - article [ref=e436]:
+          - 'heading "4. API 설계: 왜 실시간 제어는 HTTP 계약으로 고정했나" [level=3] [ref=e439]'
+        - article [ref=e440]:
+          - generic [ref=e441]:
+            - generic:
+              - figure:
+                - img "API 설계"
+        - article [ref=e442]:
+          - list [ref=e444]:
+            - listitem [ref=e445]:
+              - generic [ref=e446]: 계약 단순화
+              - text: :요청(State JSON) → 응답(Command JSON)으로 인터페이스를 고정
+            - listitem [ref=e447]:
+              - generic [ref=e448]: 디버그/리플레이
+              - text: :요청·응답이 남아 재현이 쉽고, 문제 분석이 빠르다
+            - listitem [ref=e449]:
+              - generic [ref=e450]: 시간 제어
+              - text: :타임아웃/폴백을 계약 레벨에서 다룰 수 있어 실시간성이 안정된다
+        - article [ref=e451]
+        - article [ref=e454]:
+          - 'heading "5. 실시간 동작 안전성: 시간 예산 + 폴백이 필수" [level=3] [ref=e457]'
+        - article [ref=e458]:
+          - paragraph [ref=e461]: “완벽한 판단보다, 제때 나오는 안전한 판단이 더 중요하다.”
+        - article [ref=e462]:
+          - generic [ref=e463]:
+            - generic:
+              - figure:
+                - img "실시간 동작 안전성"
+        - article [ref=e464]:
+          - list [ref=e466]:
+            - listitem [ref=e467]:
+              - generic [ref=e468]: 원칙
+              - text: :지연은 실시간 게임에서 사실상 실패 → 제한 시간 안에 끝내야 한다
+            - listitem [ref=e469]:
+              - generic [ref=e470]: 설계
+              - text: :시간 예산을 두고, 초과/실패 시 NOOP 또는 LIGHT로 즉시 폴백
+            - listitem [ref=e471]:
+              - generic [ref=e472]: 효과
+              - text: :“최선”이 아니더라도 “안전한 결과”를 항상 반환해 플레이 붕괴를 막는다
+        - article [ref=e473]
+        - article [ref=e476]:
+          - 'heading "6. BrainCam(XAI): 판단 근거 시각화가 신뢰와 튜닝을 만든다" [level=3] [ref=e479]'
+        - article [ref=e480]:
+          - paragraph [ref=e483]: “결과만 있으면 튜닝이 막힌다 → 근거가 남아야 개선이 빨라진다.”
+        - article [ref=e484]:
+          - generic [ref=e485]:
+            - generic:
+              - figure:
+                - img "BrainCam"
+        - article [ref=e486]:
+          - list [ref=e488]:
+            - listitem [ref=e489]:
+              - generic [ref=e490]: 구성
+              - text: :Perception(상황 요약) → Reasoning(근거/전략) → Decision(최종 명령)
+            - listitem [ref=e491]:
+              - generic [ref=e492]: 효과
+              - text: :결과만 보는 튜닝에서 벗어나, 왜 선택됐는지를 기준으로 개선 가능
+            - listitem [ref=e493]:
+              - generic [ref=e494]: 연결
+              - text: :디버깅·밸런싱·리포트가 “근거 기반”으로 전환
+        - article [ref=e495]
+        - article [ref=e498]:
+          - heading "7. 운영 인프라/데이터 스택 & 확장 계획" [level=3] [ref=e501]
+        - article [ref=e502]:
+          - 'heading "(A) 운영 인프라: 왜 로그·지식·서버를 분리했나" [level=4] [ref=e505]'
+        - article [ref=e506]:
+          - generic [ref=e507]:
+            - generic:
+              - figure:
+                - img "운영 인프라"
+        - article [ref=e508]:
+          - list [ref=e510]:
+            - listitem [ref=e511]:
+              - generic [ref=e512]: 실시간 처리(API 서버)
+              - text: :짧은 응답 시간과 안정성이 최우선
+            - listitem [ref=e513]:
+              - generic [ref=e514]: 지식 관리(Qdrant/DB/Cache)
+              - text: :카드/태그/검색 성능을 독립적으로 튜닝
+            - listitem [ref=e515]:
+              - generic [ref=e516]: 운영 데이터(PostgreSQL/메트릭)
+              - text: :추적 가능성이 품질이 되도록 로그/지표를 축적
+        - article [ref=e517]
+        - article [ref=e520]:
+          - 'heading "(B) 확장 계획: 다음 단계가 설계에 포함돼야 하는 이유" [level=4] [ref=e523]'
+        - article [ref=e524]:
+          - generic [ref=e525]:
+            - generic:
+              - figure:
+                - img "확장 계획"
+        - article [ref=e526]:
+          - list [ref=e528]:
+            - listitem [ref=e529]:
+              - generic [ref=e530]: 확장
+              - text: :전략카드/입력 신호 추가로 전술 라이브러리 확장
+            - listitem [ref=e531]:
+              - generic [ref=e532]: 품질
+              - text: :테스트 자동화·관찰성 강화·지연 최적화
+            - listitem [ref=e533]:
+              - generic [ref=e534]: 운영
+              - text: :자동 튜닝/자동 리포트/데이터 버전 관리로 운영 비용 절감
+        - article [ref=e535]:
+          - blockquote [ref=e536]:
+            - paragraph [ref=e538]: 전술 선택(지식) + 실행(안전) + 설명(BrainCam) + 운영(로그) 루프 구축”
+        - article [ref=e539]
+        - article [ref=e542]:
+          - heading "IV. PPT" [level=2] [ref=e545]
+        - article [ref=e546]:
+          - generic [ref=e548]:
+            - figure:
+              - img "CITRUSH 발표 자료 1"
+            - figure:
+              - img "CITRUSH 발표 자료 2"
+            - figure:
+              - img "CITRUSH 발표 자료 3"
+            - figure:
+              - img "CITRUSH 발표 자료 4"
+            - figure:
+              - img "CITRUSH 발표 자료 5"
+            - figure:
+              - img "CITRUSH 발표 자료 6"
+            - figure:
+              - img "CITRUSH 발표 자료 7"
+  - contentinfo [ref=e549]:
+    - generic [ref=e550]:
+      - generic [ref=e551]: Thank you
+      - paragraph [ref=e553]: Copyright © 2026. KANG KYOUNGRAN. All rights reserved.
+  - generic [ref=e555]:
+    - button "맨 위로 이동" [ref=e556]:
+      - img [ref=e557]
+    - button "빠른 메뉴 열기" [ref=e559]:
+      - img [ref=e560]

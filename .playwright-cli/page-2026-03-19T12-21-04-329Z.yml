@@ -1,0 +1,1111 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Logo Home" [ref=e7] [cursor=pointer]:
+          - /url: "#/"
+          - img "Logo" [ref=e8]
+          - generic [ref=e9]: Home
+        - button "메뉴 열기" [expanded] [ref=e10]: Close
+      - navigation "모바일 메뉴" [ref=e1076]:
+        - list [ref=e1078]:
+          - listitem [ref=e1079]:
+            - button "AboutMe" [ref=e1080]:
+              - img [ref=e1081]
+              - generic [ref=e1083]: AboutMe
+          - listitem [ref=e1084]:
+            - button "Project" [active] [ref=e1085]:
+              - img [ref=e1086]
+              - generic [ref=e1088]: Project
+            - generic [ref=e1112]:
+              - button "프로젝트 섹션으로 이동" [ref=e1113]
+              - link "AI Teeth 전략 에이전트" [ref=e1114] [cursor=pointer]:
+                - /url: "#/projects/citrush-ai"
+              - link "화장품 상품 분석 AI 에이전트" [ref=e1115] [cursor=pointer]:
+                - /url: "#/projects/beauty-pulse-ai"
+              - link "태양광 발전량 시계열 예측" [ref=e1116] [cursor=pointer]:
+                - /url: "#/projects/solar-power-time-series-forecast"
+              - link "이미지 인식 한식 가이드" [ref=e1117] [cursor=pointer]:
+                - /url: "#/projects/image-recognition-kfood-guide"
+              - link "상권 구조 데이터 분석" [ref=e1118] [cursor=pointer]:
+                - /url: "#/projects/commercial-district-structure-analysis"
+          - listitem [ref=e1089]:
+            - button "Experience" [ref=e1090]:
+              - img [ref=e1091]
+              - generic [ref=e1094]: Experience
+          - listitem [ref=e1095]:
+            - button "Skills" [ref=e1096]:
+              - img [ref=e1097]
+              - generic [ref=e1100]: Skills
+          - listitem [ref=e1101]:
+            - button "Edu&Training" [ref=e1102]:
+              - img [ref=e1103]
+              - generic [ref=e1105]: Edu&Training
+          - listitem [ref=e1106]:
+            - button "Others" [ref=e1107]:
+              - img [ref=e1108]
+              - generic [ref=e1110]: Others
+  - main [ref=e11]:
+    - generic [ref=e14]:
+      - img "AI Teeth 전략 에이전트 커버" [ref=e17]
+      - generic [ref=e18]:
+        - article [ref=e19]:
+          - blockquote [ref=e20]:
+            - generic [ref=e21]:
+              - paragraph [ref=e22]:
+                - text: ·
+                - strong [ref=e23]: 2~3초 주기 상황분석 → 전술 선택 → 클라이언트에서 실행 가능한 명령 반환
+              - paragraph [ref=e24]:
+                - text: ·
+                - strong [ref=e25]: BrainCam
+                - text: ·
+                - strong [ref=e26]: 로그로 판단 근거를 남겨 디버깅·밸런싱·리포트까지 운영
+        - article [ref=e27]
+        - article [ref=e30]:
+          - generic [ref=e31]:
+            - heading "목차" [level=4] [ref=e33]:
+              - strong [ref=e34]: 목차
+            - generic [ref=e35]:
+              - button "I. Intro - 프로젝트 개요" [ref=e36] [cursor=pointer]
+              - button "II. Why - 문제 정의" [ref=e37] [cursor=pointer]
+              - button "III. Goals - 설계 목표·성공기준" [ref=e38] [cursor=pointer]
+              - button "IV. How - 구조 설계" [ref=e39] [cursor=pointer]
+              - button "V. Ops - 실행·검증·운영" [ref=e40] [cursor=pointer]
+              - button "VI. Proof - 성능 검증" [ref=e41] [cursor=pointer]
+              - button "VII. Close - 확장계획" [ref=e42] [cursor=pointer]
+        - article [ref=e43]
+        - article [ref=e46]:
+          - heading "I. Intro - 프로젝트 개요" [level=2] [ref=e49]
+        - article [ref=e50]:
+          - heading "1. 프로젝트 개요" [level=3] [ref=e53]
+        - article [ref=e54]:
+          - table [ref=e57]:
+            - rowgroup [ref=e61]:
+              - row "프로젝트명 CITRUSH — 실시간 전술 선택 AI Teeth 전략 에이전트" [ref=e62]:
+                - cell "프로젝트명" [ref=e63]
+                - cell "CITRUSH — 실시간 전술 선택 AI Teeth 전략 에이전트" [ref=e64]
+              - row "한줄 설명 2~3초 주기 상황 분석 → Teeth 전술 선택 → 클라이언트에서 실행 가능한 명령 반환" [ref=e65]:
+                - cell "한줄 설명" [ref=e66]
+                - cell "2~3초 주기 상황 분석 → Teeth 전술 선택 → 클라이언트에서 실행 가능한 명령 반환" [ref=e67]
+              - row "유형 AI Agent 기반 실시간 전술 의사결정 시스템" [ref=e68]:
+                - cell "유형" [ref=e69]
+                - cell "AI Agent 기반 실시간 전술 의사결정 시스템" [ref=e70]
+              - 'row "장르 PvE 비대칭 추격 레이싱: Driver(레이서) + Commander(지휘) 협동 플레이에서, 적(Teeth)이 실시간으로 추격·차단·교란" [ref=e71]':
+                - cell "장르" [ref=e72]
+                - 'cell "PvE 비대칭 추격 레이싱: Driver(레이서) + Commander(지휘) 협동 플레이에서, 적(Teeth)이 실시간으로 추격·차단·교란" [ref=e73]':
+                  - strong [ref=e74]: PvE 비대칭 추격 레이싱
+                  - text: ": Driver(레이서) + Commander(지휘) 협동 플레이에서, 적(Teeth)이 실시간으로 추격·차단·교란"
+              - row "해결한 문제 상황 조합 폭증 → 고정 스크립트 커버 불가 → AI 판단으로 전환" [ref=e75]:
+                - cell "해결한 문제" [ref=e76]
+                - cell "상황 조합 폭증 → 고정 스크립트 커버 불가 → AI 판단으로 전환" [ref=e77]
+              - row "핵심 설계 (구조) ① 시간 예산 기반 실시간 의사결정(DecisionGate) ② 경량 온톨로지 태그(상황 언어) ③ 전략카드로 전술 선택 ④ 실행 가능성 검증과 안전 폴백 ⑤ BrainCam/로그 기반 관측과 튜닝 구조" [ref=e78]:
+                - cell "핵심 설계 (구조)" [ref=e79]
+                - cell "① 시간 예산 기반 실시간 의사결정(DecisionGate) ② 경량 온톨로지 태그(상황 언어) ③ 전략카드로 전술 선택 ④ 실행 가능성 검증과 안전 폴백 ⑤ BrainCam/로그 기반 관측과 튜닝 구조" [ref=e80]:
+                  - text: ①
+                  - strong [ref=e81]
+                  - text: 시간 예산 기반 실시간 의사결정(DecisionGate) ② 경량 온톨로지 태그(상황 언어) ③ 전략카드로 전술 선택 ④ 실행 가능성 검증과 안전 폴백 ⑤ BrainCam/로그 기반 관측과 튜닝 구조
+              - row "핵심 성과 · Load 기준 응답시간 P95 1,914→995ms · Timeout 4.02%→0.19% · 초당 처리량 1.30→4.02rps · 오명령 0 유지" [ref=e82]:
+                - cell "핵심 성과" [ref=e83]
+                - cell "· Load 기준 응답시간 P95 1,914→995ms · Timeout 4.02%→0.19% · 초당 처리량 1.30→4.02rps · 오명령 0 유지" [ref=e84]
+              - row "품질 검증 · 실행가능률 100 유지 · 폴백의존률 0 유지 · 전술다양성 4.00→6.30 · 시나리오 편중 44.55→25.36" [ref=e85]:
+                - cell "품질 검증" [ref=e86]
+                - cell "· 실행가능률 100 유지 · 폴백의존률 0 유지 · 전술다양성 4.00→6.30 · 시나리오 편중 44.55→25.36" [ref=e87]
+              - row "기술 스택 LangGraph, LangChain, RAG, Light Ontology, Qdrant, PostgreSQL, Redis, FastAPI" [ref=e88]:
+                - cell "기술 스택" [ref=e89]
+                - cell "LangGraph, LangChain, RAG, Light Ontology, Qdrant, PostgreSQL, Redis, FastAPI" [ref=e90]
+              - row "작업 기간 2025/11/12 → 2026/01/08" [ref=e91]:
+                - cell "작업 기간" [ref=e92]:
+                  - strong [ref=e93]: 작업 기간
+                - cell "2025/11/12 → 2026/01/08" [ref=e94]
+        - article [ref=e95]:
+          - heading "용어 (Glossary)" [level=3] [ref=e98]
+        - article [ref=e99]:
+          - list [ref=e101]:
+            - listitem [ref=e102]:
+              - generic [ref=e103]: DecisionGate
+              - text: :매 주기 상황 복잡도·리스크를 평가해 NOOP·LIGHT·FULL 세 가지 실행 모드 중 하나를 선택하는 분기 컴포넌트. 비용·시간 예산을 제어
+        - article [ref=e104]:
+          - list [ref=e106]:
+            - listitem [ref=e107]:
+              - generic [ref=e108]: 온톨로지(Ontology)
+              - text: :게임 상황을 공통된 태그와 개념으로 해석하기 위한 경량 지식 구조
+        - article [ref=e109]:
+          - list [ref=e111]:
+            - listitem [ref=e112]:
+              - generic [ref=e113]: 전략카드(Strategy Card)
+              - text: :특정 상황에서 어떤 전술을 선택할지 정리한 실행 단위
+        - article [ref=e114]:
+          - list [ref=e116]:
+            - listitem [ref=e117]:
+              - generic [ref=e118]: BrainCam
+              - text: :판단 근거를
+              - strong [ref=e119]: 상황 인식 → 이유 → 최종 결정
+              - text: 흐름으로 남기는 설명 기록
+        - article [ref=e120]:
+          - list [ref=e122]:
+            - listitem [ref=e123]:
+              - generic [ref=e124]: 전술 편중
+              - text: :특정 전술만 반복적으로 선택되는 현상. 높을수록 재플레이성이 낮아진다
+        - article [ref=e125]:
+          - list [ref=e127]:
+            - listitem [ref=e128]:
+              - generic [ref=e129]: 폴백
+              - text: :제한 시간 초과나 실패 시, 안전한 기본 행동으로 즉시 전환하는 보호 장치
+        - article [ref=e130]:
+          - list [ref=e132]:
+            - listitem [ref=e133]:
+              - generic [ref=e134]: P95(95퍼센타일)
+              - text: :실행 결과를 빠른 순서로 정렬했을 때 95% 지점의 값. 평균보다 “느린 꼬리 구간”을 보기 좋다.
+        - article [ref=e135]:
+          - list [ref=e137]:
+            - listitem [ref=e138]:
+              - generic [ref=e139]: p50 (중앙값)
+              - text: :측정값을 정렬했을 때 가운데 값. 평균보다 이상치 영향을 덜 받는 대표 지표.
+        - article [ref=e140]:
+          - list [ref=e142]:
+            - listitem [ref=e143]:
+              - generic [ref=e144]: RPS (Requests Per Second)
+              - text: :초당 처리 요청 수. 부하 테스트(Load) 구간의 처리량 지표
+        - article [ref=e145]
+        - article [ref=e148]:
+          - heading "2. 게임 설명" [level=3] [ref=e151]
+        - article [ref=e152]:
+          - blockquote [ref=e153]:
+            - generic [ref=e154]:
+              - paragraph [ref=e155]:
+                - generic [ref=e156]: 게임 컨셉
+                - text: ":"
+                - strong [ref=e157]: 4명 협력(드라이버 3 + 지휘관 1) vs AI 적(Teeth) PvE 비대칭 추격 레이싱 게임
+              - paragraph [ref=e158]:
+                - text: ·
+                - generic [ref=e159]: 드라이버
+                - text: ":"
+                - strong [ref=e160]: 직접 주행·전투를 담당
+                - text: . 시야가 제한되어 HP·연료를 직접 확인할 수 없고, 오직
+                - strong [ref=e161]: 지휘관의 핑과 지휘 음성에 의존
+                - text: 해 상황을 판단
+              - paragraph [ref=e162]:
+                - text: ·
+                - generic [ref=e163]: 지휘관
+                - text: ":"
+                - strong [ref=e164]: 관제탑에서 전장 전체를 지휘
+                - text: . CCTV로 적 위치와 아군 상태를 실시간 파악하고, 전략맵 핑으로 드라이버를 지시하며 드라이버가 모은 Coin으로 아이템을 구매해 팀에 지급
+              - paragraph [ref=e165]:
+                - text: ·
+                - generic [ref=e166]: AI Teeth
+                - text: :플레이어 위치·경과 시간·특수 이벤트를 실시간으로 분석해 전술 상태 (추격·매복·차단·기만 후퇴 등)를 스스로 전환
+        - article [ref=e167]:
+          - figure [ref=e170]:
+            - img "2. 게임 설명 이미지" [ref=e171]
+        - article [ref=e172]:
+          - list [ref=e174]:
+            - listitem [ref=e175]:
+              - generic [ref=e176]: 라운드 종료
+              - text: ":"
+              - strong [ref=e177]: Teeth 처치
+              - text: 또는
+              - strong [ref=e178]: Driver 전원 사망
+              - text: 시 즉시 종료 →
+              - strong [ref=e179]: 생존 팀 승리
+        - article [ref=e180]:
+          - list [ref=e182]:
+            - listitem [ref=e183]:
+              - generic [ref=e184]: 플레이 목표
+              - text: :드라이버+지휘관 협동으로
+              - strong [ref=e185]: 라운드 목표를 수행하며 생존하거나
+              - strong [ref=e186]: Teeth(적)를 처치
+        - article [ref=e187]:
+          - list [ref=e189]:
+            - listitem [ref=e190]:
+              - generic [ref=e191]: Teeth 목표
+              - text: ":"
+              - strong [ref=e192]: 추격·차단·교란
+              - text: 으로 팀을 분산시키고
+              - strong [ref=e193]: Driver 전원 사망
+              - text: 을 유도
+        - article [ref=e194]
+        - article [ref=e197]:
+          - heading "II. Why - 문제 정의" [level=2] [ref=e200]
+        - article [ref=e201]:
+          - 'heading "1. 문제정의: Teeth(적)에게 왜 AI가 필요한가" [level=3] [ref=e204]':
+            - strong [ref=e205]: "1. 문제정의: Teeth(적)에게 왜 AI가 필요한가"
+        - article [ref=e206]:
+          - list [ref=e208]:
+            - listitem [ref=e209]:
+              - strong [ref=e210]: 드라이버와 지휘관의 정보 비대칭
+              - text: +
+              - strong [ref=e211]: 페이즈/아이템 변화
+              - text: 로
+              - strong [ref=e212]
+              - text: 매순간 최적 전술이 달라진다
+        - article [ref=e213]:
+          - list [ref=e215]:
+            - listitem [ref=e216]:
+              - strong [ref=e217]: 맵·거리·속도·자원 상태
+              - text: 조합 폭증해
+              - strong [ref=e218]: 고정 패턴/스크립트
+              - text: 로는 커버 불가
+        - article [ref=e219]:
+          - figure [ref=e222]:
+            - 'img "1. 문제정의: Teeth(적)에게 왜 AI가 필요한가 이미지" [ref=e223]'
+        - article [ref=e224]:
+          - list [ref=e226]:
+            - listitem [ref=e227]:
+              - strong [ref=e228]: 고정 스크립트의 구조적 한계
+            - listitem [ref=e229]:
+              - generic [ref=e230]: 반복
+              - text: ":"
+              - strong [ref=e231]: 패턴이 노출
+              - text: 되면 플레이어가 암기 →
+              - strong [ref=e232]: 재플레이성 소멸
+            - listitem [ref=e233]:
+              - generic [ref=e234]: 오판
+              - text: :상황 조합이 늘어날수록
+              - strong [ref=e235]: 예외처리가 안되는 케이스 증가
+            - listitem [ref=e236]:
+              - generic [ref=e237]: 튜닝 불가
+              - text: :행동을 바꾸려면
+              - strong [ref=e238]: 코드
+              - strong [ref=e239]: 수정 → 재배포 → 밸런스 재검증
+              - text: 반복
+        - article [ref=e240]:
+          - list [ref=e242]:
+            - listitem [ref=e243]:
+              - strong [ref=e244]: 규칙이 늘수록 예외도 늘어난다
+              - text: — 유지보수 비용과 밸런스 리스크가 함께 커진다
+        - article [ref=e245]
+        - article [ref=e248]:
+          - heading "III. Goals - 설계 목표" [level=2] [ref=e251]
+        - article [ref=e252]:
+          - 'heading "1. 설계 요구사항: 실시간 · 안전 · 운영 · 설명가능성" [level=3] [ref=e255]'
+        - article [ref=e256]:
+          - generic [ref=e257]:
+            - generic:
+              - figure:
+                - 'img "1. 설계 요구사항: 실시간 · 안전 · 운영 · 설명가능성 이미지"'
+        - article [ref=e258]:
+          - list [ref=e260]:
+            - listitem [ref=e261]:
+              - generic [ref=e262]: 실시간
+              - text: ":"
+              - strong [ref=e263]: 2초 예산 준수
+              - text: → 초과 시 NOOP·LIGHT
+              - strong [ref=e264]: 폴백으로 즉시 전환
+        - article [ref=e265]:
+          - list [ref=e267]:
+            - listitem [ref=e268]:
+              - generic [ref=e269]: 안전
+              - text: :오명령 감지 →
+              - strong [ref=e270]: Executor가 즉시 차단
+              - text: ", Safe Fallback(안전폴백) 강제 실행"
+        - article [ref=e271]:
+          - list [ref=e273]:
+            - listitem [ref=e274]:
+              - generic [ref=e275]: 운영
+              - text: :단계별 로그·근거 기록 → 장애 발생 시
+              - strong [ref=e276]: 원인점 추적 가능
+        - article [ref=e277]:
+          - list [ref=e279]:
+            - listitem [ref=e280]:
+              - generic [ref=e281]: 설명
+              - text: :판단 근거 구조화(BrainCam) →
+              - strong [ref=e282]: 튜닝·리포팅 가능
+        - article [ref=e283]
+        - article [ref=e286]:
+          - 'heading "2. 성공 기준: 측정 항목" [level=3] [ref=e289]'
+        - article [ref=e290]:
+          - generic [ref=e291]:
+            - generic:
+              - figure:
+                - 'img "2. 성공 기준: 측정 항목 이미지"'
+        - article [ref=e292]:
+          - list [ref=e294]:
+            - listitem [ref=e295]:
+              - generic [ref=e296]: Replay
+              - text: :고정 시나리오 반복 재생 →
+              - strong [ref=e297]: 판단
+              - strong [ref=e298]: 일관성·품질 검증
+              - text: 20초 연속 부하로 운영 환경 처리량·지연 안정성 검증
+        - article [ref=e299]:
+          - list [ref=e301]:
+            - listitem [ref=e302]:
+              - generic [ref=e303]: Load
+              - text: :연속 부하(운영 환경 시뮬레이션) → 운영 환경
+              - strong [ref=e304]: 처리량·지연 안정성 검증
+        - article [ref=e305]:
+          - list [ref=e307]:
+            - listitem [ref=e308]:
+              - generic [ref=e309]: Timeout 기준
+              - text: ":"
+              - strong [ref=e310]: 2,000ms
+              - text: — 게임 판단 주기(2초)와 동일 기준 적용
+        - article [ref=e311]:
+          - list [ref=e313]:
+            - listitem [ref=e314]:
+              - generic [ref=e315]: 오명령 0%, 실행가능률 100%
+              - text: :안전성 기준선, 개선 과정에서도 안전성이 무너지지 않았음을 증명하는 지표
+        - article [ref=e316]
+        - article [ref=e319]:
+          - heading "IV. How - 구조 설계" [level=2] [ref=e322]
+        - article [ref=e323]:
+          - 'heading "1. 에이전트 파이프라인: 역할 분리와 실행 흐름" [level=3] [ref=e326]'
+        - article [ref=e327]:
+          - list [ref=e329]:
+            - listitem [ref=e330]:
+              - generic [ref=e331]: Analyst
+              - text: :게임 상태 → 위협·기회·리스크 레벨 추출 → 태그로 압축
+        - article [ref=e332]:
+          - list [ref=e334]:
+            - listitem [ref=e335]:
+              - generic [ref=e336]: DecisionGate
+              - text: :복잡도·리스크 평가 → NOOP·LIGHT·FULL 분기
+        - article [ref=e337]:
+          - list [ref=e339]:
+            - listitem [ref=e340]:
+              - generic [ref=e341]: Planner
+              - text: :태그 기반 RAG 검색 → 전술 후보 구성
+        - article [ref=e342]:
+          - list [ref=e344]:
+            - listitem [ref=e345]:
+              - generic [ref=e346]: Tactical
+              - text: :LIGHT(규칙) 또는 FULL(LLM)으로 최종 전술 선택
+        - article [ref=e347]:
+          - list [ref=e349]:
+            - listitem [ref=e350]:
+              - generic [ref=e351]: Executor
+              - text: :명령 검증 → 통과 시 UE 전달, 실패 시 즉시 폴백
+        - article [ref=e352]:
+          - list [ref=e354]:
+            - listitem [ref=e355]:
+              - generic [ref=e356]: Logger
+              - text: :판단 근거·지표 기록 → 튜닝·리포트 연결
+        - article [ref=e357]:
+          - generic [ref=e358]:
+            - generic:
+              - figure:
+                - 'img "1. 에이전트 파이프라인: 역할 분리와 실행 흐름 이미지"'
+        - article [ref=e359]:
+          - list [ref=e361]:
+            - listitem [ref=e362]:
+              - generic [ref=e363]: 왜 분리했나
+              - text: :각 에이전트의 입·출력을 고정하여, 장애 발생 시
+              - strong [ref=e364]: 원인 추적
+              - text: 과
+              - strong [ref=e365]: 부분 교체
+              - text: 가능
+            - listitem [ref=e366]:
+              - text: ①
+              - generic [ref=e367]: 입·출력 계약 고정
+              - text: :각 에이전트를 독립적으로 교체·테스트 가능하게 — 장애 범위를 해당 단계로 한정
+            - listitem [ref=e368]:
+              - text: ②
+              - generic [ref=e369]: 지연 측정
+              - text: :구간별 실행 시간 기록 — 병목 지점 파악 → 최적화 정밀화 가능
+            - listitem [ref=e370]:
+              - text: ③
+              - generic [ref=e371]: 원인 추적
+              - text: :단계별 로그로 오명령 발생 시 어느 에이전트인지 즉시 특정·재현 가능
+        - article [ref=e372]:
+          - list [ref=e374]:
+            - listitem [ref=e375]:
+              - generic [ref=e376]: 비용 제어
+              - text: :매 주기 LLM을 실행하면 지연 누적 → DecisionGate가 복잡도에 따라 NOOP·LIGHT·FULL로 분기, LLM은 필요한 순간에만 실행
+        - article [ref=e377]:
+          - list [ref=e379]:
+            - listitem [ref=e380]:
+              - generic [ref=e381]: 흐름
+              - text: :Analyst → DecisionGate → Planner → Tactical → Executor → Logger
+        - article [ref=e382]
+        - article [ref=e385]:
+          - 'heading "2. 지식 기반 의사결정 2축: 상황 언어(온톨로지) × 행동 레시피(전략카드)" [level=3] [ref=e388]'
+        - article [ref=e389]:
+          - generic [ref=e390]:
+            - generic:
+              - figure:
+                - 'img "2. 지식 기반 의사결정 2축: 상황 언어(온톨로지) × 행동 레시피(전략카드) 이미지"'
+        - article [ref=e391]:
+          - list [ref=e393]:
+            - listitem [ref=e394]:
+              - generic [ref=e395]: 기존 한계
+              - text: :전술을 코드에 하드코딩 → 수정할 때마다 재배포 필요 —
+              - strong [ref=e396]: 밸런스 재검증 반복, 개발 속도 악화, 런타임 오류 위험
+        - article [ref=e397]:
+          - generic [ref=e398]:
+            - generic:
+              - figure:
+                - 'img "2. 지식 기반 의사결정 2축: 상황 언어(온톨로지) × 행동 레시피(전략카드) 이미지"'
+        - article [ref=e399]:
+          - list [ref=e401]:
+            - listitem [ref=e402]:
+              - generic [ref=e403]: 해결 구조
+              - text: :전술을
+              - strong [ref=e404]: 데이터(카드)
+              - text: 로 분리 →
+              - strong [ref=e405]: 추가·수정·비활성
+              - text: 을 배포 없이 운영
+        - article [ref=e406]:
+          - list [ref=e408]:
+            - listitem [ref=e409]:
+              - generic [ref=e410]: 구조
+              - text: ":"
+              - strong [ref=e411]: 상황(온톨로지 태그)
+              - text: →
+              - strong [ref=e412]: 지식 검색(RAG)
+              - text: →
+              - strong [ref=e413]: 행동(전략카드 실행)
+        - article [ref=e414]:
+          - blockquote [ref=e415]:
+            - paragraph [ref=e417]:
+              - strong [ref=e418]: “상황을 ‘태그’로 만들고, 전술을 ‘카드’로 고른다.”
+        - article [ref=e419]
+        - article [ref=e422]:
+          - 'heading "3. 경량 온톨로지 : 실시간에 맞는 빠른 분류 구조" [level=3] [ref=e425]':
+            - strong [ref=e426]: "3. 경량 온톨로지 : 실시간에 맞는 빠른 분류 구조"
+        - article [ref=e427]:
+          - generic [ref=e428]:
+            - generic:
+              - figure:
+                - 'img "3. 경량 온톨로지 : 실시간에 맞는 빠른 분류 구조 이미지"'
+        - article [ref=e429]:
+          - list [ref=e431]:
+            - listitem [ref=e432]:
+              - generic [ref=e433]: 왜 경량인가
+              - text: :필요한 건 복잡한 지식 추론이 아니라, 게임 상황을
+              - strong [ref=e434]: 즉시 태그로 변환
+              - text: 하는 최소 구조가 필요 (
+              - strong [ref=e435]: 복잡한 추론 없이 JSON 태그 매핑으로 즉시 처리)
+        - article [ref=e436]:
+          - list [ref=e438]:
+            - listitem [ref=e439]:
+              - generic [ref=e440]: 역할
+              - text: :게임 상태를
+              - strong [ref=e441]: 공통 언어(태그)
+              - text: 로 압축 →
+              - strong [ref=e442]: 검색·규칙·전술 선택의 동일한 태그 입력
+              - text: 으로 씀(
+              - strong [ref=e443]: 일관성
+              - text: )
+        - article [ref=e444]:
+          - list [ref=e446]:
+            - listitem [ref=e447]:
+              - generic [ref=e448]: 구조
+              - text: ":"
+            - listitem [ref=e449]:
+              - generic [ref=e450]: Analytics 레이어 (상황 해석)
+              - text: :Threat(위협)·Opportunity(기회)·Context(맥락)
+            - listitem [ref=e451]:
+              - generic [ref=e452]: Operations 레이어 (행동 정의)
+              - text: :Escape(회피)·Resource(자원)·Counter(대응)
+            - listitem [ref=e453]:
+              - generic [ref=e454]: Integrations 레이어 (게임 연동)
+              - text: :Map·Unit·Item 신호
+        - article [ref=e455]:
+          - list [ref=e457]:
+            - listitem [ref=e458]:
+              - generic [ref=e459]: 태그가 없으면
+              - text: :같은 상황도 에이전트마다 다르게 해석됨 →
+              - strong [ref=e460]: 일관성·재현성 보장의 전제 조건
+        - article [ref=e461]
+        - article [ref=e464]:
+          - 'heading "4. 전략카드: 전술을 ‘운영 가능한 실행 단위’로 분리" [level=3] [ref=e467]'
+        - article [ref=e468]:
+          - generic [ref=e469]:
+            - generic:
+              - figure:
+                - 'img "4. 전략카드: 전술을 ‘운영 가능한 실행 단위’로 분리 이미지"'
+        - article [ref=e470]:
+          - list [ref=e472]:
+            - listitem [ref=e473]:
+              - generic [ref=e474]: 전략카드
+              - text: :"언제·왜·무엇을" 을 담은
+              - strong [ref=e475]: 전술 실행 블록 — RAG 검색 대상
+              - text: 이자
+              - strong [ref=e476]: 즉시 실행 가능한 행동 단위
+        - article [ref=e477]:
+          - list [ref=e479]:
+            - listitem [ref=e480]:
+              - generic [ref=e481]: 운영 장점
+              - text: :카드 단위로
+              - strong [ref=e482]: 추가·수정·비활성·버전 관리
+              - text: —
+              - strong [ref=e483]: 코드 변경·재배포 없이 전술 라이브러리 갱신
+        - article [ref=e484]:
+          - list [ref=e486]:
+            - listitem [ref=e487]:
+              - generic [ref=e488]: 핵심
+              - text: :전술 수정 =
+              - strong [ref=e489]: 카드 교체
+              - text: —
+              - strong [ref=e490]: 재배포·밸런스 재검증 사이클 제거
+        - article [ref=e491]
+        - article [ref=e494]:
+          - 'heading "5. Analyst Agent: 상태를 ‘의사결정 입력(태그 후보)’로 정리" [level=3] [ref=e497]'
+        - article [ref=e498]:
+          - generic [ref=e499]:
+            - generic:
+              - figure:
+                - 'img "5. Analyst Agent: 상태를 ‘의사결정 입력(태그 후보)’로 정리 이미지"'
+        - article [ref=e500]:
+          - list [ref=e502]:
+            - listitem [ref=e503]:
+              - generic [ref=e504]: 입력
+              - text: :Unreal GameState — 위치·속도·HP·연료·이벤트 등 게임 원본 상태값
+        - article [ref=e505]:
+          - list [ref=e507]:
+            - listitem [ref=e508]:
+              - generic [ref=e509]: 처리
+              - text: :위협·기회·목표 신호 추출 →
+              - strong [ref=e510]: 요약(Summary)
+              - strong [ref=e511]: 생성 + 온톨로지 태그 후보 변환
+        - article [ref=e512]:
+          - list [ref=e514]:
+            - listitem [ref=e515]:
+              - generic [ref=e516]: 출력
+              - text: :Planner가 바로 쓰는
+              - strong [ref=e517]: 정규화된 상황 입력
+              - text: (
+              - strong [ref=e518]: 노이즈 감소, 계산량감소, 재현성 보장
+              - text: )
+        - article [ref=e519]:
+          - list [ref=e521]:
+            - listitem [ref=e522]:
+              - generic [ref=e523]: 왜 분리했나
+              - text: :Analyst가 한 번 정제하면 전 구간에서
+              - strong [ref=e524]: 동일한 결과를 공유 → 에이전트 간 상태 해석 불일치 제거
+        - article [ref=e525]
+        - article [ref=e528]:
+          - 'heading "6. DecisionGate: 비용·속도 예산을 지키는 3-모드 분기" [level=3] [ref=e531]'
+        - article [ref=e532]:
+          - generic [ref=e533]:
+            - generic:
+              - figure:
+                - 'img "6. DecisionGate: 비용·속도 예산을 지키는 3-모드 분기 이미지"'
+        - article [ref=e534]:
+          - list [ref=e536]:
+            - listitem [ref=e537]:
+              - generic [ref=e538]: 왜 필요한가
+              - text: :2초마다 LLM을 호출하면 누적 지연이 Timeout 기준(2초)을 초과 — 모든 상황이 LLM 수준의 복잡도는 아님 → 상황 복잡도에 맞는 비용만 소비 (
+              - strong [ref=e539]: 시간·비용 예산 준수)
+        - article [ref=e540]:
+          - list [ref=e542]:
+            - listitem [ref=e543]:
+              - generic [ref=e544]: NOOP
+              - text: :상황 변화 없음 →
+              - strong [ref=e545]: 이전 결정 재사용(Redis 캐시),
+              - text: 캐시 조회만.
+        - article [ref=e546]:
+          - list [ref=e548]:
+            - listitem [ref=e549]:
+              - generic [ref=e550]: LIGHT
+              - text: :상황 변화 있지만 단순 →
+              - strong [ref=e551]: 규칙 기반 Tactical만 실행
+              - text: ", RAG 검색만."
+        - article [ref=e552]:
+          - list [ref=e554]:
+            - listitem [ref=e555]:
+              - generic [ref=e556]: FULL
+              - text: :리스크 높음 + 복잡한 조합
+              - strong [ref=e557]: → RAG + LLM 전체 파이프라인 실행
+        - article [ref=e558]:
+          - list [ref=e560]:
+            - listitem [ref=e561]:
+              - generic [ref=e562]: 핵심 설계
+              - text: ":"
+              - strong [ref=e563]: NOOP는 캐시 재사용, LIGHT는 규칙 실행, FULL은 LLM 실행 — 상황 복잡도에 맞는 비용만 쓴다
+        - article [ref=e564]
+        - article [ref=e567]:
+          - 'heading "7. Planner Agent: 태그 → 검색 → 후보군 구성(RAG 의사결정 플로우)" [level=3] [ref=e570]'
+        - article [ref=e571]:
+          - generic [ref=e572]:
+            - generic:
+              - figure:
+                - 'img "7. Planner Agent: 태그 → 검색 → 후보군 구성(RAG 의사결정 플로우) 이미지"'
+        - article [ref=e573]:
+          - list [ref=e575]:
+            - listitem [ref=e576]:
+              - generic [ref=e577]: 검색 중심 설계
+              - text: :LLM이 전술을 직접 생성하면 같은 상황에서도 결과가 달라짐 →
+              - strong [ref=e578]: 검증된 카드 라이브러리
+              - text: 에서 선택해
+              - strong [ref=e579]: 일관성·재현성 확보
+              - text: ",카드 교체만으로 전술 수정 가능"
+        - article [ref=e580]:
+          - list [ref=e582]:
+            - listitem [ref=e583]:
+              - generic [ref=e584]: 구조
+              - text: ":"
+              - strong [ref=e585]: Analyst 태그 → 경량 온톨로지 추론 → Qdrant 벡터 검색(Top-K) → 제약(시간 예산·리스크·페이즈) 필터 → 최종 후보군
+        - article [ref=e586]:
+          - list [ref=e588]:
+            - listitem [ref=e589]:
+              - generic [ref=e590]: 효과
+              - text: :전술 후보가 항상 검증된 카드에서 나옴 → 오작동 전술 유입 차단, 카드 교체만으로 행동 수정 가능
+        - article [ref=e591]:
+          - list [ref=e593]:
+            - listitem [ref=e594]:
+              - generic [ref=e595]: 핵심
+              - text: :온톨로지
+              - strong [ref=e596]: 태그가 검색을 만들고
+              - text: ", 전략 카드가"
+              - strong [ref=e597]: 행동을 만든다
+        - article [ref=e598]
+        - article [ref=e601]:
+          - 'heading "8. Tactical Agent: 최종 전술 선택 엔진(LIGHT vs FULL)" [level=3] [ref=e604]'
+        - article [ref=e605]:
+          - generic [ref=e606]:
+            - generic:
+              - figure:
+                - 'img "8. Tactical Agent: 최종 전술 선택 엔진(LIGHT vs FULL) 이미지"'
+        - article [ref=e607]:
+          - list [ref=e609]:
+            - listitem [ref=e610]:
+              - generic [ref=e611]: 모드 분기 이유
+              - text: ":"
+              - strong [ref=e612]: 상황 복잡도에 따라 규칙과 LLM을 분리
+              - text: — 단순 상황까지 LLM을 실행하면 2초 예산 안에서 처리 불가(불필요한 비용과 지연 증가 원인)
+        - article [ref=e613]:
+          - list [ref=e615]:
+            - listitem [ref=e616]:
+              - generic [ref=e617]: LIGHT
+              - text: :일반·저위험 상황 → 규칙 기반 프로세스로 명령 생성, LLM 미호출
+        - article [ref=e618]:
+          - list [ref=e620]:
+            - listitem [ref=e621]:
+              - generic [ref=e622]: FULL
+              - text: :고위험·복잡 상황 → Planner 출력을 LLM에 입력하여 조합·우선순위 판단
+        - article [ref=e623]:
+          - list [ref=e625]:
+            - listitem [ref=e626]:
+              - generic [ref=e627]: 산출
+              - text: :최종 전술 명령 + 판단 근거(BrainCam) → Executor로 전달
+        - article [ref=e628]
+        - article [ref=e631]:
+          - heading "V. Ops - 실행·검증·운영" [level=2] [ref=e634]:
+            - strong [ref=e635]: V. Ops - 실행·검증·운영
+        - article [ref=e636]:
+          - 'heading "1. Executor Agent: 명령 변환·검증·안전 폴백(가드레일)" [level=3] [ref=e639]':
+            - text: "1. Executor Agent:"
+            - strong [ref=e640]: 명령 변환·검증·안전 폴백(가드레일)
+        - article [ref=e641]:
+          - generic [ref=e642]:
+            - generic:
+              - figure:
+                - 'img "1. Executor Agent: 명령 변환·검증·안전 폴백(가드레일) 이미지"'
+        - article [ref=e643]:
+          - list [ref=e645]:
+            - listitem [ref=e646]:
+              - generic [ref=e647]: 형식 검증
+              - text: :JSON Schema로 구조·타입 오류 사전 검출
+        - article [ref=e648]:
+          - list [ref=e650]:
+            - listitem [ref=e651]:
+              - generic [ref=e652]: 제약 검증
+              - text: :이동 가능 구역·금지 조건·쿨다운 등 게임 제약 반영
+        - article [ref=e653]:
+          - list [ref=e655]:
+            - listitem [ref=e656]:
+              - generic [ref=e657]: 안전 폴백
+              - text: :검증 실패 시
+              - strong [ref=e658]: 안전 행동(Safe Fallback)
+              - text: 강제 실행 → 오명령 0% 유지
+        - article [ref=e659]
+        - article [ref=e662]:
+          - 'heading "2. Logger Agent: 기록 → 재현 → 개선(운영 루프 완성)" [level=3] [ref=e665]'
+        - article [ref=e666]:
+          - generic [ref=e667]:
+            - generic:
+              - figure:
+                - 'img "2. Logger Agent: 기록 → 재현 → 개선(운영 루프 완성) 이미지"'
+        - article [ref=e668]:
+          - list [ref=e670]:
+            - listitem [ref=e671]:
+              - generic [ref=e672]: 기록
+              - text: :결정 로그 + BrainCam(XAI) + 지연/성공률 지표 저장
+        - article [ref=e673]:
+          - list [ref=e675]:
+            - listitem [ref=e676]:
+              - generic [ref=e677]: 재현
+              - text: ":"
+              - strong [ref=e678]: 동일 상황을 로그로 복원 → 원인 에이전트 단계 특정
+        - article [ref=e679]:
+          - list [ref=e681]:
+            - listitem [ref=e682]:
+              - generic [ref=e683]: 개선
+              - text: :카드·규칙·모드를 데이터 기반으로 튜닝 → 밸런싱·리포트까지 연결
+        - article [ref=e684]
+        - article [ref=e687]:
+          - 'heading "3. 오케스트레이션: LangGraph(흐름/제어) + LangChain(도구/연동)" [level=3] [ref=e690]'
+        - article [ref=e691]:
+          - generic [ref=e692]:
+            - generic:
+              - figure:
+                - 'img "3. 오케스트레이션: LangGraph(흐름/제어) + LangChain(도구/연동) 이미지"'
+        - article [ref=e693]:
+          - list [ref=e695]:
+            - listitem [ref=e696]:
+              - generic [ref=e697]: LangGraph
+              - text: :3 mode
+              - strong [ref=e698]: 조건부 분기
+              - text: (
+              - strong [ref=e699]: NOOP·LIGHT·FULL)를 그래프로 선언 —
+              - text: 분기 조건과 에이전트 로직 분리 + Redis Checkpointer로 매 판단의 실행 경로 자동 저장
+        - article [ref=e700]:
+          - list [ref=e702]:
+            - listitem [ref=e703]:
+              - generic [ref=e704]: LangChain
+              - text: ":"
+              - strong [ref=e705]: RAG 검색·LLM 호출, 재시도·Timeout 처리가 필요한 구간 → 표준 호출 인터페이스 적용 →재시도·Timeout 처리 일관화
+        - article [ref=e706]:
+          - list [ref=e708]:
+            - listitem [ref=e709]:
+              - generic [ref=e710]: 결과
+              - text: :AgentState 하나로 Analyst→Logger 전 단계 추적 — 모드·경로·폴백 여부를 Logger가 단계별 기록
+        - article [ref=e711]
+        - article [ref=e714]:
+          - 'heading "4. API 설계: 왜 실시간 제어는 HTTP 계약으로 고정했나" [level=3] [ref=e717]'
+        - article [ref=e718]:
+          - generic [ref=e719]:
+            - generic:
+              - figure:
+                - 'img "4. API 설계: 왜 실시간 제어는 HTTP 계약으로 고정했나 이미지"'
+        - article [ref=e720]:
+          - list [ref=e722]:
+            - listitem [ref=e723]:
+              - generic [ref=e724]: 계약 단순화
+              - text: :요청(State JSON) → 응답(Command JSON)으로 인터페이스를 고정
+        - article [ref=e725]:
+          - list [ref=e727]:
+            - listitem [ref=e728]:
+              - generic [ref=e729]: 디버그/재현
+              - text: :요청·응답이 전체가 로그로 남아
+              - strong [ref=e730]: 문제 상황 즉시 재현·분석 가능
+        - article [ref=e731]:
+          - list [ref=e733]:
+            - listitem [ref=e734]:
+              - generic [ref=e735]: 시간 제어
+              - text: :Timeout
+              - strong [ref=e736]: ·
+              - text: 폴백을 API 레벨에서 처리 →
+              - strong [ref=e737]: AI 서버 지연이 게임 루프에 전파되지 않음
+        - article [ref=e738]:
+          - list [ref=e740]:
+            - listitem [ref=e741]:
+              - generic [ref=e742]: WebSocket 제외 이유
+              - text: :상시 연결 유지 비용 대비 2초 단발 요청 구조에 HTTP가 적합
+        - article [ref=e743]
+        - article [ref=e746]:
+          - 'heading "5. 실시간 동작 안전성: 시간 예산 + 폴백이 필수" [level=3] [ref=e749]'
+        - article [ref=e750]:
+          - generic [ref=e751]:
+            - generic:
+              - figure:
+                - 'img "5. 실시간 동작 안전성: 시간 예산 + 폴백이 필수 이미지"'
+        - article [ref=e752]:
+          - list [ref=e754]:
+            - listitem [ref=e755]:
+              - generic [ref=e756]: 원칙
+              - text: ":"
+              - strong [ref=e757]: 2초 초과 = Timeout → 지연 자체가 실패
+        - article [ref=e758]:
+          - list [ref=e760]:
+            - listitem [ref=e761]:
+              - generic [ref=e762]: 설계
+              - text: ":"
+              - strong [ref=e763]: 시간 예산 초과·처리 실패 시 NOOP 또는 LIGHT로 즉시 폴백
+        - article [ref=e764]:
+          - list [ref=e766]:
+            - listitem [ref=e767]:
+              - generic [ref=e768]: 효과
+              - text: :처리 실패가 명령 공백으로 이어지지 않음 — 폴백이 항상 유효한 명령을 반환
+        - article [ref=e769]
+        - article [ref=e772]:
+          - 'heading "6. BrainCam(XAI): 판단 근거를 구조화해 튜닝 가능한 시스템으로" [level=3] [ref=e775]'
+        - article [ref=e776]:
+          - paragraph [ref=e779]: XAI(eXplainable AI, 설명 가능한 인공지능) — AI가 내린 판단의 근거를 구조화해 기록
+        - article [ref=e780]:
+          - generic [ref=e781]:
+            - generic:
+              - figure:
+                - 'img "6. BrainCam(XAI): 판단 근거를 구조화해 튜닝 가능한 시스템으로 이미지"'
+        - article [ref=e782]:
+          - list [ref=e784]:
+            - listitem [ref=e785]:
+              - generic [ref=e786]: 구성
+              - text: :Perception(상황 요약) → Reasoning(근거
+              - strong [ref=e787]: ·
+              - text: 전략) → Decision(최종 명령)
+        - article [ref=e788]:
+          - list [ref=e790]:
+            - listitem [ref=e791]:
+              - generic [ref=e792]: 효과
+              - text: :결과가 아닌 판단 근거를 기준으로 튜닝 — 어떤 카드가, 왜, 어떤 상황에서 틀렸는지 추적 가능
+        - article [ref=e793]:
+          - list [ref=e795]:
+            - listitem [ref=e796]:
+              - generic [ref=e797]: 활용
+              - text: :디버깅·밸런싱·리포트가 "왜 그 전술인가"를 기준으로 진행 가능
+        - article [ref=e798]
+        - article [ref=e801]:
+          - 'heading "7. 운영 인프라: 왜 로그·지식·서버를 분리했나" [level=3] [ref=e804]'
+        - article [ref=e805]:
+          - generic [ref=e806]:
+            - generic:
+              - figure:
+                - 'img "7. 운영 인프라: 왜 로그·지식·서버를 분리했나 이미지"'
+        - article [ref=e807]:
+          - list [ref=e809]:
+            - listitem [ref=e810]:
+              - generic [ref=e811]: 실시간 처리(API 서버)
+              - text: :응답 지연·장애가 게임에 직접 영향 → 가장 먼저 격리
+        - article [ref=e812]:
+          - list [ref=e814]:
+            - listitem [ref=e815]:
+              - generic [ref=e816]: 지식 관리(Qdrant/DB/Cache)
+              - text: :카드·태그·벡터 검색 성능을 게임 서버와 독립적으로 튜닝
+        - article [ref=e817]:
+          - list [ref=e819]:
+            - listitem [ref=e820]:
+              - generic [ref=e821]: 운영 데이터(PostgreSQL/메트릭)
+              - text: :결정 로그·지표를 축적 → 문제 발생 시 원인 추적의 기반
+        - article [ref=e822]
+        - article [ref=e825]:
+          - heading "VI. Proof - 성능 검증" [level=2] [ref=e828]
+        - article [ref=e829]:
+          - blockquote [ref=e830]:
+            - generic [ref=e831]:
+              - paragraph [ref=e832]:
+                - strong [ref=e833]: 테스트 기준
+              - paragraph [ref=e834]:
+                - text: ·
+                - generic [ref=e835]: Replay
+                - text: :고정 220번 이벤트 직렬 재생 — 판단 정확도·일관성·품질 검증
+              - paragraph [ref=e836]:
+                - text: ·
+                - generic [ref=e837]: Load
+                - text: :120초 직렬 부하 — 운영 환경 처리량·지연 안정성 검증
+              - paragraph [ref=e838]:
+                - text: ·
+                - generic [ref=e839]: Timeout
+                - text: :2초 초과 시 Timeout — 게임 판단 주기(2초)와 동일 기준
+        - article [ref=e840]:
+          - 'heading "1. 핵심 지표: 2초 예산 안에 응답·품질·안전 동시 달성" [level=3] [ref=e843]'
+        - article [ref=e844]:
+          - generic [ref=e845]:
+            - generic:
+              - figure:
+                - 'img "1. 핵심 지표: 2초 예산 안에 응답·품질·안전 동시 달성 이미지"'
+        - article [ref=e846]:
+          - list [ref=e848]:
+            - listitem [ref=e849]:
+              - generic [ref=e850]: 2초 예산
+              - text: :Load P95 995ms —
+              - strong [ref=e851]: 예산 대비 1초 여유 확보
+        - article [ref=e852]:
+          - list [ref=e854]:
+            - listitem [ref=e855]:
+              - generic [ref=e856]: 3개 축 동시 개선
+              - text: :속도(P95·Timeout·rps) + 품질(다양성·편중) + 안전(오명령·폴백)
+        - article [ref=e857]:
+          - list [ref=e859]:
+            - listitem [ref=e860]:
+              - generic [ref=e861]: 안전 기준선
+              - text: ":"
+              - strong [ref=e862]: 오명령 0%·실행가능률 100%
+        - article [ref=e863]
+        - article [ref=e866]:
+          - 'heading "2. 모델 선정: 실부하 Timeout 기준 gpt-4.1-mini 채택" [level=3] [ref=e869]'
+        - article [ref=e870]:
+          - table [ref=e873]:
+            - rowgroup [ref=e881]:
+              - row "모델 Replay P95 Replay Timeout Load P95 Load Timeout 총비용(USD)" [ref=e882]:
+                - columnheader "모델" [ref=e883]
+                - columnheader "Replay P95" [ref=e884]
+                - columnheader "Replay Timeout" [ref=e885]
+                - columnheader "Load P95" [ref=e886]
+                - columnheader "Load Timeout" [ref=e887]
+                - columnheader "총비용(USD)" [ref=e888]
+            - rowgroup [ref=e889]:
+              - row "gpt-5-mini 2,096ms 21.36% ❌ 2,086ms 21.48% ❌ $0.026" [ref=e890]:
+                - cell "gpt-5-mini" [ref=e891]
+                - cell "2,096ms" [ref=e892]
+                - cell "21.36% ❌" [ref=e893]
+                - cell "2,086ms" [ref=e894]
+                - cell "21.48% ❌" [ref=e895]
+                - cell "$0.026" [ref=e896]
+              - row "gpt-4.1-mini 1,017ms ✅ 0.91% 995ms ✅ 0.19% ✅ $0.042" [ref=e897]:
+                - cell "gpt-4.1-mini" [ref=e898]:
+                  - strong [ref=e899]: gpt-4.1-mini
+                - cell "1,017ms ✅" [ref=e900]:
+                  - strong [ref=e901]: 1,017ms
+                  - text: ✅
+                - cell "0.91%" [ref=e902]
+                - cell "995ms ✅" [ref=e903]:
+                  - strong [ref=e904]: 995ms
+                  - text: ✅
+                - cell "0.19% ✅" [ref=e905]:
+                  - strong [ref=e906]: 0.19%
+                  - text: ✅
+                - cell "$0.042" [ref=e907]
+              - row "gpt-4o-mini 1,481ms 0.00% 1,267ms 1.45% ⚠️ $0.013" [ref=e908]:
+                - cell "gpt-4o-mini" [ref=e909]
+                - cell "1,481ms" [ref=e910]
+                - cell "0.00%" [ref=e911]
+                - cell "1,267ms" [ref=e912]
+                - cell "1.45% ⚠️" [ref=e913]:
+                  - strong [ref=e914]: 1.45% ⚠️
+                - cell "$0.013" [ref=e915]
+        - article [ref=e916]:
+          - list [ref=e918]:
+            - listitem [ref=e919]:
+              - generic [ref=e920]: gpt-5-mini
+              - text: :Replay/Load 모두
+              - strong [ref=e921]: Timeout 21% 이상
+              - text: —
+              - strong [ref=e922]: 즉시 탈락
+        - article [ref=e923]:
+          - list [ref=e925]:
+            - listitem [ref=e926]:
+              - generic [ref=e927]: gpt-4o-mini
+              - text: :Replay Timeout 0%이나
+              - strong [ref=e928]: 실부하(Load) Timeout 1.45% 발생
+              - text: → 실서비스 500회 기준 약 7건 판단 누락 예상
+        - article [ref=e929]:
+          - list [ref=e931]:
+            - listitem [ref=e932]:
+              - generic [ref=e933]: gpt-4.1-mini
+              - text: ":"
+              - strong [ref=e934]: Load Timeout 0.19%, P95 995ms
+              - text: — 2초 예산 대비 1초 여유, 최소 비용 차액 $0.029(약 43원),
+              - strong [ref=e935]: 안정성 우선 채택
+        - article [ref=e936]:
+          - list [ref=e938]:
+            - listitem [ref=e939]:
+              - generic [ref=e940]: 선정 기준
+              - text: :속도·비용보다 Load 환경의
+              - strong [ref=e941]: Timeout 0%에 가장 가까운 모델 선택,
+              - strong [ref=e942]: 실시간 게임에서 Timeout은 비용 이점으로도 대체할 수 없는 실패 기준
+        - article [ref=e943]
+        - article [ref=e946]:
+          - 'heading "3. 성과 지표: 응답시간·처리량·Timeout" [level=3] [ref=e949]'
+        - article [ref=e950]:
+          - generic [ref=e951]:
+            - generic:
+              - figure:
+                - 'img "3. 성과 지표: 응답시간·처리량·Timeout 이미지"'
+        - article [ref=e952]:
+          - list [ref=e954]:
+            - listitem [ref=e955]:
+              - generic [ref=e956]: 응답시간 P95
+              - text: :각 구간 실행 시간 기록 추가 후 LLM이 전체 지연 94% 차지 확인 → DecisionGate
+              - strong [ref=e957]: FULL 진입 기준을 설계 의도대로 정밀화
+        - article [ref=e958]:
+          - list [ref=e960]:
+            - listitem [ref=e961]:
+              - generic [ref=e962]: Timeout
+              - text: :FULL 분기 기준 정밀화(FULL 비율 감소) + 폴백 경로 보강의 결과
+        - article [ref=e963]:
+          - generic [ref=e964]:
+            - generic:
+              - figure:
+                - 'img "3. 성과 지표: 응답시간·처리량·Timeout 이미지"'
+        - article [ref=e965]:
+          - list [ref=e967]:
+            - listitem [ref=e968]:
+              - generic [ref=e969]: 처리량
+              - text: :동일 120초, FULL 비율 감소로 LLM 대기 제거 → 3배 이상 처리 개선
+        - article [ref=e970]:
+          - list [ref=e972]:
+            - listitem [ref=e973]:
+              - generic [ref=e974]: Timeout
+              - text: :LLM 병목 제거 효과가 부하 환경에서 더 크게 적용 (Replay와 같은 원인)
+        - article [ref=e975]
+        - article [ref=e978]:
+          - 'heading "4. 품질 평가: 전술 품질·다양성·안정성" [level=3] [ref=e981]'
+        - article [ref=e982]:
+          - generic [ref=e983]:
+            - generic:
+              - figure:
+                - 'img "4. 품질 평가: 전술 품질·다양성·안정성 이미지"'
+        - article [ref=e984]:
+          - list [ref=e986]:
+            - listitem [ref=e987]:
+              - generic [ref=e988]: 시나리오 편중
+              - text: ":"
+              - strong [ref=e989]: 전략카드 추가
+              - text: ", RAG Top-K 후보 재정렬 시"
+              - strong [ref=e990]: 최근 N회 사용 카드에 점수 페널티
+        - article [ref=e991]:
+          - list [ref=e993]:
+            - listitem [ref=e994]:
+              - generic [ref=e995]: 전술 다양성
+              - text: :후보 선택 범위 확대 + 모드별 패널티 분기의 결과
+        - article [ref=e996]:
+          - list [ref=e998]:
+            - listitem [ref=e999]:
+              - text: 다양성이 올라갈수록 플레이어가 패턴을 암기하지 못함 →
+              - strong [ref=e1000]: 재플레이성 유지
+        - article [ref=e1001]:
+          - generic [ref=e1002]:
+            - generic:
+              - figure:
+                - 'img "4. 품질 평가: 전술 품질·다양성·안정성 이미지"'
+        - article [ref=e1003]:
+          - list [ref=e1005]:
+            - listitem [ref=e1006]:
+              - generic [ref=e1007]: 응답 변동성
+              - text: :FULL 모드 지연 분산이 줄어 판단 품질이 안정됨
+        - article [ref=e1008]
+        - article [ref=e1011]:
+          - 'heading "5. 비용 효율: FULL 모드 최적화로 비용 절감" [level=3] [ref=e1014]'
+        - article [ref=e1015]:
+          - paragraph [ref=e1018]: 한 게임 8분 기준 예측 비용
+        - article [ref=e1019]:
+          - generic [ref=e1020]:
+            - generic:
+              - figure:
+                - 'img "5. 비용 효율: FULL 모드 최적화로 비용 절감 이미지"'
+        - article [ref=e1021]:
+          - list [ref=e1023]:
+            - listitem [ref=e1024]:
+              - generic [ref=e1025]: 비용 절감 이유
+              - text: :프롬프트 수정, 출력 시 필요한 정보만 요청. Full 모드 설계에 맞게 기준 정밀화 작업으로 FULL 비율이 감소 (불필요한 LLM 호출 제거)
+        - article [ref=e1026]
+        - article [ref=e1029]:
+          - heading "VII. Close - 확장 계획" [level=2] [ref=e1032]
+        - article [ref=e1033]:
+          - 'heading "1. 확장 계획: 다음 단계가 설계에 포함돼야 하는 이유" [level=3] [ref=e1036]':
+            - strong [ref=e1037]: "1. 확장 계획: 다음 단계가 설계에 포함돼야 하는 이유"
+        - article [ref=e1038]:
+          - generic [ref=e1039]:
+            - generic:
+              - figure:
+                - 'img "1. 확장 계획: 다음 단계가 설계에 포함돼야 하는 이유 이미지"'
+        - article [ref=e1040]:
+          - list [ref=e1042]:
+            - listitem [ref=e1043]:
+              - generic [ref=e1044]: 확장
+              - text: :전략카드·입력 신호 추가 → 전술 라이브러리 확장
+        - article [ref=e1045]:
+          - list [ref=e1047]:
+            - listitem [ref=e1048]:
+              - generic [ref=e1049]: 품질
+              - text: :테스트 자동화·관측성 강화·지연 최적화
+        - article [ref=e1050]:
+          - list [ref=e1052]:
+            - listitem [ref=e1053]:
+              - generic [ref=e1054]: 운영
+              - text: :자동 튜닝·자동 리포트·데이터 버전 관리 → 운영 개입 비용 절감
+        - article [ref=e1055]
+        - article [ref=e1058]:
+          - paragraph [ref=e1061]:
+            - generic [ref=e1062]: 발표 영상
+            - text: :last_PPT (1).mp4
+  - contentinfo [ref=e1063]:
+    - generic [ref=e1064]:
+      - generic [ref=e1065]: Thank you
+      - paragraph [ref=e1067]: Copyright © 2026. KANG KYOUNGRAN. All rights reserved.
+  - generic [ref=e1069]:
+    - button "맨 위로 이동" [ref=e1070]:
+      - img [ref=e1071]
+    - button "빠른 메뉴 열기" [ref=e1073]:
+      - img [ref=e1074]

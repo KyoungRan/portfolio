@@ -1,0 +1,60 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - link "Logo Home" [ref=e7] [cursor=pointer]:
+        - /url: "#/"
+        - img "Logo" [ref=e8]
+        - generic [ref=e9]: Home
+      - navigation "주요 메뉴" [ref=e10]:
+        - button "AboutMe" [ref=e11]:
+          - generic [ref=e12]:
+            - img [ref=e13]
+            - generic [ref=e15]: AboutMe
+        - button "Project" [ref=e17]:
+          - generic [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e21]: Project
+          - img [ref=e22]
+        - button "Experience" [ref=e24]:
+          - generic [ref=e25]:
+            - img [ref=e26]
+            - generic [ref=e29]: Experience
+        - button "Skills" [ref=e30]:
+          - generic [ref=e31]:
+            - img [ref=e32]
+            - generic [ref=e35]: Skills
+        - button "Edu&Training" [ref=e36]:
+          - generic [ref=e37]:
+            - img [ref=e38]
+            - generic [ref=e40]: Edu&Training
+        - button "Others" [ref=e41]:
+          - generic [ref=e42]:
+            - img [ref=e43]
+            - generic [ref=e45]: Others
+  - main [ref=e46]:
+    - generic [ref=e49]:
+      - generic:
+        - generic:
+          - img "화장품 상품 분석 AI 에이전트 커버"
+      - generic [ref=e50]:
+        - article [ref=e51]:
+          - generic [ref=e52]:
+            - heading "Problem" [level=3] [ref=e54]
+            - paragraph [ref=e56]: 채널별 데이터 형식이 달라 수동 분석 비용이 컸습니다.
+        - article [ref=e57]:
+          - generic [ref=e58]:
+            - heading "Architecture" [level=3] [ref=e60]
+            - paragraph [ref=e62]: 수집-정제-집계 단계를 분리한 파이프라인을 구축했습니다.
+        - article [ref=e63]:
+          - generic [ref=e64]:
+            - heading "Lessons" [level=3] [ref=e66]
+            - paragraph [ref=e68]: 변동성이 큰 데이터는 스키마 변경 가능성을 먼저 고려해야 한다는 점을 확인했습니다.
+  - contentinfo [ref=e69]:
+    - generic [ref=e70]:
+      - generic [ref=e71]: Thank you
+      - paragraph [ref=e73]: Copyright © 2026. KANG KYOUNGRAN. All rights reserved.
+  - generic [ref=e75]:
+    - button "맨 위로 이동" [ref=e76]:
+      - img [ref=e77]
+    - button "빠른 메뉴 열기" [ref=e79]:
+      - img [ref=e80]

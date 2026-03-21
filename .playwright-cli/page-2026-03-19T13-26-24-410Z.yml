@@ -1,0 +1,375 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - link "Logo Home" [ref=e7] [cursor=pointer]:
+        - /url: "#/"
+        - img "Logo" [ref=e8]
+        - generic [ref=e9]: Home
+      - navigation "주요 메뉴" [ref=e10]:
+        - button "AboutMe" [ref=e11]:
+          - generic [ref=e12]:
+            - img [ref=e13]
+            - generic [ref=e15]: AboutMe
+        - button "Project" [ref=e17]:
+          - generic [ref=e18]:
+            - img [ref=e19]
+            - generic [ref=e21]: Project
+          - img [ref=e22]
+        - button "Experience" [ref=e24]:
+          - generic [ref=e25]:
+            - img [ref=e26]
+            - generic [ref=e29]: Experience
+        - button "Skills" [ref=e30]:
+          - generic [ref=e31]:
+            - img [ref=e32]
+            - generic [ref=e35]: Skills
+        - button "Edu&Training" [ref=e36]:
+          - generic [ref=e37]:
+            - img [ref=e38]
+            - generic [ref=e40]: Edu&Training
+        - button "Others" [ref=e41]:
+          - generic [ref=e42]:
+            - img [ref=e43]
+            - generic [ref=e45]: Others
+  - main [ref=e46]:
+    - generic [ref=e49]:
+      - img "태양광 발전량 시계열 예측 커버" [ref=e52]
+      - generic [ref=e53]:
+        - article [ref=e54]:
+          - blockquote [ref=e55]:
+            - generic [ref=e56]:
+              - paragraph [ref=e57]:
+                - generic [ref=e58]: 결론
+                - text: :발전량 급변과 설비 결함을 ‘원인 분리’해, 점검을 늦추는 운영 리스크를 줄였다.
+              - paragraph [ref=e59]:
+                - generic [ref=e60]: 핵심
+                - text: :급변(Ramp) 예측(Transformer) + 결함 탐지(YOLO) → 점검 우선순위로 연결
+              - paragraph [ref=e61]:
+                - generic [ref=e62]: WHY
+                - text: :‘왜 떨어졌는지’ 판단이 늦으면 대응·점검이 같이 늦어진다 → 예측(기상)과 탐지(설비)로 즉시 분리
+        - article [ref=e63]
+        - article [ref=e66]:
+          - generic [ref=e67]:
+            - heading "1. 프로젝트 소개" [level=3] [ref=e69]
+            - table [ref=e71]:
+              - rowgroup [ref=e75]:
+                - row "프로젝트명 태양광 발전량 예측 & 설비 이상탐지 기반 예방정비 웹 플랫폼" [ref=e76]:
+                  - cell "프로젝트명" [ref=e77]
+                  - cell "태양광 발전량 예측 & 설비 이상탐지 기반 예방정비 웹 플랫폼" [ref=e78]
+                - row "한줄 설명 기상·발전 데이터를 기반으로 발전량을 예측하고, 이미지 이상탐지로 설비 점검 우선순위를 제안하는 예방정비 대시보드를 구현" [ref=e79]:
+                  - cell "한줄 설명" [ref=e80]
+                  - cell "기상·발전 데이터를 기반으로 발전량을 예측하고, 이미지 이상탐지로 설비 점검 우선순위를 제안하는 예방정비 대시보드를 구현" [ref=e81]
+                - row "핵심 기능 ① 발전량 예측(급변 경고) ② 패널 결함 탐지 ③ 점검 우선순위 ④ 알림·리포트 대시보드" [ref=e82]:
+                  - cell "핵심 기능" [ref=e83]
+                  - cell "① 발전량 예측(급변 경고) ② 패널 결함 탐지 ③ 점검 우선순위 ④ 알림·리포트 대시보드" [ref=e84]
+                - row "결과물(서비스) 발전량 예측 대시보드 + 설비 이상탐지 결과 시각화 + 점검 우선순위 제안 화면" [ref=e85]:
+                  - cell "결과물(서비스)" [ref=e86]
+                  - cell "발전량 예측 대시보드 + 설비 이상탐지 결과 시각화 + 점검 우선순위 제안 화면" [ref=e87]
+                - row "본인 역할 프로젝트 기획 시계열 데이터 수집·정제 시계열 예측 모델링·검증(Rolling Cross-Validation) 웹 대시보드 구현·연동" [ref=e88]:
+                  - cell "본인 역할" [ref=e89]
+                  - cell "프로젝트 기획 시계열 데이터 수집·정제 시계열 예측 모델링·검증(Rolling Cross-Validation) 웹 대시보드 구현·연동" [ref=e90]
+                - row "기술 스택 Transformer Encoder(최종 채택), LightGBM/LSTM(성능 비교용), PyTorch, Scikit-learn, Pandas, Matplotlib, Seaborn, React, FastAPI, Pydantic, Python" [ref=e91]:
+                  - cell "기술 스택" [ref=e92]
+                  - cell "Transformer Encoder(최종 채택), LightGBM/LSTM(성능 비교용), PyTorch, Scikit-learn, Pandas, Matplotlib, Seaborn, React, FastAPI, Pydantic, Python" [ref=e93]
+                - row "진행 기간 2025.09.08 ~ 2025.09.24" [ref=e94]:
+                  - cell "진행 기간" [ref=e95]
+                  - cell "2025.09.08 ~ 2025.09.24" [ref=e96]
+                - row "팀/인원 3명 (강경란, 장찬영, 차요준)" [ref=e97]:
+                  - cell "팀/인원" [ref=e98]
+                  - cell "3명 (강경란, 장찬영, 차요준)" [ref=e99]
+        - article [ref=e100]
+        - article [ref=e103]:
+          - generic [ref=e104]:
+            - 'heading "2. 문제 정의: “발전량은 급변하고, 점검은 늦다”" [level=3] [ref=e106]'
+            - figure [ref=e108]:
+              - img "발전량 급변과 점검 지연 문제" [ref=e109]
+            - list [ref=e110]:
+              - listitem [ref=e111]:
+                - generic [ref=e112]: 문제
+                - text: :발전량 하락이 ‘기상 급변’ 때문인지 ‘설비 결함’ 때문인지 즉시 분리되지 않는다.
+              - listitem [ref=e113]:
+                - generic [ref=e114]: 결과
+                - text: :원인 판단 지연 → 대응 지연 + 점검 지연 → 운영 리스크 확대
+              - listitem [ref=e115]:
+                - generic [ref=e116]: 요구
+                - text: :원인 분리(기상 vs 설비) + 우선순위(무엇부터 점검?)가 한 화면에서 결정돼야 한다
+        - article [ref=e117]
+        - article [ref=e120]:
+          - generic [ref=e121]:
+            - 'heading "3. 왜 ‘발전량 예측’인가: “급변 구간을 미리 경고해 대응 시간을 만든다”" [level=3] [ref=e123]'
+            - figure [ref=e125]:
+              - img "급변 구간 예측 필요성" [ref=e126]
+            - list [ref=e127]:
+              - listitem [ref=e128]:
+                - generic [ref=e129]: WHY
+                - text: :급변(Ramp)은 ‘대응 준비 시간’이 없으면 손실이 커진다.
+              - listitem [ref=e130]:
+                - generic [ref=e131]: 해결
+                - text: :미래 구간을 먼저 보고 ‘급변 가능성’을 경고 → 대응 시간 확보
+              - listitem [ref=e132]:
+                - generic [ref=e133]: 의미
+                - text: :운영 계획 안정화 / 점검 일정 조정 / 인력·자원 배치의 근거 생성
+        - article [ref=e134]
+        - article [ref=e137]:
+          - generic [ref=e138]:
+            - 'heading "4. 왜 ‘설비 이상탐지’인가: “원인을 빠르게 좁혀 점검을 앞당긴다”" [level=3] [ref=e140]'
+            - figure [ref=e142]:
+              - img "설비 이상탐지 필요성" [ref=e143]
+            - list [ref=e144]:
+              - listitem [ref=e145]:
+                - generic [ref=e146]: WHY
+                - text: :발전량 하락이 보여도 ‘설비 문제’를 확인하려면 현장 점검이 필요 → 지연 발생
+              - listitem [ref=e147]:
+                - generic [ref=e148]: 해결
+                - text: :이미지 기반 결함 자동 탐지로 원인 후보를 즉시 좁힘
+              - listitem [ref=e149]:
+                - generic [ref=e150]: 의미
+                - text: :점검 대상을 선별 → 불필요한 출동 감소 / 점검 효율 상승
+        - article [ref=e151]
+        - article [ref=e154]:
+          - generic [ref=e155]:
+            - 'heading "5. 분석 질문 & 가설: 무엇이 “예방정비”를 가능하게 하나?" [level=3] [ref=e157]'
+            - figure [ref=e159]:
+              - img "분석 질문과 가설" [ref=e160]
+            - list [ref=e161]:
+              - listitem [ref=e162]:
+                - generic [ref=e163]: 가설 1
+                - text: :급변 구간을 안정적으로 예측하면 ‘사전 대응’이 가능해진다.
+              - listitem [ref=e164]:
+                - generic [ref=e165]: 가설 2
+                - text: :결함을 자동으로 찾으면 ‘점검 지연’이 줄어든다.
+              - listitem [ref=e166]:
+                - generic [ref=e167]: 가설 3
+                - text: :우선순위를 제시하면 ‘운영자가 즉시 판단’할 수 있다.
+        - article [ref=e168]
+        - article [ref=e171]:
+          - generic [ref=e172]:
+            - 'heading "6. 해결 전략: “예측 + 탐지 + 우선순위로 연결한다”" [level=3] [ref=e174]'
+            - figure [ref=e176]:
+              - img "예측과 탐지 연결 전략" [ref=e177]
+            - list [ref=e178]:
+              - listitem [ref=e179]:
+                - generic [ref=e180]: 전략
+                - text: :예측(기상 요인)과 탐지(설비 요인)를 분리해 한 흐름으로 연결
+              - listitem [ref=e181]:
+                - generic [ref=e182]: 연결의 목적
+                - text: :‘분석 결과’가 아니라 ‘점검 결정’까지 도달
+              - listitem [ref=e183]:
+                - generic [ref=e184]: 산출물
+                - text: :경고(급변) + 결함 리스트 + 우선순위 + 대시보드 알림
+        - article [ref=e185]
+        - article [ref=e188]:
+          - generic [ref=e189]:
+            - 'heading "7. 데이터 준비: “시간을 맞춰야 예측이 된다”" [level=3] [ref=e191]'
+            - figure [ref=e193]:
+              - img "데이터 준비 과정" [ref=e194]
+            - list [ref=e195]:
+              - listitem [ref=e196]:
+                - generic [ref=e197]: 핵심 과제
+                - text: :데이터가 서로 다른 시간 단위/누락/지연을 가진다 → 그대로는 학습 불가
+              - listitem [ref=e198]:
+                - generic [ref=e199]: 해결
+                - text: :시간 정렬 → 결측 처리 → 이상치 처리 → 파생 특성 → 검증 분리
+              - listitem [ref=e200]:
+                - generic [ref=e201]: WHY
+                - text: :시계열은 ‘시간 정합성’이 깨지면 성능보다 먼저 신뢰가 무너진다
+        - article [ref=e202]:
+          - generic [ref=e203]:
+            - heading "데이터셋 표 ① 시계열 데이터(예측)" [level=4] [ref=e205]
+            - table [ref=e207]:
+              - rowgroup [ref=e208]:
+                - row "출처(데이터) 수집 기간 설명 역할(WHY)" [ref=e209]:
+                  - columnheader "출처(데이터)" [ref=e210]
+                  - columnheader "수집 기간" [ref=e211]
+                  - columnheader "설명" [ref=e212]
+                  - columnheader "역할(WHY)" [ref=e213]
+              - rowgroup [ref=e214]:
+                - row "지역별 시간별 태양광 발전량 정보 (공공데이터포털) 23.01.01~25.08.31 16개 시·도, 1시간 간격 발전량(MWh) 핵심 종속변수(Target)" [ref=e215]:
+                  - cell "지역별 시간별 태양광 발전량 정보 (공공데이터포털)" [ref=e216]
+                  - cell "23.01.01~25.08.31" [ref=e217]
+                  - cell "16개 시·도, 1시간 간격 발전량(MWh)" [ref=e218]
+                  - cell "핵심 종속변수(Target)" [ref=e219]
+                - row "태양광 발전량 추계정보 (한국전력거래소) 23.01.01~25.08.31 자가용·한전 PPA 포함, 월 단위 추정 발전량 스케일 보정용(총량 차이 보정)" [ref=e220]:
+                  - cell "태양광 발전량 추계정보 (한국전력거래소)" [ref=e221]
+                  - cell "23.01.01~25.08.31" [ref=e222]
+                  - cell "자가용·한전 PPA 포함, 월 단위 추정 발전량" [ref=e223]
+                  - cell "스케일 보정용(총량 차이 보정)" [ref=e224]
+                - row "기상청 지상(종관/ASOS) 시간자료 (공공데이터포털) 23.01.01~25.08.31 일사량·운량·기온·풍속·습도 등 시간별 관측 핵심 독립변수(Feature)" [ref=e225]:
+                  - cell "기상청 지상(종관/ASOS) 시간자료 (공공데이터포털)" [ref=e226]
+                  - cell "23.01.01~25.08.31" [ref=e227]
+                  - cell "일사량·운량·기온·풍속·습도 등 시간별 관측" [ref=e228]
+                  - cell "핵심 독립변수(Feature)" [ref=e229]
+                - row "NASA POWER HOURLY (NASA POWER) 23.01.01~25.08.31 위성 기반 일사·구름·기온·풍속·습도(시간 단위) 보조 Feature(관측 보완)" [ref=e230]:
+                  - cell "NASA POWER HOURLY (NASA POWER)" [ref=e231]
+                  - cell "23.01.01~25.08.31" [ref=e232]
+                  - cell "위성 기반 일사·구름·기온·풍속·습도(시간 단위)" [ref=e233]
+                  - cell "보조 Feature(관측 보완)" [ref=e234]
+        - article [ref=e235]:
+          - generic [ref=e236]:
+            - heading "데이터셋 표 ② 이미지 데이터(설비 이상탐지)" [level=4] [ref=e238]
+            - table [ref=e240]:
+              - rowgroup [ref=e241]:
+                - row "데이터명 유형 출처 수집/구축 방식 전처리·라벨 기준 사용 목적" [ref=e242]:
+                  - columnheader "데이터명" [ref=e243]
+                  - columnheader "유형" [ref=e244]
+                  - columnheader "출처" [ref=e245]
+                  - columnheader "수집/구축 방식" [ref=e246]
+                  - columnheader "전처리·라벨 기준" [ref=e247]
+                  - columnheader "사용 목적" [ref=e248]
+              - rowgroup [ref=e249]:
+                - row "태양광 패널 이미지(정상/결함) 비정형 이미지 드론·CCTV 촬영 이미지 현장 촬영 데이터 수집(드론/고정형 CCTV) 해상도/비율 통일·중복 제거·저품질(흐림/노출 과다) 필터 결함 탐지 모델 입력 데이터" [ref=e250]:
+                  - cell "태양광 패널 이미지(정상/결함)" [ref=e251]
+                  - cell "비정형 이미지" [ref=e252]
+                  - cell "드론·CCTV 촬영 이미지" [ref=e253]
+                  - cell "현장 촬영 데이터 수집(드론/고정형 CCTV)" [ref=e254]
+                  - cell "해상도/비율 통일·중복 제거·저품질(흐림/노출 과다) 필터" [ref=e255]
+                  - cell "결함 탐지 모델 입력 데이터" [ref=e256]
+                - row "결함 라벨(바운딩 박스 + 클래스) 정형 라벨 내부 라벨링(라벨링 툴) 이미지별 결함 영역 박스 지정 + 클래스 부여 클래스 기준 통일·라벨 검수·YOLO 학습 포맷으로 변환 YOLO 학습/평가용 정답 데이터" [ref=e257]:
+                  - cell "결함 라벨(바운딩 박스 + 클래스)" [ref=e258]
+                  - cell "정형 라벨" [ref=e259]
+                  - cell "내부 라벨링(라벨링 툴)" [ref=e260]
+                  - cell "이미지별 결함 영역 박스 지정 + 클래스 부여" [ref=e261]
+                  - cell "클래스 기준 통일·라벨 검수·YOLO 학습 포맷으로 변환" [ref=e262]
+                  - cell "YOLO 학습/평가용 정답 데이터" [ref=e263]
+                - row "결함 유형 정의서(판정 기준) 문서/규칙 내부 정의(합의/버전관리) 라벨링/운영 적용 기준 문서화 ‘무엇을 결함으로 볼지’ 기준 고정 판정 일관성 확보" [ref=e264]:
+                  - cell "결함 유형 정의서(판정 기준)" [ref=e265]
+                  - cell "문서/규칙" [ref=e266]
+                  - cell "내부 정의(합의/버전관리)" [ref=e267]
+                  - cell "라벨링/운영 적용 기준 문서화" [ref=e268]
+                  - cell "‘무엇을 결함으로 볼지’ 기준 고정" [ref=e269]
+                  - cell "판정 일관성 확보" [ref=e270]
+        - article [ref=e271]
+        - article [ref=e274]:
+          - generic [ref=e275]:
+            - 'heading "8. 문제 해결 과정(통합 ①): “제약을 인정하고, 범위를 재설계했다”" [level=3] [ref=e277]'
+            - generic:
+              - figure:
+                - img "범위 재설계"
+            - list [ref=e278]:
+              - listitem [ref=e279]:
+                - generic [ref=e280]: 문제
+                - text: :일부 보조 신호 데이터는 수집 속도/기간 한계로 충분한 학습량 확보가 불가능
+              - listitem [ref=e281]:
+                - generic [ref=e282]: 결정
+                - text: :보조 신호 추가 계획을 제외 → 핵심 데이터 집중으로 범위 재설계
+              - listitem [ref=e283]:
+                - generic [ref=e284]: 효과
+                - text: :마감 리스크 감소 / 핵심 기능(예측·탐지·대시보드) 완수 가능성 상승
+        - article [ref=e285]
+        - article [ref=e288]:
+          - generic [ref=e289]:
+            - 'heading "9. 문제 해결 과정(통합 ②): “가설→검증→선정으로 예측 품질을 올렸다”" [level=3] [ref=e291]'
+            - generic:
+              - figure:
+                - img "가설 검증"
+            - list [ref=e292]:
+              - listitem [ref=e293]:
+                - generic [ref=e294]: WHY
+                - text: :변수 선택은 도메인 지식만으로 확정할 수 없다 → 데이터로 검증해야 한다
+              - listitem [ref=e295]:
+                - generic [ref=e296]: 접근
+                - text: :도메인 가설 수립 → EDA로 영향 검증 → 모델 비교 → 시간 순서 검증
+              - listitem [ref=e297]:
+                - generic [ref=e298]: 기준
+                - text: :‘설명 가능한 변수’ + ‘시간 순서에서 재현되는 성능’
+        - article [ref=e299]
+        - article [ref=e302]:
+          - generic [ref=e303]:
+            - 'heading "10. 왜 3개 모델 비교인가: “평균 점수만으로는 운영을 설명 못 한다”" [level=3] [ref=e305]'
+            - generic:
+              - figure:
+                - img "모델 비교"
+            - list [ref=e306]:
+              - listitem [ref=e307]:
+                - generic [ref=e308]: WHY
+                - text: :운영에서 중요한 건 ‘평균 오차’만이 아니다(급변 구간이 핵심 리스크)
+              - listitem [ref=e309]:
+                - generic [ref=e310]: 비교 목적
+                - text: :각 모델의 강점이 다른 조건에서 드러나는지 확인(공정 비교)
+              - listitem [ref=e311]:
+                - generic [ref=e312]: 비교 기준
+                - text: :평균 오차(RMSE/MAE) + 급변 구간 안정성 + 운영 적용성
+        - article [ref=e313]
+        - article [ref=e316]:
+          - generic [ref=e317]:
+            - 'heading "11. 비교 결과: “평균 오차 vs 급변 안정성”" [level=3] [ref=e319]'
+            - generic:
+              - figure:
+                - img "비교 결과"
+            - list [ref=e320]:
+              - listitem [ref=e321]:
+                - generic [ref=e322]: 관찰
+                - text: :RMSE 기준으로는 LightGBM이 우세(평균 오차 관점)
+              - listitem [ref=e323]:
+                - generic [ref=e324]: 하지만
+                - text: :급변 구간에서는 예측 흔들림이 운영 경보 품질을 떨어뜨릴 수 있음
+              - listitem [ref=e325]:
+                - generic [ref=e326]: 결론
+                - text: :선택 기준을 ‘운영 품질(급변 안정성)’로 전환 → Transformer가 더 적합
+        - article [ref=e327]
+        - article [ref=e330]:
+          - generic [ref=e331]:
+            - 'heading "12. 왜 LightGBM 대신 Transformer인가: “급변 구간 안정성을 우선했다”" [level=3] [ref=e333]'
+            - generic:
+              - figure:
+                - img "Transformer 선택"
+            - list [ref=e334]:
+              - listitem [ref=e335]:
+                - generic [ref=e336]: 선택 기준
+                - text: :평균 오차 < 급변 구간 안정성(경보 품질)
+              - listitem [ref=e337]:
+                - generic [ref=e338]: WHY
+                - text: :급변에서 흔들리면 ‘거짓 경보/놓침’이 늘고, 결국 운영 의사결정이 무너진다
+              - listitem [ref=e339]:
+                - generic [ref=e340]: 결정
+                - text: :Transformer 최종 채택 → 급변 구간에서의 예측 곡선 안정성을 우선
+        - article [ref=e341]
+        - article [ref=e344]:
+          - generic [ref=e345]:
+            - 'heading "13. 증거(시각화): “급변 구간에서 차이가 보인다”" [level=3] [ref=e347]'
+            - generic:
+              - figure:
+                - img "급변 구간 비교"
+            - list [ref=e348]:
+              - listitem [ref=e349]:
+                - generic [ref=e350]: 근거
+                - text: :급변(Ramp) 구간 확대 비교로 모델 차이를 ‘형태’로 보여줌
+              - listitem [ref=e351]:
+                - generic [ref=e352]: 포인트
+                - text: :평균이 아니라 ‘급변 시점’에서의 오차/지연/출렁임이 운영 리스크를 만든다
+              - listitem [ref=e353]:
+                - generic [ref=e354]: 해석
+                - text: :급변에서 더 안정적인 예측이 ‘조기경고’의 신뢰도를 만든다
+        - article [ref=e355]
+        - article [ref=e358]:
+          - generic [ref=e359]:
+            - 'heading "14. 검증 신뢰 & 결과: “미래 정보 유출을 막고, 대시보드로 실행한다”" [level=3] [ref=e361]'
+            - generic:
+              - figure:
+                - img "검증 및 결과"
+            - list [ref=e362]:
+              - listitem [ref=e363]:
+                - generic [ref=e364]: 검증 원칙
+                - text: :시간 순서를 어기면 성능이 과대평가된다(미래 정보 유출 위험)
+              - listitem [ref=e365]:
+                - generic [ref=e366]: 방법
+                - text: :Rolling Cross-Validation으로 Train/Test/Future/Fold를 시간 순서대로 반복 검증
+              - listitem [ref=e367]:
+                - generic [ref=e368]: 결과
+                - text: :예측·탐지 결과를 한 화면으로 연결 → ‘미리 알림 · 미리 점검’ 실행 흐름 완성
+        - article [ref=e369]
+        - article [ref=e372]:
+          - generic [ref=e373]:
+            - heading "15. 프로젝트 문서" [level=3] [ref=e375]
+            - generic [ref=e376]:
+              - paragraph [ref=e377]: 프로젝트 PPT
+              - paragraph [ref=e378]: 시연 동영상
+  - contentinfo [ref=e379]:
+    - generic [ref=e380]:
+      - generic [ref=e381]: Thank you
+      - paragraph [ref=e383]: Copyright © 2026. KANG KYOUNGRAN. All rights reserved.
+  - generic [ref=e385]:
+    - button "맨 위로 이동" [ref=e386]:
+      - img [ref=e387]
+    - button "빠른 메뉴 열기" [ref=e389]:
+      - img [ref=e390]
