@@ -4,6 +4,7 @@ import experience from '@/content/experience.json'
 import { Section } from '@/components/layout/Section'
 import { SectionHeader } from '@/components/layout/SectionHeader'
 import { assetPath } from '@/lib/assetPath'
+import { parseRichText } from '@/lib/parseRichText'
 
 interface Period {
   start: string
@@ -32,31 +33,43 @@ interface ExperienceContent {
   companies: ExperienceCompany[]
 }
 
-function renderCompanyName(name: string) {
-  const teldaPrefix = '(주)텔다 - 신재생에너지'
-  const webzenPrefix = '(주)웹젠 - 게임회사'
+const experienceLabelPalette = {
+  default: {
+    bg: 'rgba(211, 168, 0, 0.137)',
+    text: '#2c2c2b',
+  },
+  purple: {
+    bg: 'rgba(161, 115, 191, 0.2)',
+    text: '#2c2c2b',
+  },
+}
 
-  if (name.startsWith(teldaPrefix)) {
-    const rest = name.replace(teldaPrefix, '').trim()
-    return (
-      <>
-        <span style={{ color: '#A173BF' }}>{teldaPrefix}</span>
-        {rest ? <span style={{ color: '#2c2c2b' }}>{` ${rest}`}</span> : null}
-      </>
-    )
+function renderBulletContent(bullet: string) {
+  const match = bullet.match(/^<purple>(.+?)<\/purple>:\s*(.+)$/)
+  if (!match) {
+    return parseRichText(bullet)
   }
 
-  if (name.startsWith(webzenPrefix)) {
-    const rest = name.replace(webzenPrefix, '').trim()
-    return (
-      <>
-        <span style={{ color: '#A173BF' }}>{webzenPrefix}</span>
-        {rest ? <span style={{ color: '#2c2c2b' }}>{` ${rest}`}</span> : null}
-      </>
-    )
-  }
-
-  return <span style={{ color: '#A173BF' }}>{name}</span>
+  return (
+    <>
+      <span
+        style={{
+          display: 'inline-block',
+          padding: '2.7px 5.4px',
+          borderRadius: '4px',
+          backgroundColor: experienceLabelPalette.purple.bg,
+          color: experienceLabelPalette.purple.text,
+          fontWeight: 700,
+          fontSize: '14px',
+          lineHeight: 'normal',
+        }}
+      >
+        {match[1]}
+      </span>
+      <span style={{ marginRight: '4px' }}>:</span>
+      {parseRichText(match[2])}
+    </>
+  )
 }
 
 function formatPeriod(period: Period): string {
@@ -116,9 +129,9 @@ export function ExperienceSection() {
 
                 {/* 우측: 상세 정보 */}
                 <div className="space-y-[22px] pt-8 md:pl-2">
-                  <header className="space-y-2 pb-6 pt-3">
+                  <header className="space-y-2 pb-[10px] pt-3">
                     <h3 className="mb-0 text-[20px] font-normal leading-[1.4]">
-                      {renderCompanyName(company.companyName)}
+                      {parseRichText(company.companyName)}
                     </h3>
                     {company.roleTitle?.trim() && (
                       <p className="mb-0 text-[14px] font-medium text-[#7d7a75] leading-none">
@@ -139,7 +152,7 @@ export function ExperienceSection() {
                         >
                           <div className="flex items-center gap-2">
                             <h4 className="mb-1 text-[16px] font-semibold text-[#2c2c2b]">
-                              {entry.title}
+                              {parseRichText(entry.title)}
                             </h4>
                           </div>
                           {entry.periodText?.trim() && (
@@ -152,7 +165,7 @@ export function ExperienceSection() {
                         <ul className="list-outside list-disc space-y-[14px] pl-5 marker:text-[#7d7a75] marker:text-[0.9em] leading-[26px]">
                           {entry.bullets.map((bullet) => (
                             <li key={bullet} className="text-[14px] leading-[26px] text-[#2c2c2b]">
-                              {bullet}
+                              {renderBulletContent(bullet)}
                             </li>
                           ))}
                         </ul>

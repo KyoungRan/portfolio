@@ -28,7 +28,7 @@
     "비정형(카페 텍스트) + 정형(네이버 부동산) 데이터 수집/전처리",
     "키워드 분석, 시각화, 결론 정리"
   ],
-  "coverImageSrc": "/assets/projects/commercial-district-structure-analysis/cover.png",
+  "coverImageSrc": "/assets/projects/commercial-district-structure-analysis/cover.jpg",
   "coverImageWidthPercent": 80,
   "order": 5,
   "sections": [

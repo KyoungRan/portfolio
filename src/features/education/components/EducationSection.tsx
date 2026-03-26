@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/layout/SectionHeader'
 import education from '@/content/education.json'
 import { Section } from '@/components/layout/Section'
 import { assetPath } from '@/lib/assetPath'
+import { parseRichText } from '@/lib/parseRichText'
 
 interface EducationItem {
   name: string
@@ -16,6 +17,41 @@ interface EducationItem {
 interface EducationContent {
   title: string
   items: EducationItem[]
+}
+
+const educationLabelPalette = {
+  purple: {
+    bg: 'rgba(161, 115, 191, 0.2)',
+    text: '#2c2c2b',
+  },
+}
+
+function renderEducationBullet(bullet: string) {
+  const match = bullet.match(/^\*\*(.+?)\*\*:\s*(.+)$/)
+  if (!match) {
+    return parseRichText(bullet)
+  }
+
+  return (
+    <>
+      <span
+        style={{
+          display: 'inline-block',
+          padding: '2.7px 5.4px',
+          borderRadius: '4px',
+          backgroundColor: educationLabelPalette.purple.bg,
+          color: educationLabelPalette.purple.text,
+          fontWeight: 700,
+          fontSize: '14px',
+          lineHeight: 'normal',
+        }}
+      >
+        {match[1]}
+      </span>
+      <span style={{ marginRight: '4px' }}>:</span>
+      {parseRichText(match[2])}
+    </>
+  )
 }
 
 export function EducationSection() {
@@ -68,7 +104,7 @@ export function EducationSection() {
                           className="mb-0 font-normal text-[#37352f]"
                           style={{ fontSize: '16px', lineHeight: '24px', paddingLeft: '0px', paddingRight: '0px' }}
                         >
-                          {item.name}
+                          {parseRichText(item.name)}
                         </h3>
                         {item.periodText && (
                           <span
@@ -87,7 +123,7 @@ export function EducationSection() {
                       className="mb-0 font-normal text-[#37352f]"
                       style={{ fontSize: '16px', lineHeight: '24px', paddingLeft: '2px', paddingRight: '2px' }}
                     >
-                      {item.name}
+                      {parseRichText(item.name)}
                     </h3>
                   </div>
                 )}
@@ -115,13 +151,13 @@ export function EducationSection() {
                       <div style={{ fontSize: '14px', lineHeight: '24px', color: '#37352f' }}>
                         {certificateMatch ? (
                           <>
-                            <span>{certificateMatch[1]}</span>
+                            <span>{parseRichText(certificateMatch[1])}</span>
                             <span style={{ color: '#9b9a97', paddingLeft: '30px', fontSize: '12px' }}>
                               {certificateMatch[2].trimStart()}
                             </span>
                           </>
                         ) : (
-                          item.bullets[0]
+                          parseRichText(item.bullets[0])
                         )}
                       </div>
                     </div>
@@ -149,20 +185,17 @@ export function EducationSection() {
                             const [label, rest] = bullet.split('||')
                             return (
                               <li key={`${item.name}-${bullet}`} style={bulletItemStyle}>
-                                <span className="font-normal">{label}</span>
-                                {rest ? ` ${rest}` : null}
+                                <span className="font-normal">{parseRichText(label)}</span>
+                                {rest ? <> {parseRichText(rest)}</> : null}
                               </li>
                             )
                           }
 
                           const colonIndex = bullet.indexOf(':')
                           if (colonIndex > 0) {
-                            const label = bullet.slice(0, colonIndex)
-                            const rest = bullet.slice(colonIndex + 1)
                             return (
                               <li key={`${item.name}-${bullet}`} style={bulletItemStyle}>
-                                <span className="font-normal">{label}</span>
-                                {rest ? `:${rest}` : ':'}
+                                {renderEducationBullet(bullet)}
                               </li>
                             )
                           }
@@ -181,7 +214,7 @@ export function EducationSection() {
 
                           return (
                             <li key={`${item.name}-${bullet}`} style={bulletItemStyle}>
-                              {bullet}
+                              {renderEducationBullet(bullet)}
                             </li>
                           )
                         })}
