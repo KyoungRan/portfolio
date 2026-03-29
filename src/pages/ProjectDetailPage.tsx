@@ -627,6 +627,32 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
               )
             })}
           </div>
+
+          {project.demoVideoSrc && (
+            <div className="mt-[10px] w-full border-t border-[#e9e9e7] pt-[10px]">
+              <div className="aspect-video w-full overflow-hidden rounded-[1px] bg-black">
+                <video
+                  className="block h-full w-full object-contain"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  src={assetPath(project.demoVideoSrc)}
+                />
+              </div>
+            </div>
+          )}
+
+          {project.demoPdfSrc && (
+            <div className="mt-[10px] w-full border-t border-[#e9e9e7] pt-[10px]">
+              <div className="aspect-[16/10] w-full overflow-hidden rounded-[1px] border border-[#e6e5e3] bg-white">
+                <iframe
+                  className="block h-full w-full border-0"
+                  src={`${assetPath(project.demoPdfSrc)}#view=FitH`}
+                  title={`${project.title} PDF`}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </PageContent>

@@ -30,6 +30,7 @@
   ],
   "coverImageSrc": "/assets/projects/image-recognition-kfood-guide/cover.jpg",
   "coverImageWidthPercent": 80,
+  "demoVideoSrc": "/assets/projects/image-recognition-kfood-guide/k-food_demon_hunters_video.mp4",
   "links": [
     {
       "label": "Detail",
@@ -286,11 +287,7 @@
     },
     {
       "type": "approach",
-      "title": "프로젝트 문서",
-      "body": [
-        "프로젝트 PPT",
-        "시연 동영상"
-      ]
+      "title": "15. 시연 동영상"
     }
   ]
 }

@@ -86,6 +86,8 @@ export interface ProjectItem {
   roles: string[]
   coverImageSrc: string
   coverImageWidthPercent?: number
+  demoVideoSrc?: string
+  demoPdfSrc?: string
   order?: number
   links?: ProjectLink[]
   kpis?: ProjectKpi[]

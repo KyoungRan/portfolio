@@ -46,6 +46,7 @@
   ],
   "coverImageSrc": "/assets/projects/beauty-pulse-ai/cover.jpg",
   "coverImageWidthPercent": 80,
+  "demoVideoSrc": "/assets/projects/beauty-pulse-ai/Beauty_Pulse_AI_video.mp4",
   "links": [
     {
       "label": "Detail",
@@ -80,7 +81,7 @@
         [
           "V. Ops - 실행·검증·운영",
           "VI. Proof - 성능 검증",
-          "VII. Close - 확장 계획"
+          "VII. Close"
         ]
       ]
     },
@@ -594,7 +595,7 @@
     },
     {
       "type": "lessons",
-      "title": "VII. Close - 확장 계획",
+      "title": "VII. Close",
       "titleLevel": 2
     },
     {
@@ -614,6 +615,14 @@
         "카테고리 확장 시 현재 파이프라인·DB·에이전트 구조 재사용 가능",
         "로드맵은 재설계가 아닌 현재 구조의 확장"
       ]
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "lessons",
+      "title": "2. 시연동영상",
+      "titleLevel": 3
     }
   ]
 }

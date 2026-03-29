@@ -30,6 +30,7 @@
   ],
   "coverImageSrc": "/assets/projects/commercial-district-structure-analysis/cover.jpg",
   "coverImageWidthPercent": 80,
+  "demoPdfSrc": "/assets/projects/commercial-district-structure-analysis/commerical-district-ppt.pdf",
   "order": 5,
   "sections": [
     {
@@ -408,10 +409,7 @@
     },
     {
       "type": "responsibilities",
-      "title": "11. 프로젝트 문서",
-      "bullets": [
-        "프로젝트 발표 PPT: [바로가기](https://docs.google.com/presentation/d/1...)"
-      ]
+      "title": "11. 프로젝트 PPT"
     }
   ]
 }

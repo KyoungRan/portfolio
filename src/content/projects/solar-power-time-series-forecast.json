@@ -33,6 +33,7 @@
   ],
   "coverImageSrc": "/assets/projects/solar-power-time-series-forecast/cover.jpg",
   "coverImageWidthPercent": 80,
+  "demoVideoSrc": "/assets/projects/solar-power-time-series-forecast/solar_power_video.mp4",
   "links": [
     {
       "label": "Detail",
@@ -414,11 +415,7 @@
     },
     {
       "type": "approach",
-      "title": "15. 프로젝트 문서",
-      "body": [
-        "프로젝트 PPT",
-        "시연 동영상"
-      ]
+      "title": "11. 시연 동영상"
     }
   ]
 }
