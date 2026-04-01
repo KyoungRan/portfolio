@@ -94,6 +94,14 @@ function resolvePaletteForLabel(
   return palettes.default ?? DEFAULT_LABEL_PALETTE
 }
 
+function stripBoldMarker(text: string) {
+  const trimmed = text.trim()
+  if (trimmed.startsWith('**') && trimmed.endsWith('**') && trimmed.length >= 4) {
+    return trimmed.slice(2, -2).trim()
+  }
+  return trimmed
+}
+
 function renderLineWithLabel(
   line: RichText,
   palettes: Record<string, LabelPalette>,
@@ -105,12 +113,14 @@ function renderLineWithLabel(
   const labelText = match[1].trim()
   const circledMatch = labelText.match(/^([①②③④⑤⑥⑦⑧⑨⑩])\s*(.*)$/)
   const circledPrefix = circledMatch ? circledMatch[1] : null
-  const circledLabel = circledMatch ? circledMatch[2] : labelText
+  const circledLabel = stripBoldMarker(circledMatch ? circledMatch[2] : labelText)
   const isMiddleDotLabel = labelText.startsWith('·')
-  const normalizedLabelText = labelText
+  const normalizedLabelText = stripBoldMarker(
+    labelText
     .replace(/^·\s?/, '')
     .replace(/^([①②③④⑤⑥⑦⑧⑨⑩])\s*/, '')
-    .trim()
+    .trim(),
+  )
   const palette = resolvePaletteForLabel(normalizedLabelText, palettes, overrides)
   const colonIndex = plainLine.indexOf(':')
 
@@ -352,9 +362,13 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                   >
                     {section.title && (
                       <div
-                        className={`${
-                          inferTitleLevel(section.title, section.titleLevel) === 4 ? 'mt-[15px]' : 'mt-6'
-                        } ${section.source ? 'mb-1' : 'mb-2'}`}
+                        className={section.source ? 'mb-1' : 'mb-2'}
+                        style={{
+                          marginTop: `${
+                            section.titleTopSpacing ??
+                            (inferTitleLevel(section.title, section.titleLevel) === 4 ? 15 : 24)
+                          }px`,
+                        }}
                       >
                         {(() => {
                           const trimmedTitle = getPlainText(section.title).trim()
@@ -484,8 +498,14 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                       </div>
                     ) : (
                       <>
-                        {section.body && section.body.length > 0 && (
-                          <div className="flex flex-col gap-[6px] text-[14px]" style={{ lineHeight: '21px' }}>
+                          {section.body && section.body.length > 0 && (
+                            <div
+                              className="flex flex-col text-[14px]"
+                              style={{
+                                lineHeight: section.bodyLineHeight ?? '21px',
+                                gap: section.table ? '0px' : '6px',
+                              }}
+                            >
                             {section.body.map((line, idx) => (
                               <p
                                 key={idx}
@@ -564,8 +584,8 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
                             <div
                               className="overflow-x-auto"
                               style={{
-                                marginTop: `${DEFAULT_TABLE_TOP_SPACING}px`,
-                                marginBottom: `${DEFAULT_TABLE_BOTTOM_SPACING}px`,
+                                marginTop: `${section.tableTopSpacing ?? DEFAULT_TABLE_TOP_SPACING}px`,
+                                marginBottom: `${section.tableBottomSpacing ?? DEFAULT_TABLE_BOTTOM_SPACING}px`,
                               }}
                             >
                               <table className="w-full border-collapse text-[14px] border border-[#e6e5e3]">

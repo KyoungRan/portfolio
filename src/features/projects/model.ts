@@ -61,8 +61,10 @@ export interface ProjectSection {
   source?: RichText
   labelPaletteOverrides?: Record<string, string>
   rightColumnAlign?: 'center'
+  titleTopSpacing?: number
   tableTopSpacing?: number
   tableBottomSpacing?: number
+  bodyLineHeight?: string
   body?: RichText[]
   tocColumns?: RichText[][]
   bullets?: RichText[]
